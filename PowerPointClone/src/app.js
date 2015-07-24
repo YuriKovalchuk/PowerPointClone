@@ -36,7 +36,7 @@ define(["require", "exports", 'react/addons'], function (require, exports, React
         };
         return App;
     })(React.Component);
-    //React.render(React.jsx(`<App />`), document.body);
     React.render(React.jsx("<Main />"), document.body);
 });
+//React.render(React.jsx(`<SlideBase />`), document.body); 
 //# sourceMappingURL=app.js.map

@@ -8,6 +8,7 @@ import Main = require('../components/main');
 
 
 
+
 interface State {
   photoIndex?: number;
   inputText?: string;
@@ -62,6 +63,6 @@ class App extends React.Component<any, State, any> {
 	}
 }
 
-//React.render(React.jsx(`<App />`), document.body);
-
 React.render(React.jsx(`<Main />`), document.body);
+
+//React.render(React.jsx(`<SlideBase />`), document.body);

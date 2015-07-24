@@ -56,6 +56,8 @@
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="components\main.ts" />
+    <TypeScriptCompile Include="components\slideBase.ts" />
+    <TypeScriptCompile Include="components\stage.ts" />
     <TypeScriptCompile Include="src\app.ts" />
     <TypeScriptCompile Include="src\imageViewer.ts" />
     <TypeScriptCompile Include="lib\react-0.13.0.d.ts" />

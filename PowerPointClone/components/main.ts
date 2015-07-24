@@ -2,6 +2,12 @@
 
 import React = require('react/addons');
 
+
+import SlideBase = require('../components/slideBase');
+import Stage = require('../components/stage');
+
+
+
 class Main extends React.Component<any, any, any>
 {
     render() {
@@ -34,16 +40,16 @@ class Main extends React.Component<any, any, any>
         </div>
     </nav>
     <div className="container">
-        <div class="row">
+        <div className="row">
             <div className="col-lg-2">
                 <div id="leftSideMenuWrapper">
                     left panel
                 </div>
             </div>
-            <div className="col-lg-9 main-body">
-                main presentation stage
+            <div className="col-lg-8 main-body">
+                <Stage />
             </div>
-            <div className="col-lg-1">
+            <div className="col-lg-2">
                 right panel
             </div>
         </div>
