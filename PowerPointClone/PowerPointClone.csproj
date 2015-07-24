@@ -27,6 +27,7 @@
     <Content Include="css\bootstrap-theme.min.css" />
     <Content Include="css\bootstrap.css" />
     <Content Include="css\bootstrap.min.css" />
+    <Content Include="css\bootstrap.min.js" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="index.html" />
     <Content Include="photos\0.jpg" />
@@ -51,10 +52,10 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="components\" />
     <Folder Include="utils\" />
   </ItemGroup>
   <ItemGroup>
+    <TypeScriptCompile Include="components\main.ts" />
     <TypeScriptCompile Include="src\app.ts" />
     <TypeScriptCompile Include="src\imageViewer.ts" />
     <TypeScriptCompile Include="lib\react-0.13.0.d.ts" />
