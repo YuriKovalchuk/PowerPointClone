@@ -1,0 +1,6 @@
+D:\Backup Softvision\PowerPointClone\PowerPointClone\bin\PowerPointClone.dll.config
+D:\Backup Softvision\PowerPointClone\PowerPointClone\bin\PowerPointClone.dll
+D:\Backup Softvision\PowerPointClone\PowerPointClone\bin\PowerPointClone.pdb
+D:\Backup Softvision\PowerPointClone\PowerPointClone\obj\Debug\PowerPointClone.csprojResolveAssemblyReference.cache
+D:\Backup Softvision\PowerPointClone\PowerPointClone\obj\Debug\PowerPointClone.dll
+D:\Backup Softvision\PowerPointClone\PowerPointClone\obj\Debug\PowerPointClone.pdb
