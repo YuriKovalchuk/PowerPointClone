@@ -5,11 +5,13 @@ import React = require('react/addons');
 
 import SlideBase = require('../components/slideBase');
 import Stage = require('../components/stage');
+import RightSidePanel = require('../components/rightSidePanel');
 
 
 
 class Main extends React.Component<any, any, any>
 {
+
     render() {
         return React.jsx(`
 <div>	
@@ -50,7 +52,7 @@ class Main extends React.Component<any, any, any>
                 <Stage />
             </div>
             <div className="col-lg-2">
-                right panel
+                <RightSidePanel />
             </div>
         </div>
     </div>

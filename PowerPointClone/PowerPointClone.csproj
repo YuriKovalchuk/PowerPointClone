@@ -56,6 +56,7 @@
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="components\main.ts" />
+    <TypeScriptCompile Include="components\rightSidePanel.ts" />
     <TypeScriptCompile Include="components\slideBase.ts" />
     <TypeScriptCompile Include="components\stage.ts" />
     <TypeScriptCompile Include="src\app.ts" />
