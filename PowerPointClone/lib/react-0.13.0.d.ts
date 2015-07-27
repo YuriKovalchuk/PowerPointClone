@@ -50,7 +50,7 @@ declare module React {
     class Component<P, S, C> implements ComponentLifecycle<P, S, C> {
         constructor(props: P, context: C);
         // static members can't be type checked with generics. However, see ComponentClass<P, S, C>
-        static defaultProps: any;
+        static  : any;
         static propTypes: ValidationMap<any>;
         static contextTypes: ValidationMap<any>;
         static childContextTypes: ValidationMap<any>;

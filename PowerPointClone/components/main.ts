@@ -5,6 +5,7 @@ import React = require('react/addons');
 
 import SlideBase = require('../components/slideBase');
 import Stage = require('../components/stage');
+import LeftPanel = require('../components/leftSidePanel');
 
 
 
@@ -43,7 +44,7 @@ class Main extends React.Component<any, any, any>
         <div className="row">
             <div className="col-lg-2">
                 <div id="leftSideMenuWrapper">
-                    left panel
+                    <LeftPanel slides={Data} />
                 </div>
             </div>
             <div className="col-lg-8 main-body">
@@ -58,5 +59,12 @@ class Main extends React.Component<any, any, any>
          `);
     }
 }
+
+var Data = [
+    { id: '1', title: 'Test1' },
+    { id: '2', title: 'Test2' },
+    { id: '3', title: 'Test3' },
+    { id: '4', title: 'Test4' }
+]; 
 
 export = Main;

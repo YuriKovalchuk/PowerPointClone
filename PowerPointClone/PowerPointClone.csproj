@@ -28,6 +28,7 @@
     <Content Include="css\bootstrap.css" />
     <Content Include="css\bootstrap.min.css" />
     <Content Include="css\bootstrap.min.js" />
+    <Content Include="css\leftSidePanel.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="index.html" />
     <Content Include="photos\0.jpg" />
@@ -55,6 +56,7 @@
     <Folder Include="utils\" />
   </ItemGroup>
   <ItemGroup>
+    <TypeScriptCompile Include="components\leftSidePanel.ts" />
     <TypeScriptCompile Include="components\main.ts" />
     <TypeScriptCompile Include="components\slideBase.ts" />
     <TypeScriptCompile Include="components\stage.ts" />
@@ -76,7 +78,7 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>True</UseIIS>
+          <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>52324</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
