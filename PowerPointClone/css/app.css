@@ -95,9 +95,11 @@ input {
 
 .panel{
     border:1px solid #ccc;
-    border-radius: 0px !important;
+    border-radius: 0 !important;
 }
 
+
+/* rightSidePanel */
 .panel .header{
     background-color:#808080;
     padding:3px;
@@ -147,4 +149,14 @@ input {
 .space-bottom10
 {
     margin-bottom:10px;
+}
+
+.space-bottom20
+{
+    margin-bottom:20px;
+}
+
+/* stage */
+.stage {
+    height : 700px;
 }

@@ -28,29 +28,26 @@ class LeftSidePanel extends React.Component<any, any, any>
                 </div>
                 <div className="row">
                     <div className="col-xs-12">
-                        <div className="slide-base center-block space-top10 space-bottom10" onClick={this.changeLayoutClickHandler.bind(this,'TitleOnly')}>
+                        <div className="slide-base center-block space-top10 space-bottom20" onClick={this.changeLayoutClickHandler.bind(this,'TitleOnly')}>
                             <div className="title-placeholder center-block space-top55"></div>
-                            <input type="hidden" value="TitleOnly" ref="SlideType" />
                         </div>
                     </div>
                 </div>
                 <div className="row">
                     <div className="col-xs-12">
-                        <div className="slide-base center-block" onClick={this.changeLayoutClickHandler.bind(this,'TitleWithText')}>
-                            <div className="title-placeholder center-block space-top10" ></div>
+                        <div className="slide-base center-block space-bottom20" onClick={this.changeLayoutClickHandler.bind(this,'TitleWithText')}>
+                            <div className="title-placeholder center-block space-top10"></div>
                             <div className="text-body-placeholder center-block space-top10"></div>
-                            <input type="hidden" value="TitleWithText" ref="SlideType" />
                         </div>
                     </div>
                 </div>
                 <div className="row">
                     <div className="col-xs-12">
-                        <div className="slide-base center-block space-top10 space-bottom10" onClick={this.changeLayoutClickHandler.bind(this,'TitleWithImage')}>
+                        <div className="slide-base center-block space-bottom20" onClick={this.changeLayoutClickHandler.bind(this,'TitleWithImage')}>
                             <div className="title-placeholder center-block space-top10"></div>
                             <div className="text-body-placeholder center-block space-top10">
                                 <img src="http://placekitten.com/g/150/80" title="Image" style={imageStyling}/>
                             </div>
-                            <input type="hidden" value="TitleWithImage" ref="SlideType" />
                         </div>
                     </div>
                 </div>

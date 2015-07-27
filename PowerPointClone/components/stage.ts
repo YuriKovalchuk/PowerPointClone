@@ -12,8 +12,10 @@ class Stage extends React.Component<any, any, any>
         }
 
         return React.jsx(`
-            <div className="row" style={divStyle}>
-	            {this.props.name}
+            <div className="row panel">
+                <div className="stage">
+                    	            {this.props.name}
+                </div>
             </div>
          `);
     }
