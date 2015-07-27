@@ -2,7 +2,7 @@
 
 import React = require('react/addons');
 
-class SlideBase extends React.Component<any, any, any>
+class SlideBases extends React.Component<any, any, any>
 {
     state = {
         name : "testAlex"
@@ -17,4 +17,4 @@ class SlideBase extends React.Component<any, any, any>
     }
 }
 
-export = SlideBase;
+export = SlideBases;

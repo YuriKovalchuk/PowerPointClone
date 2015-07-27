@@ -2,52 +2,65 @@
 
 import ImageViewer = require('./imageViewer');
 import React = require('react/addons');
+import SlideBase = require('../DAL/Model/ISlideBase');
 
-import Main = require('../components/main');
-
-
-
-
+import Presentation = require('../DAL/Model/Presentation');
+//import SlideTitleWithText = require('../DAL/Model/SlideTitleWithText');
+import SlideWithTitleOnly = require('../DAL/Model/SlideWithTitleOnly');
+//import SlideTitleWithImage = require('../DAL/Model/SlideTitleWithImage');
+import SlideType = require('../Enums/SlideType');
 
 interface State {
-  photoIndex?: number;
-  inputText?: string;
+    photoIndex?: number;
+    inputText?: string;
 }
 
 class App extends React.Component<any, State, any> {
-  
-  state = {
-			photoIndex: 0,
-			inputText: '1'
-  }
 
-	handleChange(addend) {
-		var newIndex = this.state.photoIndex+addend,
-		               maxPhotos = 3;
-		// clamp [0 thru maxPhotos-1]
-		newIndex = Math.max(0, Math.min(maxPhotos-1, newIndex)); 
-		
-		this.setState({
-			photoIndex: newIndex,
-			inputText: newIndex+1
-		})
-	}
+    state = {
+        photoIndex: 0,
+        inputText: '1',
+    }
 
-	handleKeyPress(e) {
-		if (e.key == 'Enter') {
-			this.setState({
-				photoIndex: parseInt(this.state.inputText, 10)-1
-			})
-		}
-	}
+    handleChange(addend) {
+        var newIndex = this.state.photoIndex + addend,
+            maxPhotos = 3;
+        // clamp [0 thru maxPhotos-1]
+        newIndex = Math.max(0, Math.min(maxPhotos - 1, newIndex));
 
-	render() {
-		return React.jsx(`<div className="app">
+        this.setState({
+            photoIndex: newIndex,
+            inputText: newIndex + 1,
+        })
+    }
+
+    handleKeyPress(e) {
+        if (e.key == 'Enter') {
+            this.setState({
+                photoIndex: parseInt(this.state.inputText, 10) - 1,
+            })
+        }
+    }
+
+    render() {
+        var presentation = new Presentation();
+        presentation.id = "1";
+        var slideText = new SlideWithTitleOnly(
+            presentation.id,
+            "test titlu"
+            );
+        presentation.slides = [slideText];
+
+        return React.jsx(`<div className="app">
 			<div className="title">Picture Purrfect</div>
 			<ImageViewer index={this.state.photoIndex} />
 			<div>
-				<button 
-					disabled={this.state.photoIndex == 0} 
+                <div>
+                    <pre>{presentation.id}</pre>
+                </div>
+
+				<button
+					disabled={this.state.photoIndex == 0}
 					onClick={this.handleChange.bind(this, -1)}>Previous</button>
 
 				<input type="text"
@@ -55,14 +68,14 @@ class App extends React.Component<any, State, any> {
           onChange={e => this.setState({inputText: e.target.value})}
 					onKeyPress={this.handleKeyPress.bind(this)} />
 
-				<button 
-					disabled={this.state.photoIndex == 2} 
+				<button
+					disabled={this.state.photoIndex == 2}
 					onClick={this.handleChange.bind(this, 1)}>Next</button>
 			</div>
 		</div>`)
-	}
+    }
 }
 
-React.render(React.jsx(`<Main />`), document.body);
+React.render(React.jsx(`<App />`), document.body);
 
 //React.render(React.jsx(`<SlideBase />`), document.body);
