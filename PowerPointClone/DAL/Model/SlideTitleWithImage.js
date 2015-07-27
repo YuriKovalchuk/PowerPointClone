@@ -1,18 +1,14 @@
-var __extends = (this && this.__extends) || function (d, b) {
-    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
-    function __() { this.constructor = d; }
-    __.prototype = b.prototype;
-    d.prototype = new __();
-};
-define(["require", "exports", 'SlideBase', '../../Enums/SlideType'], function (require, exports, SlideBase, SlideType) {
-    var SlideTitleWithImage = (function (_super) {
-        __extends(SlideTitleWithImage, _super);
-        function SlideTitleWithImage() {
-            _super.apply(this, arguments);
+define(["require", "exports", '../../Enums/SlideType', '../../utils/Helpers'], function (require, exports, SlideType, Utils) {
+    var SlideTitleWithImage = (function () {
+        function SlideTitleWithImage(title, presentationId, imagePath) {
             this.slideType = SlideType.TitleWithImage;
+            this.id = Utils.GetId();
+            this.title = title;
+            this.presentationId = presentationId;
+            this.imagePath = imagePath;
         }
         return SlideTitleWithImage;
-    })(SlideBase);
+    })();
     return SlideTitleWithImage;
 });
 //# sourceMappingURL=SlideTitleWithImage.js.map

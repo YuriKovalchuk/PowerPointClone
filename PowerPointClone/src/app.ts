@@ -2,7 +2,7 @@
 
 import ImageViewer = require('./imageViewer');
 import React = require('react/addons');
-import SlideBase = require('../DAL/Model/SlideBase');
+import SlideBase = require('../DAL/Model/ISlideBase');
 
 import Presentation = require('../DAL/Model/Presentation');
 //import SlideTitleWithText = require('../DAL/Model/SlideTitleWithText');
