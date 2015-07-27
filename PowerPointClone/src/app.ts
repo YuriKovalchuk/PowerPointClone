@@ -2,14 +2,13 @@
 
 import ImageViewer = require('./imageViewer');
 import React = require('react/addons');
-
-import Main = require('../components/main');
+import SlideBase = require('../DAL/Model/SlideBase');
 
 import Presentation = require('../DAL/Model/Presentation');
-import SlideTitleWithText = require('../DAL/Model/SlideTitleWithText');
+//import SlideTitleWithText = require('../DAL/Model/SlideTitleWithText');
 import SlideWithTitleOnly = require('../DAL/Model/SlideWithTitleOnly');
-import SlideTitleWithImage = require('../DAL/Model/SlideTitleWithImage');
-import SlideBase = require('../DAL/Model/SlideBase');
+//import SlideTitleWithImage = require('../DAL/Model/SlideTitleWithImage');
+import SlideType = require('../Enums/SlideType');
 
 interface State {
     photoIndex?: number;
@@ -46,11 +45,10 @@ class App extends React.Component<any, State, any> {
     render() {
         var presentation = new Presentation();
         presentation.id = "1";
-        var slideText: SlideBase.SlideBase.ISlideBase = new SlideWithTitleOnly();
-        slideText.id = "1";
-        slideText.presentationId = presentation.id;
-        slideText.slideType = SlideBase.SlideBase.SlideType.TitleOnly;
-        slideText.title = "test titlu";
+        var slideText = new SlideWithTitleOnly(
+            presentation.id,
+            "test titlu"
+            );
         presentation.slides = [slideText];
 
         return React.jsx(`<div className="app">
@@ -78,6 +76,6 @@ class App extends React.Component<any, State, any> {
     }
 }
 
-React.render(React.jsx(`<Main />`), document.body);
+React.render(React.jsx(`<App />`), document.body);
 
 //React.render(React.jsx(`<SlideBase />`), document.body);

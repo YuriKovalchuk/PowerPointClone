@@ -4,16 +4,15 @@ var __extends = (this && this.__extends) || function (d, b) {
     __.prototype = b.prototype;
     d.prototype = new __();
 };
-define(["require", "exports", 'SlideBase'], function (require, exports, ISlideBase) {
-    var SlideBase = ISlideBase.SlideBase;
+define(["require", "exports", 'SlideBase', '../../Enums/SlideType'], function (require, exports, SlideBase, SlideType) {
     var SlideTitleWithImage = (function (_super) {
         __extends(SlideTitleWithImage, _super);
         function SlideTitleWithImage() {
             _super.apply(this, arguments);
-            this.slideType = SlideBase.SlideType.TitleWithImage;
+            this.slideType = SlideType.TitleWithImage;
         }
         return SlideTitleWithImage;
-    })(SlideBase.ISlideBase);
+    })(SlideBase);
     return SlideTitleWithImage;
 });
 //# sourceMappingURL=SlideTitleWithImage.js.map

@@ -1,11 +1,10 @@
 ﻿import ISlideBase = require('SlideBase');
+import SlideType = require('../../Enums/SlideType');
 
-import SlideBase = ISlideBase.SlideBase;
-
-class SlideTitleWithText extends SlideBase.ISlideBase {
+class SlideTitleWithText extends ISlideBase {
     content: string;
 
-    slideType: SlideBase.SlideType = SlideBase.SlideType.TitleWithText;
+    slideType: SlideType = SlideType.TitleWithText;
 }
 
 export = SlideTitleWithText;

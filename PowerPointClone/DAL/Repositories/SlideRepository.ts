@@ -1,34 +1,33 @@
 ﻿import IRepository = require('IRepository');
-import ISlideBase = require('../Model/SlideBase');
+import SlideBase = require('../Model/SlideBase');
 import Presentation = require('../Model/Presentation');
 import PresentationRepository = require('PresentationRepository');
-
-import SlideBase = ISlideBase.SlideBase;
+import SlideType = require('../../Enums/SlideType');
 
 class SlideRepository implements IRepository {
     private pRepository: PresentationRepository = new PresentationRepository();
 
-    Add(silde: SlideBase.ISlideBase) {
+    Add(silde: SlideBase) {
         var presentation = this.pRepository.Get(silde.presentationId);
         presentation.slides.concat(silde);
 
         this.pRepository.Update(presentation);
     }
 
-    Get(ids: string[]): SlideBase.ISlideBase {
+    Get(ids: string[]): SlideBase {
         var presentation = this.pRepository.Get(ids[0]);
 
         var slide;
         presentation.slides.forEach(
             function (item) {
                 if (item.id == ids[1]) {
-                    slide = <SlideBase.ISlideBase>item;
+                    slide = <SlideBase>item;
                 }
             });
         return slide;
     }
 
-    Update(slide: SlideBase.ISlideBase) {
+    Update(slide: SlideBase) {
         var presentation = this.pRepository.Get(slide.presentationId);
         presentation.slides.splice(
             presentation.slides.indexOf(slide),
@@ -39,7 +38,7 @@ class SlideRepository implements IRepository {
 
     }
 
-    Delete(slide: SlideBase.ISlideBase) {
+    Delete(slide: SlideBase) {
         var presentation = this.pRepository.Get(slide.presentationId);
         presentation.slides.splice(
             presentation.slides.indexOf(slide),

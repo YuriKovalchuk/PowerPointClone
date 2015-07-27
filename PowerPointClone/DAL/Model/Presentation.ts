@@ -1,11 +1,10 @@
 ﻿import IModel = require('IModel');
-import ISlideBase = require('SlideBase');
-import SlideBase = ISlideBase.SlideBase;
+import SlideBase = require('SlideBase');
 
 
 class Presentation implements IModel {
     id: string;
-    slides: SlideBase.ISlideBase[];
+    slides: SlideBase[];
 }
 
 export = Presentation;

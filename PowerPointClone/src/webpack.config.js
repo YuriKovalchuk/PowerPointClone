@@ -13,5 +13,5 @@ module.exports = {
         loaders: [
             { test: /\.ts$/, loader: 'ts?sourceMap!ts-jsx' }
         ]
-    }
+    },
 };

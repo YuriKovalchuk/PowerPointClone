@@ -3,7 +3,7 @@
 import React = require('react/addons');
 
 
-import SlideBase = require('../components/slideBase');
+import SlideBase = require('../components/slideBases');
 import Stage = require('../components/stage');
 
 
