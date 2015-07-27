@@ -1,6 +1,7 @@
 ﻿///<reference path="../lib/_references.d.ts"/>
 
 import React = require('react/addons');
+import StageSlide = require('../components/stageSlide');
 
 class Stage extends React.Component<any, any, any>
 {
@@ -14,7 +15,8 @@ class Stage extends React.Component<any, any, any>
         return React.jsx(`
             <div className="row panel">
                 <div className="stage">
-                    	            {this.props.name}
+                    {this.props.name}
+                    <StageSlide />
                 </div>
             </div>
          `);

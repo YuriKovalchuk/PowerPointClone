@@ -2,7 +2,7 @@
 
 import React = require('react/addons');
 
-class LeftSidePanel extends React.Component<any, any, any>
+class RightSidePanel extends React.Component<any, any, any>
 {
     changeLayoutClickHandler(slideType): void {
         this.props.changeLayoutClick(slideType);
@@ -57,4 +57,4 @@ class LeftSidePanel extends React.Component<any, any, any>
 }
 
 
-export = LeftSidePanel;
+export = RightSidePanel;

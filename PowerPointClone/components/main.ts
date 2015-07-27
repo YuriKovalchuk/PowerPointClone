@@ -54,15 +54,15 @@ class Main extends React.Component<any, any, any>
     </nav>
     <div className="container">
         <div className="row">
-            <div className="col-lg-2">
+            <div className="col-md-2">
                 <div id="leftSideMenuWrapper">
                     <LeftPanel slides={Data} />
                 </div>
             </div>
-            <div className="col-lg-8 main-body">
+            <div className="col-md-8 main-body">
                 <Stage name={this.state.content} />
             </div>
-            <div className="col-lg-2">
+            <div className="col-md-2">
                 <RightSidePanel changeLayoutClick={this.changeLayoutClickHandler.bind(this)} />
             </div>
         </div>
