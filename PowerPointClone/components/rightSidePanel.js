@@ -12,7 +12,7 @@ define(["require", "exports", 'react/addons'], function (require, exports, React
             _super.apply(this, arguments);
         }
         LeftSidePanel.prototype.changeLayoutClickHandler = function (slideType) {
-            console.log(' type : ' + slideType);
+            this.props.changeLayoutClick(slideType);
         };
         LeftSidePanel.prototype.render = function () {
             var imageStyling = {

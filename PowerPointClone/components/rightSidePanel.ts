@@ -5,7 +5,7 @@ import React = require('react/addons');
 class LeftSidePanel extends React.Component<any, any, any>
 {
     changeLayoutClickHandler(slideType): void {
-        console.log(' type : ' + slideType);
+        this.props.changeLayoutClick(slideType);
      }
     
     render() {
