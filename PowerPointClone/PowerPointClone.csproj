@@ -58,6 +58,15 @@
     <TypeScriptCompile Include="components\main.ts" />
     <TypeScriptCompile Include="components\slideBase.ts" />
     <TypeScriptCompile Include="components\stage.ts" />
+    <TypeScriptCompile Include="DAL\Model\IModel.ts" />
+    <TypeScriptCompile Include="DAL\Model\Presentation.ts" />
+    <TypeScriptCompile Include="DAL\Model\SlideBase.ts" />
+    <TypeScriptCompile Include="DAL\Model\SlideTitleWithImage.ts" />
+    <TypeScriptCompile Include="DAL\Model\SlideTitleWithText.ts" />
+    <TypeScriptCompile Include="DAL\Model\SlideWithTitleOnly.ts" />
+    <TypeScriptCompile Include="DAL\Repositories\IRepository.ts" />
+    <TypeScriptCompile Include="DAL\Repositories\PresentationRepository.ts" />
+    <TypeScriptCompile Include="DAL\Repositories\SlideRepository.ts" />
     <TypeScriptCompile Include="src\app.ts" />
     <TypeScriptCompile Include="src\imageViewer.ts" />
     <TypeScriptCompile Include="lib\react-0.13.0.d.ts" />
