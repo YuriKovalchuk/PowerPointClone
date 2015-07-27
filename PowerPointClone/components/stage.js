@@ -10,16 +10,13 @@ define(["require", "exports", 'react/addons'], function (require, exports, React
         __extends(Stage, _super);
         function Stage() {
             _super.apply(this, arguments);
-            this.state = {
-                name: "testAlex"
-            };
         }
         Stage.prototype.render = function () {
             var divStyle = {
                 height: '700px',
                 border: '1px solid #ccc'
             };
-            return React.jsx("\n            <div className=\"row\" style={divStyle}>\n\t            {this.state.name}\n            </div>\n         ");
+            return React.jsx("\n            <div className=\"row panel\">\n                <div className=\"stage\">\n                    \t            {this.props.name}\n                </div>\n            </div>\n         ");
         };
         return Stage;
     })(React.Component);

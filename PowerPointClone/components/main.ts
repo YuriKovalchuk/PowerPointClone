@@ -5,12 +5,24 @@ import React = require('react/addons');
 
 import SlideBase = require('../components/slideBase');
 import Stage = require('../components/stage');
+
 import LeftPanel = require('../components/leftSidePanel');
+
+import RightSidePanel = require('../components/rightSidePanel');
+
 
 
 
 class Main extends React.Component<any, any, any>
 {
+    state = {
+        content : ''
+    }
+    
+    changeLayoutClickHandler(slideType) {
+        this.setState({ content: slideType });
+    }
+    
     render() {
         return React.jsx(`
 <div>	
@@ -48,10 +60,10 @@ class Main extends React.Component<any, any, any>
                 </div>
             </div>
             <div className="col-lg-8 main-body">
-                <Stage />
+                <Stage name={this.state.content} />
             </div>
             <div className="col-lg-2">
-                right panel
+                <RightSidePanel changeLayoutClick={this.changeLayoutClickHandler.bind(this)} />
             </div>
         </div>
     </div>

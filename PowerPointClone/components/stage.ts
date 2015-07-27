@@ -4,10 +4,6 @@ import React = require('react/addons');
 
 class Stage extends React.Component<any, any, any>
 {
-    state = {
-        name: "testAlex"
-    }
-
     render() {
 
         var divStyle = {
@@ -16,8 +12,10 @@ class Stage extends React.Component<any, any, any>
         }
 
         return React.jsx(`
-            <div className="row" style={divStyle}>
-	            {this.state.name}
+            <div className="row panel">
+                <div className="stage">
+                    	            {this.props.name}
+                </div>
             </div>
          `);
     }

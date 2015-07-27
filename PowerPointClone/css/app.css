@@ -92,3 +92,71 @@ input {
 {
     width: 100% !important;
 }
+
+.panel{
+    border:1px solid #ccc;
+    border-radius: 0 !important;
+}
+
+
+/* rightSidePanel */
+.panel .header{
+    background-color:#808080;
+    padding:3px;
+    color:white;
+    margin-bottom:10px;
+}
+
+
+.slide-base
+{
+    width:190px;
+    height:130px;
+    border:1px solid #000000;
+    cursor:pointer;
+}
+
+.slide-base .title-placeholder
+{
+    background-color:darkcyan;
+    height:15px;
+    width:150px;
+}
+
+.slide-base .text-body-placeholder
+{
+    background-color:#ccc;
+    height:80px;
+    width:150px; 
+}
+
+.slide-base .image-body-placeholder{
+    background-color:#ccc;
+    height:80px;
+    width:150px; 
+}
+
+.space-top10
+{
+    margin-top:10px;
+}
+
+.space-top55 
+{
+    margin-top:55px;
+}
+
+.space-bottom10
+{
+    margin-bottom:10px;
+}
+
+.space-bottom20
+{
+    margin-bottom:20px;
+}
+
+/* stage */
+.stage {
+    height : 700px;
+}
