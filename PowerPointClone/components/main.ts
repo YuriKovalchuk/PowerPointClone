@@ -11,17 +11,19 @@ import RightSidePanel = require('../components/rightSidePanel');
 
 class Main extends React.Component<any, any, any>
 {
+
     state = {
-        changedSlideType : ''
+        changedSlideType: '',
+        content: ''
     }
     
     changeLayoutClickHandler(slideType) {
-        console.log('changed slide type : ' + slideType);
         this.setState({ changedSlideType: slideType });
     }
 
-    changeStageClickHandler(id: string) {
-        this.setState({ content: 'Changing the state ' + id });
+    changeStageContentHandler(slideId: string) {
+        console.log('Changing the state ' + slideId );
+        this.setState({ content: 'Changing the state ' + slideId });
     }
 
     render() {
@@ -57,7 +59,7 @@ class Main extends React.Component<any, any, any>
         <div className="row">
             <div className="col-md-2">
                 <div id="leftSideMenuWrapper">
-                    <LeftPanel.LeftPanel slides={Data} changeStageClickHandler={this.changeStageClickHandler.bind(this)} />
+                    <LeftPanel.LeftPanel slides={Data} changeStageClickHandler={this.changeStageContentHandler.bind(this)} />
                 </div>
             </div>
             <div className="col-md-8 main-body">
