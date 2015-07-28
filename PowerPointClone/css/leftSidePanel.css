@@ -15,7 +15,6 @@
 }
 
 .panelRow {
-    width: 200px;
     height:140px;
     border: solid;
     border-color: #ccc;
@@ -24,6 +23,11 @@
     margin-bottom: 10px;
     cursor:pointer;
 }
+
+.panelRow.selected{
+    background-color:#e2f7f5
+}
+
 
 .slideId {
     float: left;
