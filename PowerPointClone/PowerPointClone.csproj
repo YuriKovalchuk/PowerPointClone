@@ -59,7 +59,9 @@
     <TypeScriptCompile Include="components\rightSidePanel.ts" />
     <TypeScriptCompile Include="components\slideBases.ts" />
     <TypeScriptCompile Include="components\stage.ts" />
+    <TypeScriptCompile Include="components\stageSlideTitleOnly.ts" />
     <TypeScriptCompile Include="components\stageSlideTitleWithText.ts" />
+    <TypeScriptCompile Include="components\stageSlideTitleWithImage.ts" />
     <TypeScriptCompile Include="DAL\Model\IModel.ts" />
     <TypeScriptCompile Include="DAL\Model\Presentation.ts" />
     <TypeScriptCompile Include="DAL\Model\ISlideBase.ts" />

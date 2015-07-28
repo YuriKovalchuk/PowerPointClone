@@ -12,11 +12,12 @@ import RightSidePanel = require('../components/rightSidePanel');
 class Main extends React.Component<any, any, any>
 {
     state = {
-        content : ''
+        changedSlideType : ''
     }
     
     changeLayoutClickHandler(slideType) {
-        this.setState({ content: slideType });
+        console.log('changed slide type : ' + slideType);
+        this.setState({ changedSlideType: slideType });
     }
     
     render() {
@@ -56,7 +57,7 @@ class Main extends React.Component<any, any, any>
                 </div>
             </div>
             <div className="col-md-8 main-body">
-                <Stage name={this.state.content} />
+                <Stage changedSlideType={this.state.changedSlideType} />
             </div>
             <div className="col-md-2">
                 <RightSidePanel changeLayoutClick={this.changeLayoutClickHandler.bind(this)} />
