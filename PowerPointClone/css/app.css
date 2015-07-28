@@ -98,6 +98,11 @@ input {
     border-radius: 0 !important;
 }
 
+.height700
+{
+    height:700px;
+}
+
 
 /* rightSidePanel */
 .panel .header{

@@ -8,7 +8,7 @@ interface ISlideProperties {
 }
 
 
-class Stage extends React.Component<any, any, any>
+class stageSlideTitleWithText extends React.Component<any, any, any>
 {
     render() {
         return React.jsx(`
@@ -26,4 +26,4 @@ class Stage extends React.Component<any, any, any>
     }
 }
 
-export = Stage;
+export = stageSlideTitleWithText;

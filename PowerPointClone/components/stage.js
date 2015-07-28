@@ -12,11 +12,7 @@ define(["require", "exports", 'react/addons'], function (require, exports, React
             _super.apply(this, arguments);
         }
         Stage.prototype.render = function () {
-            var divStyle = {
-                height: '700px',
-                border: '1px solid #ccc'
-            };
-            return React.jsx("\n            <div className=\"row panel\">\n                <div className=\"stage\">\n                    {this.props.name}\n                    <StageSlide />\n                </div>\n            </div>\n         ");
+            return React.jsx("\n            <div className=\"row panel\">\n                <div className=\"stage\">\n                    <StageSlideTitleWithText />\n                </div>\n            </div>\n         ");
         };
         return Stage;
     })(React.Component);

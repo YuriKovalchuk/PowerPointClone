@@ -18,7 +18,7 @@ class RightSidePanel extends React.Component<any, any, any>
         }
 
         return React.jsx(`
-            <div className="panel">
+            <div className="panel height700">
                 <div className="row">
                     <div className="col-xs-12">
                         <div className="header">
