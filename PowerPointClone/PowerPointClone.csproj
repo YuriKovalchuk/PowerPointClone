@@ -56,7 +56,9 @@
     <Folder Include="utils\" />
   </ItemGroup>
   <ItemGroup>
-    <TypeScriptCompile Include="components\leftSidePanel.ts" />
+    <TypeScriptCompile Include="components\leftSidePanel\LeftPanel.ts" />
+    <TypeScriptCompile Include="components\leftSidePanel\PanelRow.ts" />
+    <TypeScriptCompile Include="components\leftSidePanel\PanelSlide.ts" />
     <TypeScriptCompile Include="components\main.ts" />
     <TypeScriptCompile Include="components\rightSidePanel.ts" />
     <TypeScriptCompile Include="components\slideBase.ts" />

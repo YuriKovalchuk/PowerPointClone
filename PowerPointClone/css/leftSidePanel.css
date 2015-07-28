@@ -20,7 +20,7 @@
     border-color: blue;
     border-width: 5px;
     text-align: center;
-    margin: 10px;
+    margin-bottom: 10px;
 }
 
 .slideId {
@@ -31,4 +31,6 @@
 
 .leftSidePanel {
     padding: 15px 30px;
+    height:700px;
+    overflow-y: auto;
 }

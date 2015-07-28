@@ -6,7 +6,8 @@ import React = require('react/addons');
 import SlideBase = require('../components/slideBase');
 import Stage = require('../components/stage');
 
-import LeftPanel = require('../components/leftSidePanel');
+import LeftPanel = require('../components/leftSidePanel/LeftPanel');
+
 
 import RightSidePanel = require('../components/rightSidePanel');
 
@@ -22,7 +23,11 @@ class Main extends React.Component<any, any, any>
     changeLayoutClickHandler(slideType) {
         this.setState({ content: slideType });
     }
-    
+
+    changeStageClickHandler(id: string) {
+        this.setState({ content: 'Changing the state ' + id });
+    }
+
     render() {
         return React.jsx(`
 <div>	
@@ -56,7 +61,7 @@ class Main extends React.Component<any, any, any>
         <div className="row">
             <div className="col-lg-2">
                 <div id="leftSideMenuWrapper">
-                    <LeftPanel slides={Data} />
+                    <LeftPanel.LeftPanel slides={Data} changeStageClickHandler={this.changeStageClickHandler.bind(this)} />
                 </div>
             </div>
             <div className="col-lg-8 main-body">
@@ -76,7 +81,11 @@ var Data = [
     { id: '1', title: 'Test1' },
     { id: '2', title: 'Test2' },
     { id: '3', title: 'Test3' },
-    { id: '4', title: 'Test4' }
+    { id: '4', title: 'Test4' },
+    { id: '5', title: 'Test5' },
+    { id: '6', title: 'Test6' },
+    { id: '7', title: 'Test7' },
+    { id: '8', title: 'Test8' }
 ]; 
 
 export = Main;
