@@ -3,14 +3,10 @@
 import React = require('react/addons');
 
 
-import SlideBase = require('../components/slideBase');
+import SlideBase = require('../components/slideBases');
 import Stage = require('../components/stage');
-
 import LeftPanel = require('../components/leftSidePanel');
-
 import RightSidePanel = require('../components/rightSidePanel');
-
-
 
 
 class Main extends React.Component<any, any, any>

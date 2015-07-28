@@ -18,7 +18,7 @@ class PanelRow extends React.Component<any, any, any>
     
     render() {
         return React.jsx(`
-            <div className='panelRow'>
+            <div className='panelRow' >
                 <span className='slideId'> {this.props.slide.id} </span>
                 <PanelSlide title={this.props.slide.title}/>
             </div>

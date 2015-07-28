@@ -22,7 +22,7 @@ define(["require", "exports", 'react/addons'], function (require, exports, React
             _super.apply(this, arguments);
         }
         PanelRow.prototype.render = function () {
-            return React.jsx("\n            <div className='panelRow'>\n                <span className='slideId'> {this.props.slide.id} </span>\n                <PanelSlide title={this.props.slide.title}/>\n            </div>\n        ");
+            return React.jsx("\n            <div className='panelRow' >\n                <span className='slideId'> {this.props.slide.id} </span>\n                <PanelSlide title={this.props.slide.title}/>\n            </div>\n        ");
         };
         return PanelRow;
     })(React.Component);
