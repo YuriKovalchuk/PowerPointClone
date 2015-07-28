@@ -30,8 +30,14 @@ module LeftPanel {
             });
 
             return React.jsx(`
-            <div className='leftSidePanel'>
-                {data}
+            <div>
+                <div className="header">
+                    Slides
+                </div>
+                <div className='leftSidePanel'>
+
+                    {data}
+                </div>            
             </div>
         `);
         }

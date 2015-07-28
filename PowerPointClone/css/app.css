@@ -105,11 +105,10 @@ input {
 
 
 /* rightSidePanel */
-.panel .header{
+.header{
     background-color:#808080;
-    padding:3px;
+    padding:10px;
     color:white;
-    margin-bottom:10px;
 }
 
 
