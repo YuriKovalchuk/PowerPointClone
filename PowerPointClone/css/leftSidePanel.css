@@ -5,23 +5,29 @@
     width: 150px;
     height: 110px;
     border: solid;
-    border-color: red;
+    border-color: #ccc;
     border-width: 2px;
     text-align: center;
     float: right;
     margin: 10px;
     align-content: center;
+    cursor:pointer;
 }
 
 .panelRow {
-    width: 200px;
     height:140px;
     border: solid;
-    border-color: blue;
+    border-color: #ccc;
     border-width: 5px;
     text-align: center;
     margin-bottom: 10px;
+    cursor:pointer;
 }
+
+.panelRow.selected{
+    background-color:#e2f7f5
+}
+
 
 .slideId {
     float: left;
@@ -33,6 +39,6 @@
     padding: 15px 30px;
     background-color: white;
     border :1px solid #ccc;
-    height:700px;
+    height:662px;
     overflow-y: auto;
 }
