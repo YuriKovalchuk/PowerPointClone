@@ -1,5 +1,7 @@
-﻿import Presentation = require('Model/Presentation');
-import PresentationRepository = require('Repositories/PresentationRepository')
+﻿import PresentationModel = require('../DAL/Model/Presentation');
+import PresentationRepository = require('../DAL/Repositories/PresentationRepository')
+
+import Presentation = PresentationModel.Presentation;
 
 module Singleton {
     export class PresentationSingleton {
@@ -26,6 +28,14 @@ module Singleton {
         public SavePresentation(presentation: Presentation): void {
             this._presentation = presentation;
             this._pRepository.Update(this._presentation);
+        }
+
+        private CheckPresentationForRepository(): Presentation {
+            var presentationList = this._pRepository.GetAll();
+            if (presentationList.length == 0) {
+                return new Presentation();
+            }
+            return presentationList[0];
         }
     }
 }

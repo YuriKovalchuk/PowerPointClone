@@ -45,7 +45,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
-    <None Include="src\eded.den" />
+    <None Include="src\tsconfig.json" />
     <None Include="web.Debug.config">
       <DependentUpon>web.config</DependentUpon>
     </None>
@@ -71,6 +71,7 @@
     <TypeScriptCompile Include="DAL\Repositories\PresentationRepository.ts" />
     <TypeScriptCompile Include="DAL\Repositories\SlideRepository.ts" />
     <TypeScriptCompile Include="Enums\SlideType.ts" />
+    <TypeScriptCompile Include="lib\node.webpack.ts" />
     <TypeScriptCompile Include="src\app.ts" />
     <TypeScriptCompile Include="src\imageViewer.ts" />
     <TypeScriptCompile Include="lib\react-0.13.0.d.ts" />

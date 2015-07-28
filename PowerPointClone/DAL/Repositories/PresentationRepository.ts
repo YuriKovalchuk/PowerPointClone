@@ -1,5 +1,8 @@
 ﻿import Repository = require('IRepository');
-import Presentation = require('../Model/Presentation');
+import PresentationModel = require('../Model/Presentation');
+
+import Presentation = PresentationModel.Presentation;
+
 
 module PresentationDb {
     export class PresentationReposiotry implements Repository.IRepository {
