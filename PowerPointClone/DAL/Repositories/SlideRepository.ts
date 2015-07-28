@@ -1,50 +1,62 @@
-﻿import IRepository = require('IRepository');
-import ISlideBase = require('../Model/ISlideBase');
-import Presentation = require('../Model/Presentation');
-import PresentationRepository = require('PresentationRepository');
+﻿import Repository = require('IRepository');
+import Slide = require('../Model/SlideBase');
+import Model = require('../Model/Presentation');
+import PresentationDb = require('../Repositories/PresentationRepository');
 import SlideType = require('../../Enums/SlideType');
+import RepositoryManger = require('../RepositoryManager');
+import Mode = require('../../DAL/Model/Presentation');
 
-class SlideRepository implements IRepository {
-    private pRepository: PresentationRepository = new PresentationRepository();
+import PresentationRepository = PresentationDb.PresentationReposiotry;
 
-    Add(silde: ISlideBase) {
-        var presentation = this.pRepository.Get(silde.presentationId);
-        presentation.slides.concat(silde);
+module SlideDb {
+    export class SlideRepository {
+        private _presentationRepository: PresentationDb.PresentationReposiotry = new PresentationDb.PresentationReposiotry();
+        private _presentation: Model.Presentation;
+        
+        constructor(
+            presentation: Model.Presentation) {
+            this._presentation = presentation;
+        }
 
-        this.pRepository.Update(presentation);
-    }
+        Add(silde: Slide.SlideBase) {
+            this._presentation.slides.push(silde);
 
-    Get(ids: string[]): ISlideBase {
-        var presentation = this.pRepository.Get(ids[0]);
+            this._presentationRepository.Update(this._presentation);
+        }
 
-        var slide;
-        presentation.slides.forEach(
-            function (item) {
-                if (item.id == ids[1]) {
-                    slide = <ISlideBase>item;
+        GetAll(): Slide.SlideBase[] {
+            return this._presentation.slides;
+        }
+
+        Get(id: string): Slide.SlideBase {
+
+            var slide: Slide.SlideBase;
+            for (var i = 0; i < this._presentation.slides.length; i++) {
+                if (this._presentation.slides[i].id == id) {
+                    return this._presentation.slides[i];
                 }
-            });
-        return slide;
-    }
+            }
 
-    Update(slide: ISlideBase) {
-        var presentation = this.pRepository.Get(slide.presentationId);
-        presentation.slides.splice(
-            presentation.slides.indexOf(slide),
-            1,
-            slide);
+            return slide;
+        }
 
-        this.pRepository.Update(presentation);
+        Update(slide: Slide.SlideBase) {
+            this._presentation.slides.splice(
+                this._presentation.slides.indexOf(slide),
+                1,
+                slide);
 
-    }
+            this._presentationRepository.Update(this._presentation);
+        }
 
-    Delete(slide: ISlideBase) {
-        var presentation = this.pRepository.Get(slide.presentationId);
-        presentation.slides.splice(
-            presentation.slides.indexOf(slide),
-            1);
+        Delete(slide: Slide.SlideBase) {
+            this._presentation.slides.splice(
+                this._presentation.slides.indexOf(slide),
+                1);
 
-        this.pRepository.Update(presentation);
+            this._presentationRepository.Update(this._presentation);
+        }
     }
 }
 
+export = SlideDb;

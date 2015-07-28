@@ -1,17 +1,16 @@
-define(["require", "exports"], function (require, exports) {
-    var SlideBase = (function () {
-        function SlideBase(slideType, title, presentationId) {
-            this.slideType = slideType;
-            this.id = this.GetId();
-            this.title = title;
-            this.presentationId = presentationId;
-        }
-        SlideBase.prototype.GetId = function () {
-            return Math.random().toString(36).substring(2, 15) +
-                Math.random().toString(36).substring(2, 15);
-        };
-        return SlideBase;
-    })();
-    return SlideBase;
+define(["require", "exports", '../../utils/Helpers'], function (require, exports, Utils) {
+    var Slide;
+    (function (Slide) {
+        var SlideBase = (function () {
+            function SlideBase(slideType, title) {
+                this.slideType = slideType;
+                this.id = Utils.GetId();
+                this.title = title;
+            }
+            return SlideBase;
+        })();
+        Slide.SlideBase = SlideBase;
+    })(Slide || (Slide = {}));
+    return Slide;
 });
 //# sourceMappingURL=SlideBase.js.map

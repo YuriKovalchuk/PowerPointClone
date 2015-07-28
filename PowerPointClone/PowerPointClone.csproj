@@ -53,6 +53,7 @@
     <Content Include="fonts\fontawesome-webfont.woff" />
     <Content Include="fonts\fontawesome-webfont.woff2" />
     <Content Include="fonts\FontAwesome.otf" />
+    <None Include="src\tsconfig.json" />
     <None Include="web.Debug.config">
       <DependentUpon>web.config</DependentUpon>
     </None>
@@ -74,14 +75,16 @@
     <TypeScriptCompile Include="components\upperMenu.ts" />
     <TypeScriptCompile Include="DAL\Model\IModel.ts" />
     <TypeScriptCompile Include="DAL\Model\Presentation.ts" />
-    <TypeScriptCompile Include="DAL\Model\ISlideBase.ts" />
+    <TypeScriptCompile Include="DAL\Model\SlideBase.ts" />
     <TypeScriptCompile Include="DAL\Model\SlideTitleWithImage.ts" />
     <TypeScriptCompile Include="DAL\Model\SlideTitleWithText.ts" />
     <TypeScriptCompile Include="DAL\Model\SlideWithTitleOnly.ts" />
+    <TypeScriptCompile Include="DAL\RepositoryManager.ts" />
     <TypeScriptCompile Include="DAL\Repositories\IRepository.ts" />
     <TypeScriptCompile Include="DAL\Repositories\PresentationRepository.ts" />
     <TypeScriptCompile Include="DAL\Repositories\SlideRepository.ts" />
     <TypeScriptCompile Include="Enums\SlideType.ts" />
+    <TypeScriptCompile Include="lib\node.webpack.ts" />
     <TypeScriptCompile Include="src\app.ts" />
     <TypeScriptCompile Include="src\imageViewer.ts" />
     <TypeScriptCompile Include="lib\react-0.13.0.d.ts" />
