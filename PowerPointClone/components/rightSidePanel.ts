@@ -28,7 +28,7 @@ class RightSidePanel extends React.Component<any, any, any>
                 </div>
                 <div className="row">
                     <div className="col-xs-12">
-                        <div className="slide-base center-block space-top10 space-bottom20" onClick={this.changeLayoutClickHandler.bind(this,'TitleOnly')}>
+                        <div className="slide-base center-block space-top100 space-bottom20" onClick={this.changeLayoutClickHandler.bind(this,'TitleOnly')}>
                             <div className="title-placeholder center-block space-top55"></div>
                         </div>
                     </div>
