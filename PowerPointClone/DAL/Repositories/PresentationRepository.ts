@@ -1,7 +1,7 @@
 ﻿import Repository = require('IRepository');
-import PresentationModel = require('../Model/Presentation');
+import Model = require('../Model/Presentation');
 
-import Presentation = PresentationModel.Presentation;
+import Presentation = Model.Presentation;
 
 
 module PresentationDb {
@@ -10,15 +10,14 @@ module PresentationDb {
             localStorage.setItem(presentation.id, JSON.stringify(presentation));
         }
 
-        GetAll(): Presentation[] {
-            var presentationList: Presentation[];
+        GetCurrentPresentation(): Presentation {
             for (var i = 0; i < localStorage.length; i++) {
-                if (localStorage.key(i).indexOf("presentation-") > -1) {
-                    presentationList.concat(this.Get(localStorage.key(i)));
+                if (localStorage.key(i).indexOf("presentation-") == 0) {
+                    return this.Get(localStorage.key(i));
                 }
             }
 
-            return presentationList;
+            return new Presentation();
         }
 
         Get(id: string): Presentation {

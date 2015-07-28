@@ -1,61 +1,62 @@
 ﻿import Repository = require('IRepository');
-import ISlideBase = require('../Model/ISlideBase');
-import Presentation = require('../Model/Presentation');
-import PresentationDb = require('PresentationRepository');
+import Slide = require('../Model/SlideBase');
+import Model = require('../Model/Presentation');
+import PresentationDb = require('../Repositories/PresentationRepository');
 import SlideType = require('../../Enums/SlideType');
+import RepositoryManger = require('../RepositoryManager');
+import Mode = require('../../DAL/Model/Presentation');
 
 import PresentationRepository = PresentationDb.PresentationReposiotry;
 
 module SlideDb {
-    export class SlideRepository implements Repository.IRepository {
-        private pRepository: PresentationRepository = new PresentationRepository();
-
-        Add(silde: ISlideBase) {
-            var presentation = this.pRepository.Get(silde.presentationId);
-            presentation.slides.concat(silde);
-
-            this.pRepository.Update(presentation);
+    export class SlideRepository {
+        private _presentationRepository: PresentationDb.PresentationReposiotry = new PresentationDb.PresentationReposiotry();
+        private _presentation: Model.Presentation;
+        
+        constructor(
+            presentation: Model.Presentation) {
+            this._presentation = presentation;
         }
 
-        GetAll(PresentationId: string): ISlideBase[] {
-            var presentation = this.pRepository.Get(PresentationId);
-            return presentation.slides;
+        Add(silde: Slide.SlideBase) {
+            this._presentation.slides.push(silde);
+
+            this._presentationRepository.Update(this._presentation);
         }
 
-        Get(ids: string[]): ISlideBase {
-            var presentation = this.pRepository.Get(ids[0]);
+        GetAll(): Slide.SlideBase[] {
+            return this._presentation.slides;
+        }
 
-            var slide;
-            presentation.slides.forEach(
-                function (item) {
-                    if (item.id == ids[1]) {
-                        slide = <ISlideBase>item;
-                    }
-                });
+        Get(id: string): Slide.SlideBase {
+
+            var slide: Slide.SlideBase;
+            for (var i = 0; i < this._presentation.slides.length; i++) {
+                if (this._presentation.slides[i].id == id) {
+                    return this._presentation.slides[i];
+                }
+            }
+
             return slide;
         }
 
-        Update(slide: ISlideBase) {
-            var presentation = this.pRepository.Get(slide.presentationId);
-            presentation.slides.splice(
-                presentation.slides.indexOf(slide),
+        Update(slide: Slide.SlideBase) {
+            this._presentation.slides.splice(
+                this._presentation.slides.indexOf(slide),
                 1,
                 slide);
 
-            this.pRepository.Update(presentation);
-
+            this._presentationRepository.Update(this._presentation);
         }
 
-        Delete(slide: ISlideBase) {
-            var presentation = this.pRepository.Get(slide.presentationId);
-            presentation.slides.splice(
-                presentation.slides.indexOf(slide),
+        Delete(slide: Slide.SlideBase) {
+            this._presentation.slides.splice(
+                this._presentation.slides.indexOf(slide),
                 1);
 
-            this.pRepository.Update(presentation);
+            this._presentationRepository.Update(this._presentation);
         }
     }
-
 }
 
 export = SlideDb;

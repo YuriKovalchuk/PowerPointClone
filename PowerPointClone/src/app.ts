@@ -2,14 +2,14 @@
 
 import ImageViewer = require('./imageViewer');
 import React = require('react/addons');
-import SlideBase = require('../DAL/Model/ISlideBase');
+import Slide = require('../DAL/Model/SlideBase');
 
 //import SlideTitleWithText = require('../DAL/Model/SlideTitleWithText');
-import SlideWithTitleOnly = require('../DAL/Model/SlideWithTitleOnly');
+import Slides = require('../DAL/Model/SlideWithTitleOnly');
 //import SlideTitleWithImage = require('../DAL/Model/SlideTitleWithImage');
 import SlideType = require('../Enums/SlideType');
-import PresentationSingleton = require('../DAL/PresentationSingleton');
-import Singleton = PresentationSingleton.PresentationSingleton;
+import PresentationSingleton = require('../DAL/RepositoryManager');
+import Singleton = PresentationSingleton.RepositoryManager;
 
 interface State {
     photoIndex?: number;
@@ -45,18 +45,16 @@ class App extends React.Component<any, State, any> {
 
     render() {
         var singletonManager = Singleton.GetInstance();
-        var presentation = singletonManager.GetPresentation()
-        var slideText = new SlideWithTitleOnly(
-            "test titlu",
-            presentation.id
+        var presentation = singletonManager.GetPresentation();
+        var slideText = new Slides.SlideWithTitleOnly(
+            "test titlu"
             );
-        presentation.slides = [slideText];
         
-        singletonManager.SavePresentation(presentation);
-
+        singletonManager.AddSlide(slideText);
+        singletonManager.SavePresentation();
         return React.jsx(`<div className="app">
 			<div className="title">Picture Purrfect</div>
-			<ImageViewer index={this.state.photoIndex} />
+			<ImageViewer index={this.state.photoIndex} slideId={slideText.id}/>
 			<div>
                 <div>
                     <pre>{presentation.id}</pre>

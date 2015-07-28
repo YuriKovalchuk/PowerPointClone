@@ -5,8 +5,8 @@ var __extends = (this && this.__extends) || function (d, b) {
     __.prototype = b.prototype;
     d.prototype = new __();
 };
-define(["require", "exports", 'react/addons', '../DAL/Model/SlideWithTitleOnly', '../DAL/PresentationSingleton'], function (require, exports, React, SlideWithTitleOnly, PresentationSingleton) {
-    var Singleton = PresentationSingleton.PresentationSingleton;
+define(["require", "exports", 'react/addons', '../DAL/Model/SlideWithTitleOnly', '../DAL/RepositoryManager'], function (require, exports, React, Slides, PresentationSingleton) {
+    var Singleton = PresentationSingleton.RepositoryManager;
     var App = (function (_super) {
         __extends(App, _super);
         function App() {
@@ -35,10 +35,10 @@ define(["require", "exports", 'react/addons', '../DAL/Model/SlideWithTitleOnly',
         App.prototype.render = function () {
             var singletonManager = Singleton.GetInstance();
             var presentation = singletonManager.GetPresentation();
-            var slideText = new SlideWithTitleOnly("test titlu", presentation.id);
-            presentation.slides = [slideText];
-            singletonManager.SavePresentation(presentation);
-            return React.jsx("<div className=\"app\">\n\t\t\t<div className=\"title\">Picture Purrfect</div>\n\t\t\t<ImageViewer index={this.state.photoIndex} />\n\t\t\t<div>\n                <div>\n                    <pre>{presentation.id}</pre>\n                </div>\n\n\t\t\t\t<button\n\t\t\t\t\tdisabled={this.state.photoIndex == 0}\n\t\t\t\t\tonClick={this.handleChange.bind(this, -1)}>Previous</button>\n\n\t\t\t\t<input type=\"text\"\n          value={this.state.inputText}\n          onChange={e => this.setState({inputText: e.target.value})}\n\t\t\t\t\tonKeyPress={this.handleKeyPress.bind(this)} />\n\n\t\t\t\t<button\n\t\t\t\t\tdisabled={this.state.photoIndex == 2}\n\t\t\t\t\tonClick={this.handleChange.bind(this, 1)}>Next</button>\n\t\t\t</div>\n\t\t</div>");
+            var slideText = new Slides.SlideWithTitleOnly("test titlu");
+            singletonManager.AddSlide(slideText);
+            singletonManager.SavePresentation();
+            return React.jsx("<div className=\"app\">\n\t\t\t<div className=\"title\">Picture Purrfect</div>\n\t\t\t<ImageViewer index={this.state.photoIndex} slideId={slideText.id}/>\n\t\t\t<div>\n                <div>\n                    <pre>{presentation.id}</pre>\n                </div>\n\n\t\t\t\t<button\n\t\t\t\t\tdisabled={this.state.photoIndex == 0}\n\t\t\t\t\tonClick={this.handleChange.bind(this, -1)}>Previous</button>\n\n\t\t\t\t<input type=\"text\"\n          value={this.state.inputText}\n          onChange={e => this.setState({inputText: e.target.value})}\n\t\t\t\t\tonKeyPress={this.handleKeyPress.bind(this)} />\n\n\t\t\t\t<button\n\t\t\t\t\tdisabled={this.state.photoIndex == 2}\n\t\t\t\t\tonClick={this.handleChange.bind(this, 1)}>Next</button>\n\t\t\t</div>\n\t\t</div>");
         };
         return App;
     })(React.Component);

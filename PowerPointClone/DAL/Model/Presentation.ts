@@ -1,18 +1,18 @@
 ﻿import IModel = require('IModel');
-import ISlideBase = require('ISlideBase');
+import SlideBase = require('SlideBase');
 import Utils = require('../../utils/Helpers');
 
 module PresentationModel {
     export class Presentation implements IModel {
-        private _id: string;
-        get id(): string {
-            return this._id;
-        }
+        //private
+        id: string;
+        //get id(): string {
+        //    return this._id;
+        //}
 
-        slides: ISlideBase[];
+        slides: SlideBase.SlideBase[] = [];
         constructor() {
-            this._id = 'presentation-' + Utils.GetId();
-            console.log(this._id);
+            this.id = 'presentation-' + Utils.GetId();
         }
     }
 }
