@@ -166,7 +166,23 @@ input {
 .space-bottom20
 {
     margin-bottom:20px;
+
 }
+
+.right-side-image {
+    width: 150px;
+    height: 80px;
+    position: relative !important;
+    left: 0px;
+    border-radius:0;
+}
+
+.stage-image {
+    height: 480px;
+    position: relative !important;
+    left: 0;
+}
+
 
 /* stage */
 .stage {

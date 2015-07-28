@@ -10,13 +10,6 @@ class RightSidePanel extends React.Component<any, any, any>
     
     render() {
 
-        var imageStyling = {
-            width: "150px",
-            height: "80px",
-            position: "relative",
-            left: "0px"
-        }
-
         return React.jsx(`
             <div className="panel height700">
                 <div className="row">
@@ -46,7 +39,7 @@ class RightSidePanel extends React.Component<any, any, any>
                         <div className="slide-base center-block space-bottom20" onClick={this.changeLayoutClickHandler.bind(this,'TitleWithImage')}>
                             <div className="title-placeholder center-block space-top10"></div>
                             <div className="text-body-placeholder center-block space-top10">
-                                <img src="http://placekitten.com/g/150/80" title="Image" style={imageStyling}/>
+                                <img src="http://placekitten.com/g/150/80" title="Image" className="right-side-image" />
                             </div>
                         </div>
                     </div>

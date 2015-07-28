@@ -12,12 +12,7 @@ define(["require", "exports", 'react/addons'], function (require, exports, React
             _super.apply(this, arguments);
         }
         StageSlideTitleWithImage.prototype.render = function () {
-            var imageStyling = {
-                height: "480px",
-                position: "relative",
-                left: "0px"
-            };
-            return React.jsx("\n            <div className=\"col-xs-12\">\n                <form>\n                  <div className=\"form-group space-top55\">\n                    <input type=\"email\" className=\"form-control title-input\" id=\"title-content\" placeholder=\"Click to add Title\" />\n                  </div>\n                  <div className=\"form-group space-top55\">\n                      <img src=\"http://placekitten.com/1200/1200\" title=\"Image\" style={imageStyling} />\n                  </div>\n                </form>\n            </div>\n         ");
+            return React.jsx("\n            <div className=\"col-xs-12\">\n                <form>\n                  <div className=\"form-group space-top55\">\n                    <input type=\"email\" className=\"form-control title-input\" id=\"title-content\" placeholder=\"Click to add Title\" />\n                  </div>\n                  <div className=\"form-group space-top55\">\n                      <img src=\"http://placekitten.com/1200/1200\" title=\"Image\" className=\"stage-image\" />\n                  </div>\n                </form>\n            </div>\n         ");
         };
         return StageSlideTitleWithImage;
     })(React.Component);
