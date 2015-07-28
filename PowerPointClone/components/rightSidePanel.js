@@ -6,25 +6,25 @@ var __extends = (this && this.__extends) || function (d, b) {
     d.prototype = new __();
 };
 define(["require", "exports", 'react/addons'], function (require, exports, React) {
-    var LeftSidePanel = (function (_super) {
-        __extends(LeftSidePanel, _super);
-        function LeftSidePanel() {
+    var RightSidePanel = (function (_super) {
+        __extends(RightSidePanel, _super);
+        function RightSidePanel() {
             _super.apply(this, arguments);
         }
-        LeftSidePanel.prototype.changeLayoutClickHandler = function (slideType) {
+        RightSidePanel.prototype.changeLayoutClickHandler = function (slideType) {
             this.props.changeLayoutClick(slideType);
         };
-        LeftSidePanel.prototype.render = function () {
+        RightSidePanel.prototype.render = function () {
             var imageStyling = {
                 width: "150px",
                 height: "80px",
                 position: "relative",
                 left: "0px"
             };
-            return React.jsx("\n            <div className=\"panel\">\n                <div className=\"row\">\n                    <div className=\"col-xs-12\">\n                        <div className=\"header\">\n                            Layouts\n                        </div>\n                    </div>\n                </div>\n                <div className=\"row\">\n                    <div className=\"col-xs-12\">\n                        <div className=\"slide-base center-block space-top10 space-bottom20\" onClick={this.changeLayoutClickHandler.bind(this,'TitleOnly')}>\n                            <div className=\"title-placeholder center-block space-top55\"></div>\n                        </div>\n                    </div>\n                </div>\n                <div className=\"row\">\n                    <div className=\"col-xs-12\">\n                        <div className=\"slide-base center-block space-bottom20\" onClick={this.changeLayoutClickHandler.bind(this,'TitleWithText')}>\n                            <div className=\"title-placeholder center-block space-top10\"></div>\n                            <div className=\"text-body-placeholder center-block space-top10\"></div>\n                        </div>\n                    </div>\n                </div>\n                <div className=\"row\">\n                    <div className=\"col-xs-12\">\n                        <div className=\"slide-base center-block space-bottom20\" onClick={this.changeLayoutClickHandler.bind(this,'TitleWithImage')}>\n                            <div className=\"title-placeholder center-block space-top10\"></div>\n                            <div className=\"text-body-placeholder center-block space-top10\">\n                                <img src=\"http://placekitten.com/g/150/80\" title=\"Image\" style={imageStyling}/>\n                            </div>\n                        </div>\n                    </div>\n                </div>\n            </div>\n        ");
+            return React.jsx("\n            <div className=\"panel height700\">\n                <div className=\"row\">\n                    <div className=\"col-xs-12\">\n                        <div className=\"header\">\n                            Layouts\n                        </div>\n                    </div>\n                </div>\n                <div className=\"row\">\n                    <div className=\"col-xs-12\">\n                        <div className=\"slide-base center-block space-top10 space-bottom20\" onClick={this.changeLayoutClickHandler.bind(this,'TitleOnly')}>\n                            <div className=\"title-placeholder center-block space-top55\"></div>\n                        </div>\n                    </div>\n                </div>\n                <div className=\"row\">\n                    <div className=\"col-xs-12\">\n                        <div className=\"slide-base center-block space-bottom20\" onClick={this.changeLayoutClickHandler.bind(this,'TitleWithText')}>\n                            <div className=\"title-placeholder center-block space-top10\"></div>\n                            <div className=\"text-body-placeholder center-block space-top10\"></div>\n                        </div>\n                    </div>\n                </div>\n                <div className=\"row\">\n                    <div className=\"col-xs-12\">\n                        <div className=\"slide-base center-block space-bottom20\" onClick={this.changeLayoutClickHandler.bind(this,'TitleWithImage')}>\n                            <div className=\"title-placeholder center-block space-top10\"></div>\n                            <div className=\"text-body-placeholder center-block space-top10\">\n                                <img src=\"http://placekitten.com/g/150/80\" title=\"Image\" style={imageStyling}/>\n                            </div>\n                        </div>\n                    </div>\n                </div>\n            </div>\n        ");
         };
-        return LeftSidePanel;
+        return RightSidePanel;
     })(React.Component);
-    return LeftSidePanel;
+    return RightSidePanel;
 });
 //# sourceMappingURL=rightSidePanel.js.map

@@ -1,7 +1,9 @@
 ///<reference path="../lib/_references.d.ts"/>
 
-import ImageViewer = require('./imageViewer');
+
 import React = require('react/addons');
+import Main = require('../components/main');
+
 import SlideBase = require('../DAL/Model/ISlideBase');
 
 import Presentation = require('../DAL/Model/Presentation');
@@ -15,11 +17,13 @@ interface State {
     inputText?: string;
 }
 
+/*
+
 class App extends React.Component<any, State, any> {
 
     state = {
         photoIndex: 0,
-        inputText: '1',
+        inputText: '1'
     }
 
     handleChange(addend) {
@@ -30,35 +34,23 @@ class App extends React.Component<any, State, any> {
 
         this.setState({
             photoIndex: newIndex,
-            inputText: newIndex + 1,
+            inputText: newIndex + 1
         })
     }
 
     handleKeyPress(e) {
         if (e.key == 'Enter') {
             this.setState({
-                photoIndex: parseInt(this.state.inputText, 10) - 1,
+                photoIndex: parseInt(this.state.inputText, 10) - 1
             })
         }
     }
 
     render() {
-        var presentation = new Presentation();
-        presentation.id = "1";
-        var slideText = new SlideWithTitleOnly(
-            presentation.id,
-            "test titlu"
-            );
-        presentation.slides = [slideText];
-
         return React.jsx(`<div className="app">
 			<div className="title">Picture Purrfect</div>
 			<ImageViewer index={this.state.photoIndex} />
 			<div>
-                <div>
-                    <pre>{presentation.id}</pre>
-                </div>
-
 				<button
 					disabled={this.state.photoIndex == 0}
 					onClick={this.handleChange.bind(this, -1)}>Previous</button>
@@ -75,7 +67,7 @@ class App extends React.Component<any, State, any> {
 		</div>`)
     }
 }
+*/
 
-React.render(React.jsx(`<App />`), document.body);
 
-//React.render(React.jsx(`<SlideBase />`), document.body);
+React.render(React.jsx(`<Main />`), document.body);

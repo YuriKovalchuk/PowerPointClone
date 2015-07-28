@@ -12,11 +12,24 @@ define(["require", "exports", 'react/addons'], function (require, exports, React
             _super.apply(this, arguments);
         }
         Stage.prototype.render = function () {
-            var divStyle = {
-                height: '700px',
-                border: '1px solid #ccc'
-            };
-            return React.jsx("\n            <div className=\"row panel\">\n                <div className=\"stage\">\n                    \t            {this.props.name}\n                </div>\n            </div>\n         ");
+            var stageSlideValue;
+            var slideType = this.props.changedSlideType;
+            switch (slideType) {
+                case 'TitleOnly':
+                    stageSlideValue = React.jsx("<StageSlideTitleOnly />");
+                    break;
+                case 'TitleWithImage':
+                    stageSlideValue = React.jsx("<StageSlideTitleWithImage />");
+                    break;
+                case 'TitleWithText':
+                    stageSlideValue = React.jsx("<StageSlideTitleWithText />");
+                    break;
+                default:
+                    stageSlideValue = React.jsx("<StageSlideTitleOnly />");
+                    //throw new Error("Invalid slide type!");
+                    break;
+            }
+            return React.jsx("\n            <div className=\"row panel\">\n                <div className=\"stage\">\n                    {stageSlideValue}\n                </div>\n            </div>\n         ");
         };
         return Stage;
     })(React.Component);
