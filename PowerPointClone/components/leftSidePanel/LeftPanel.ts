@@ -1,10 +1,13 @@
 ﻿///<reference path="../../lib/_references.d.ts"/>
 
 import React = require('react/addons');
-import PanelRow = require('../leftSidePanel/PanelRow');
+import PanelRowModule = require('../leftSidePanel/PanelRow');
+
+import PanelRow = PanelRowModule.PanelRow;
 
 
 module LeftPanel {
+
     interface IPropLeftPanel {
         slides: { id: string; title: string }[];
         changeStageClickHandler(id: string): void;
@@ -25,21 +28,20 @@ module LeftPanel {
 
             this.props.slides.forEach(function (s) {
                 data.push(React.jsx(`
-                    <PanelRow.PanelRow slide={s} changeStageClickHandler={f} />
+                    <PanelRow slide={s} changeStageClickHandler={f} />
                 `));
             });
 
             return React.jsx(`
-            <div>
-                <div className="header">
-                    Slides
+                <div>
+                    <div className="header">
+                        Slides
+                    </div>
+                    <div className='leftSidePanel'>
+                        {data}
+                    </div>            
                 </div>
-                <div className='leftSidePanel'>
-
-                    {data}
-                </div>            
-            </div>
-        `);
+            `);
         }
     }
 }

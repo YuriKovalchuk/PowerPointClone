@@ -6,27 +6,31 @@ var __extends = (this && this.__extends) || function (d, b) {
     d.prototype = new __();
 };
 define(["require", "exports", 'react/addons'], function (require, exports, React) {
-    var Main = (function (_super) {
-        __extends(Main, _super);
-        function Main() {
-            _super.apply(this, arguments);
-            this.state = {
-                changedSlideType: '',
-                content: ''
+    var Main;
+    (function (Main_1) {
+        var Main = (function (_super) {
+            __extends(Main, _super);
+            function Main() {
+                _super.apply(this, arguments);
+                this.state = {
+                    changedSlideType: '',
+                    content: ''
+                };
+            }
+            Main.prototype.changeLayoutClickHandler = function (slideType) {
+                this.setState({ changedSlideType: slideType });
             };
-        }
-        Main.prototype.changeLayoutClickHandler = function (slideType) {
-            this.setState({ changedSlideType: slideType });
-        };
-        Main.prototype.changeStageContentHandler = function (slideId) {
-            console.log('Changing the state ' + slideId);
-            this.setState({ content: 'Changing the state ' + slideId });
-        };
-        Main.prototype.render = function () {
-            return React.jsx("\n<div>\t\n    <UpperMenu />\n    <div className=\"container\">\n        <div className=\"row\">\n            <div className=\"col-md-2\">\n                <div id=\"leftSideMenuWrapper\">\n                    <LeftPanel.LeftPanel slides={Data} changeStageClickHandler={this.changeStageContentHandler.bind(this)} />\n                </div>\n            </div>\n            <div className=\"col-md-8 main-body\">\n                <Stage changedSlideType={this.state.changedSlideType} />\n            </div>\n            <div className=\"col-md-2\">\n                <RightSidePanel changeLayoutClick={this.changeLayoutClickHandler.bind(this)} />\n            </div>\n        </div>\n    </div>\n</div>\n         ");
-        };
-        return Main;
-    })(React.Component);
+            Main.prototype.changeStageContentHandler = function (slideId) {
+                console.log('Changing the state ' + slideId);
+                this.setState({ content: 'Changing the state ' + slideId });
+            };
+            Main.prototype.render = function () {
+                return React.jsx("\n                <div>\n                    <UpperMenu />\n                    <div className=\"container\">\n                        <div className=\"row\">\n                            <div className=\"col-md-2\">\n                                <div id=\"leftSideMenuWrapper\">\n                                    <LeftPanel slides={Data} changeStageClickHandler={this.changeStageContentHandler.bind(this)} />\n                                </div>\n                            </div>\n                            <div className=\"col-md-8 main-body\">\n                                <Stage changedSlideType={this.state.changedSlideType} />\n                            </div>\n                            <div className=\"col-md-2\">\n                                <RightSidePanel changeLayoutClick={this.changeLayoutClickHandler.bind(this)} />\n                            </div>\n                        </div>\n                    </div>\n                </div>\n            ");
+            };
+            return Main;
+        })(React.Component);
+        Main_1.Main = Main;
+    })(Main || (Main = {}));
     var Data = [
         { id: '1', title: 'Test1' },
         { id: '2', title: 'Test2' },

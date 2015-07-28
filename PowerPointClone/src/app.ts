@@ -2,7 +2,8 @@
 
 
 import React = require('react/addons');
-import Main = require('../components/main');
+import MainModule = require('../components/main');
+import Main = MainModule.Main;
 
 import SlideBase = require('../DAL/Model/ISlideBase');
 

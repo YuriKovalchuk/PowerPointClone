@@ -4,6 +4,7 @@ import React = require('react/addons');
 
 
 module PanelSlide {
+
     interface IPropPanelSlide {
         title: string;
     }

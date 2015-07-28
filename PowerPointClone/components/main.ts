@@ -2,51 +2,59 @@
 
 import React = require('react/addons');
 
-import UpperMenu = require('../components/upperMenu');
+import UpperMenuModule = require('../components/upperMenu');
 import SlideBase = require('../components/slideBases');
-import Stage = require('../components/stage');
-import LeftPanel = require('../components/leftSidePanel/LeftPanel');
-import RightSidePanel = require('../components/rightSidePanel');
+import StageModule = require('../components/stagePanel/stage');
+import LeftPanelModule = require('../components/leftSidePanel/LeftPanel');
+import RightSidePanelModule = require('../components/rightSidePanel');
+
+import UpperMenu = UpperMenuModule.UpperMenu;
+import Stage = StageModule.Stage;
+import LeftPanel = LeftPanelModule.LeftPanel;
+import RightSidePanel = RightSidePanelModule.RightSidePanel;
 
 
-class Main extends React.Component<any, any, any>
-{
+module Main {
 
-    state = {
-        changedSlideType: '',
-        content: ''
-    }
-    
-    changeLayoutClickHandler(slideType) {
-        this.setState({ changedSlideType: slideType });
-    }
+    export class Main extends React.Component<any, any, any>
+    {
 
-    changeStageContentHandler(slideId: string) {
-        console.log('Changing the state ' + slideId );
-        this.setState({ content: 'Changing the state ' + slideId });
-    }
+        state = {
+            changedSlideType: '',
+            content: ''
+        }
 
-    render() {
-        return React.jsx(`
-<div>	
-    <UpperMenu />
-    <div className="container">
-        <div className="row">
-            <div className="col-md-2">
-                <div id="leftSideMenuWrapper">
-                    <LeftPanel.LeftPanel slides={Data} changeStageClickHandler={this.changeStageContentHandler.bind(this)} />
+        changeLayoutClickHandler(slideType) {
+            this.setState({ changedSlideType: slideType });
+        }
+
+        changeStageContentHandler(slideId: string) {
+            console.log('Changing the state ' + slideId);
+            this.setState({ content: 'Changing the state ' + slideId });
+        }
+
+        render() {
+            return React.jsx(`
+                <div>
+                    <UpperMenu />
+                    <div className="container">
+                        <div className="row">
+                            <div className="col-md-2">
+                                <div id="leftSideMenuWrapper">
+                                    <LeftPanel slides={Data} changeStageClickHandler={this.changeStageContentHandler.bind(this)} />
+                                </div>
+                            </div>
+                            <div className="col-md-8 main-body">
+                                <Stage changedSlideType={this.state.changedSlideType} />
+                            </div>
+                            <div className="col-md-2">
+                                <RightSidePanel changeLayoutClick={this.changeLayoutClickHandler.bind(this)} />
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
-            <div className="col-md-8 main-body">
-                <Stage changedSlideType={this.state.changedSlideType} />
-            </div>
-            <div className="col-md-2">
-                <RightSidePanel changeLayoutClick={this.changeLayoutClickHandler.bind(this)} />
-            </div>
-        </div>
-    </div>
-</div>
-         `);
+            `);
+        }
     }
 }
 
