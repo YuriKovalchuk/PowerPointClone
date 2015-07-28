@@ -4,11 +4,12 @@ import ImageViewer = require('./imageViewer');
 import React = require('react/addons');
 import SlideBase = require('../DAL/Model/ISlideBase');
 
-import Presentation = require('../DAL/Model/Presentation');
 //import SlideTitleWithText = require('../DAL/Model/SlideTitleWithText');
 import SlideWithTitleOnly = require('../DAL/Model/SlideWithTitleOnly');
 //import SlideTitleWithImage = require('../DAL/Model/SlideTitleWithImage');
 import SlideType = require('../Enums/SlideType');
+import PresentationSingleton = require('../DAL/PresentationSingleton');
+import Singleton = PresentationSingleton.PresentationSingleton;
 
 interface State {
     photoIndex?: number;
@@ -43,13 +44,15 @@ class App extends React.Component<any, State, any> {
     }
 
     render() {
-        var presentation = new Presentation();
-        presentation.id = "1";
+        var singletonManager = Singleton.GetInstance();
+        var presentation = singletonManager.GetPresentation()
         var slideText = new SlideWithTitleOnly(
-            presentation.id,
-            "test titlu"
+            "test titlu",
+            presentation.id
             );
         presentation.slides = [slideText];
+        
+        singletonManager.SavePresentation(presentation);
 
         return React.jsx(`<div className="app">
 			<div className="title">Picture Purrfect</div>
