@@ -1,22 +1,16 @@
-﻿import ISlideBase = require('ISlideBase');
+﻿import SlideBase = require('../Model/SlideBase');
 import SlideType = require('../../Enums/SlideType');
-import Utils = require('../../utils/Helpers');
 
-class SlideWithTitleOnly implements ISlideBase {
-    slideType: SlideType;
-    id: string;
-    title: string;
-    presentationId: string;
+module Slides {
+    export class SlideWithTitleOnly extends SlideBase.SlideBase {
+        slideType: SlideType;
 
-    constructor(
-        title: string,
-        presentationId: string) {
+        constructor(
+            title: string) {
 
-        this.slideType = SlideType.TitleWithText;
-        this.id = Utils.GetId();
-        this.title = title;
-        this.presentationId = presentationId;
+            this.slideType = SlideType.TitleWithText;
+            super(this.slideType, title);
+        }
     }
 }
-
-export = SlideWithTitleOnly;
+export = Slides;
