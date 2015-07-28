@@ -75,6 +75,10 @@ input {
 
 
 /**/
+.navbar a{
+    cursor:pointer;
+}
+
 .gray{
     background-color:#ccc;
 }
