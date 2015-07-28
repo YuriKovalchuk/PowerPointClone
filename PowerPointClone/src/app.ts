@@ -5,8 +5,6 @@ import React = require('react/addons');
 import MainModule = require('../components/main');
 import Main = MainModule.Main;
 
-import SlideBase = require('../DAL/Model/ISlideBase');
-
 import Presentation = require('../DAL/Model/Presentation');
 //import SlideTitleWithText = require('../DAL/Model/SlideTitleWithText');
 import SlideWithTitleOnly = require('../DAL/Model/SlideWithTitleOnly');

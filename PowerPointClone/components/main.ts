@@ -3,7 +3,6 @@
 import React = require('react/addons');
 
 import UpperMenuModule = require('../components/upperMenu');
-import SlideBase = require('../components/slideBases');
 import StageModule = require('../components/stagePanel/stage');
 import LeftPanelModule = require('../components/leftSidePanel/LeftPanel');
 import RightSidePanelModule = require('../components/rightSidePanel');
