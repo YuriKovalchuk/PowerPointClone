@@ -2,9 +2,9 @@
 
 import React = require('react/addons');
 
-module stageSlideTitleWithText {
+module StageSlideTitleWithText {
 
-    export class stageSlideTitleWithText extends React.Component<any, any, any>
+    export class StageSlideTitleWithText extends React.Component<any, any, any>
     {
         render() {
             return React.jsx(`
@@ -23,4 +23,4 @@ module stageSlideTitleWithText {
     }
 }
 
-export = stageSlideTitleWithText;
+export = StageSlideTitleWithText;

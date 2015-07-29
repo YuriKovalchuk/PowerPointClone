@@ -177,14 +177,23 @@ input {
     border-radius:0;
 }
 
+
+
+
+/* stage */
+
+.stageMenu a {
+    cursor:pointer;
+    color:#808080;
+}
+
+
+
 .stage-image {
     height: 480px;
     position: relative !important;
     left: 0;
 }
-
-
-/* stage */
 .stage {
     height : 700px;
 }
@@ -205,6 +214,20 @@ input {
     margin : 0;
     height:450px;
 }
+
+#stageMenu
+{
+    display:none;
+}
+
+#stageWrapper:hover #stageMenu{
+    display:block !important;
+}
+
+/*#stageWrapper:hover{
+border  :1px solid red !important;
+}*/
+
 
 .space-top300{
     margin-top:300px;
