@@ -34,8 +34,11 @@ module LeftPanel {
 
             return React.jsx(`
                 <div>
-                    <div className="header">
-                        Slides
+                    <div className='header' >
+                        <div className='header left'> Slides </div>
+                        <div className='header right'>
+                            <i className="fa fa-plus-square fa-lg"></i>&nbsp;Add slide
+                        </div>
                     </div>
                     <div className='leftSidePanel'>
                         {data}

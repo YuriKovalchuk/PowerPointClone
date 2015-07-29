@@ -24,7 +24,7 @@ define(["require", "exports", 'react/addons'], function (require, exports, React
                 this.props.slides.forEach(function (s) {
                     data.push(React.jsx("\n                    <PanelRow slide={s} changeStageClickHandler={f} />\n                "));
                 });
-                return React.jsx("\n                <div>\n                    <div className=\"header\">\n                        Slides\n                    </div>\n                    <div className='leftSidePanel'>\n                        {data}\n                    </div>            \n                </div>\n            ");
+                return React.jsx("\n                <div>\n                    <div className='header' >\n                        <div className='header left'> Slides </div>\n                        <div className='header right'>\n                            <i className=\"fa fa-plus-square fa-lg\"></i>&nbsp;Add slide\n                        </div>\n                    </div>\n                    <div className='leftSidePanel'>\n                        {data}\n                    </div>            \n                </div>\n            ");
             };
             return LeftPanel;
         })(React.Component);

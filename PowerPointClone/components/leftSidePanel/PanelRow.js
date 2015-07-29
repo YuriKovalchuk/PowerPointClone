@@ -20,7 +20,7 @@ define(["require", "exports", 'react/addons'], function (require, exports, React
             ;
             PanelRow.prototype.render = function () {
                 var id = this.props.slide.id;
-                return React.jsx("\n            <div className='panelRow' onClick={this.handleSlideClick.bind(this, id)}>\n                <span className='slideId'> {this.props.slide.id} </span>\n                <PanelSlide title={this.props.slide.title}/>\n            </div>\n        ");
+                return React.jsx("\n                <div className='panelRow' onClick={this.handleSlideClick.bind(this, id)}>\n                    <div className='slideId'> {this.props.slide.id} </div>\n                    <div className='delButton'> \n                        <i className=\"fa fa-trash-o fa-3\"></i>\n                    </div>\n                    <PanelSlide title={this.props.slide.title}/>\n                </div>\n            ");
             };
             return PanelRow;
         })(React.Component);

@@ -15,7 +15,6 @@ module PanelRow {
 
     export class PanelRow extends React.Component<IPropsPanelRow, any, any>
     {
- 
         handleSlideClick(id: string): void {
             console.log('test in Panel Row');
             this.props.changeStageClickHandler(id);
@@ -26,11 +25,14 @@ module PanelRow {
             var id = this.props.slide.id;
             
             return React.jsx(`
-            <div className='panelRow' onClick={this.handleSlideClick.bind(this, id)}>
-                <span className='slideId'> {this.props.slide.id} </span>
-                <PanelSlide title={this.props.slide.title}/>
-            </div>
-        `);
+                <div className='panelRow' onClick={this.handleSlideClick.bind(this, id)}>
+                    <div className='slideId'> {this.props.slide.id} </div>
+                    <div className='delButton'> 
+                        <i className="fa fa-trash-o fa-3"></i>
+                    </div>
+                    <PanelSlide title={this.props.slide.title}/>
+                </div>
+            `);
         }
     }
 }
