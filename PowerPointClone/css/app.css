@@ -257,6 +257,7 @@ body {
 .panelRow {
     position: relative;
     height:140px;
+    width: 220px;
     border: solid;
     border-color: #ccc;
     border-width: 5px;
