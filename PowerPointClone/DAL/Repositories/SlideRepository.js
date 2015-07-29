@@ -30,6 +30,10 @@ define(["require", "exports", '../Repositories/PresentationRepository'], functio
                 this._presentation.slides.splice(this._presentation.slides.indexOf(slide), 1);
                 this._presentationRepository.Update(this._presentation);
             };
+            SlideRepository.prototype.DeleteAll = function () {
+                this._presentation.slides.splice(0);
+                this._presentationRepository.Update(this._presentation);
+            };
             return SlideRepository;
         })();
         SlideDb.SlideRepository = SlideRepository;

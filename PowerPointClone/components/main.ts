@@ -6,17 +6,26 @@ import UpperMenuModule = require('../components/upperMenu');
 import StageModule = require('../components/stagePanel/stage');
 import LeftPanelModule = require('../components/leftSidePanel/LeftPanel');
 import RightSidePanelModule = require('../components/rightSidePanel');
+import SlideTitleWithImageModule = require('../DAL/Model/SlideTitleWithImage');
+import SlideTitleWithTextModule = require('../DAL/Model/SlideTitleWithText');
+import SlideWithTitleOnlyModule = require('../DAL/Model/SlideWithTitleOnly');
+import SingletonModule = require('../DAL/RepositoryManager');
 
 import UpperMenu = UpperMenuModule.UpperMenu;
 import Stage = StageModule.Stage;
 import LeftPanel = LeftPanelModule.LeftPanel;
 import RightSidePanel = RightSidePanelModule.RightSidePanel;
+import SlideTitleWithImage = SlideTitleWithImageModule.SlideTitleWithImage;
+import SlideTitleWithText = SlideTitleWithTextModule.SlideTitleWithText;
+import SlideWithTitleOnly = SlideWithTitleOnlyModule.SlideWithTitleOnly;
+import RepositoryManager = SingletonModule.RepositoryManager;
 
 
 module Main {
 
     export class Main extends React.Component<any, any, any>
     {
+        repository: RepositoryManager = RepositoryManager.GetInstance();
 
         state = {
             changedSlideType: '',
@@ -32,7 +41,20 @@ module Main {
             this.setState({ content: 'Changing the state ' + slideId });
         }
 
+        private Seed(): void {
+
+            this.repository.DeleteAllSlides();
+            this.repository.AddSlide(new SlideWithTitleOnly('Test 1'));
+            this.repository.AddSlide(new SlideTitleWithText('Test 2', 'Content Test'));
+            this.repository.AddSlide(new SlideTitleWithImage('Test 3', 'Image Path Test'));
+            this.repository.AddSlide(new SlideWithTitleOnly('Test 4'));
+            this.repository.AddSlide(new SlideTitleWithText('Test 5', 'Content Test'));
+            this.repository.AddSlide(new SlideTitleWithImage('Test 6', 'Image Path Test'));
+
+        }
+
         render() {
+            this.Seed();
             return React.jsx(`
                 <div>
                     <UpperMenu />
@@ -40,7 +62,7 @@ module Main {
                         <div className="row">
                             <div className="col-md-2">
                                 <div id="leftSideMenuWrapper">
-                                    <LeftPanel slides={Data} changeStageClickHandler={this.changeStageContentHandler.bind(this)} />
+                                    <LeftPanel changeStageClickHandler={this.changeStageContentHandler.bind(this)} />
                                 </div>
                             </div>
                             <div className="col-md-8 main-body">
@@ -56,16 +78,5 @@ module Main {
         }
     }
 }
-
-var Data = [
-    { id: '1', title: 'Test1' },
-    { id: '2', title: 'Test2' },
-    { id: '3', title: 'Test3' },
-    { id: '4', title: 'Test4' },
-    { id: '5', title: 'Test5' },
-    { id: '6', title: 'Test6' },
-    { id: '7', title: 'Test7' },
-    { id: '8', title: 'Test8' }
-]; 
 
 export = Main;

@@ -5,11 +5,21 @@ import React = require('react/addons');
 import MainModule = require('../components/main');
 import Main = MainModule.Main;
 
+import SlideTitleWithImageModule = require('../DAL/Model/SlideTitleWithImage');
+import SlideTitleWithTextModule = require('../DAL/Model/SlideTitleWithText');
+import SlideWithTitleOnlyModule = require('../DAL/Model/SlideWithTitleOnly');
+import SingletonModule = require('../DAL/RepositoryManager');
+
 import Presentation = require('../DAL/Model/Presentation');
 //import SlideTitleWithText = require('../DAL/Model/SlideTitleWithText');
-import SlideWithTitleOnly = require('../DAL/Model/SlideWithTitleOnly');
+
 //import SlideTitleWithImage = require('../DAL/Model/SlideTitleWithImage');
 import SlideType = require('../Enums/SlideType');
+
+import SlideTitleWithImage = SlideTitleWithImageModule.SlideTitleWithImage;
+import SlideTitleWithText = SlideTitleWithTextModule.SlideTitleWithText;
+import SlideWithTitleOnly = SlideWithTitleOnlyModule.SlideWithTitleOnly;
+import RepositoryManager = SingletonModule.RepositoryManager;
 
 interface State {
     photoIndex?: number;
@@ -67,6 +77,18 @@ class App extends React.Component<any, State, any> {
     }
 }
 */
+
+//var repository: RepositoryManager = RepositoryManager.GetInstance();
+
+console.log(localStorage);
+localStorage.clear();
+//repository.AddSlide(new SlideWithTitleOnly('Test 1'));
+            //this.repository.AddSlide(new SlideTitleWithText('Test 2', 'Content Test'));
+            //this.repository.AddSlide(new SlideTitleWithImage('Test 3', 'Image Path Test'));
+            //this.repository.AddSlide(new SlideWithTitleOnly('Test 4'));
+            //this.repository.AddSlide(new SlideTitleWithText('Test 5', 'Content Test'));
+            //this.repository.AddSlide(new SlideTitleWithImage('Test 6', 'Image Path Test'));
+
 
 
 React.render(React.jsx(`<Main />`), document.body);

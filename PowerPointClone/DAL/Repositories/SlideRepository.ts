@@ -56,6 +56,11 @@ module SlideDb {
 
             this._presentationRepository.Update(this._presentation);
         }
+
+        DeleteAll(): void {
+            this._presentation.slides.splice(0);
+            this._presentationRepository.Update(this._presentation);
+        }
     }
 }
 

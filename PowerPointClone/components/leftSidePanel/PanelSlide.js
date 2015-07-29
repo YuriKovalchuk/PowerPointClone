@@ -13,8 +13,11 @@ define(["require", "exports", 'react/addons'], function (require, exports, React
             function PanelSlide() {
                 _super.apply(this, arguments);
             }
+            PanelSlide.prototype.clickOnSlide = function () {
+            };
+            ;
             PanelSlide.prototype.render = function () {
-                return React.jsx("\n                <div className='panelSlide'>\n                    {this.props.title}\n                </div>\n            ");
+                return React.jsx("\n                <div className='panelSlide' onClick={this.clickOnSlide.bind(this)} >\n                    {this.props.title}\n                </div>\n            ");
             };
             return PanelSlide;
         })(React.Component);

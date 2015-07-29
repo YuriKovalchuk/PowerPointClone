@@ -64,6 +64,11 @@ module Singleton {
             this.SavePresentation();
         }
 
+        public DeleteAllSlides(): void {
+            this._sRepository.DeleteAll();
+            this.SavePresentation();
+        }
+
         //#endregion Slide
 
         //#region Utils
