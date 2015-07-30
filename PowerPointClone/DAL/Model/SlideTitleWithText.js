@@ -4,18 +4,14 @@ var __extends = (this && this.__extends) || function (d, b) {
     __.prototype = b.prototype;
     d.prototype = new __();
 };
-define(["require", "exports", '../Model/SlideBase', '../../Enums/SlideType'], function (require, exports, SlideBase, SlideType) {
+define(["require", "exports", '../Model/SlideBase', '../../Enums/SlideType'], function (require, exports, SlideBase, EnumsModule) {
     var Slides;
     (function (Slides) {
         var SlideTitleWithText = (function (_super) {
             __extends(SlideTitleWithText, _super);
             function SlideTitleWithText(title, content) {
-<<<<<<< HEAD
-                this.slideType = SlideType.TitleWithText;
-=======
                 this.slideType = EnumsModule.SlideType.TitleWithText;
                 this.content = content;
->>>>>>> -- changes for save and cancel.
                 _super.call(this, this.slideType, title);
             }
             return SlideTitleWithText;

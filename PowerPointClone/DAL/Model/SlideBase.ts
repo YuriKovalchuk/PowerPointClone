@@ -1,14 +1,14 @@
-﻿import SlideType = require('../../Enums/SlideType');
+﻿import EnumsModule = require('../../Enums/SlideType');
 import Utils = require('../../utils/Helpers');
 
 module Slide {
 
     export class SlideBase {
-        slideType: SlideType;
+        slideType: EnumsModule.SlideType;
         id: string;
         title: string;
 
-        constructor(slideType: SlideType, title: string) {
+        constructor(slideType: EnumsModule.SlideType, title: string) {
             this.slideType = slideType;
             this.id = Utils.GetId();
             this.title = title;

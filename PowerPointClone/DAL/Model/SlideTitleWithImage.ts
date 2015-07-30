@@ -1,16 +1,16 @@
 ﻿import Slide = require('../Model/SlideBase');
-import SlideType = require('../../Enums/SlideType');
+import EnumsModule = require('../../Enums/SlideType');
 
 module Slides {
 
     export class SlideTitleWithImage extends Slide.SlideBase {
         imagePath: string;
-        slideType: SlideType;
+        slideType: EnumsModule.SlideType;
 
         constructor(
             title: string,
             imagePath: string) {
-            this.slideType = SlideType.TitleWithImage;
+            this.slideType = EnumsModule.SlideType.TitleWithImage;
             this.imagePath = imagePath;
 
             super(this.slideType, title);
