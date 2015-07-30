@@ -1,30 +1,59 @@
 ﻿///<reference path="../../lib/_references.d.ts"/>
 
 import React = require('react/addons');
+
 import StageSlideTitleWithTextModule = require('../stagePanel/stageSlideTitleWithText');
 import StageSlideTitleOnlyModule = require('../stagePanel/stageSlideTitleOnly');
 import StageSlideTitleWithImageModule = require('../stagePanel/stageSlideTitleWithImage');
 
+import SlideBaseModule = require('../../DAL/Model/SlideBase');
+import SlideWithTitleOnlyModule = require('../../DAL/Model/SlideWithTitleOnly');
+import SlideWithTitleAndImageModule = require('../../DAL/Model/SlideTitleWithImage');
+import SlideWithTitleAndTextModule = require('../../DAL/Model/SlideTitleWithText');
+
+//#endregion NameSpaces
+
+import EnumsModule = require('../../Enums/SlideType');
+import SingletonModule = require('../../DAL/RepositoryManager');
+
+//#region ViewModels
 import StageSlideTitleWithText = StageSlideTitleWithTextModule.StageSlideTitleWithText;
 import StageSlideTitleOnly = StageSlideTitleOnlyModule.StageSlideTitleOnly;
 import StageSlideTitleWithImage = StageSlideTitleWithImageModule.StageSlideTitleWithImage;
+//#endregion ViewModels
+
+//#region Models
+import SlideWithTitleOnly = SlideWithTitleOnlyModule.SlideWithTitleOnly;
+import SlideWithTitleAndImage = SlideWithTitleAndImageModule.SlideTitleWithImage;
+import SlideWithTitleAndText = SlideWithTitleAndTextModule.SlideTitleWithText;
+//#endregion Models
+
+import RepositoryManager = SingletonModule.RepositoryManager;
 
 module Stage {
 
+    export interface StageProps {
+        changedSlideType: number;
+        changedSlideTypeId: EnumsModule.SlideType;
+    } 
+
     export interface StageState {
-        showMenuItems:boolean
+        innerSlide: SlideBaseModule.SlideBase
     }
     
-    export class Stage extends React.Component<any, StageState, any>
-    {   
-        componentWillMount() : void {
-            this.setState({ showMenuItems: false });
-        };
+    export class Stage extends React.Component<StageProps, StageState, any>
+    {
+        componentWillMount(): void
+        {
+            //var slideModel = new SlideWithTitleOnly("test 123 alex");
+            var slideModel = new SlideWithTitleAndText("test 123 alex","teasdaklsdl;ka lkdaslk djal skjdkla jslk djalks dlqkwjmd;laksdl; ak;sldk q;lwd,;alsdm, ;al,wl;q;l");
 
-        onMouseMoveLocalEventHandler(entering: boolean): void {
-            this.setState({ showMenuItems: entering });
+            this.setState({
+                innerSlide: slideModel
+            });
         }
-        
+
+
         onSaveSlideLocalEventHandler() {
             console.log('save click');
         }
@@ -35,20 +64,20 @@ module Stage {
         render() {
 
             var stageSlideValue;
-            var slideType = this.props.changedSlideType;
-
+            var slideType : number = this.props.changedSlideType;
+            
             switch (slideType) {
-                case 'TitleOnly':
-                    stageSlideValue = React.jsx(`<StageSlideTitleOnly />`);
+                case 0:
+                    stageSlideValue = React.jsx(`<StageSlideTitleOnly slideModel={this.state.innerSlide} />`);
                     break;
-                case 'TitleWithImage':
-                    stageSlideValue = React.jsx(`<StageSlideTitleWithImage />`);
+                case 1:
+                    stageSlideValue = React.jsx(`<StageSlideTitleWithImage slideModel={this.state.innerSlide} />`);
                     break;
-                case 'TitleWithText':
-                    stageSlideValue = React.jsx(`<StageSlideTitleWithText />`);
+                case 2:
+                    stageSlideValue = React.jsx(`<StageSlideTitleWithText slideModel={this.state.innerSlide} />`);
                     break;
                 default:
-                    stageSlideValue = React.jsx(`<StageSlideTitleOnly />`);
+                    //stageSlideValue = React.jsx(`<StageSlideTitleOnly slideModel={this.state.innerSlide} />`);
                     //throw new Error("Invalid slide type!");
                     break;
             }

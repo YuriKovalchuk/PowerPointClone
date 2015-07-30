@@ -23,14 +23,14 @@ module RightSidePanel {
                     </div>
                     <div className="row">
                         <div className="col-xs-12">
-                            <div className="slide-base center-block space-top100 space-bottom20" onClick={this.changeLayoutClickHandler.bind(this,'TitleOnly')}>
+                            <div className="slide-base center-block space-top100 space-bottom20" onClick={this.changeLayoutClickHandler.bind(this,0)}>
                                 <div className="title-placeholder center-block space-top55"></div>
                             </div>
                         </div>
                     </div>
                     <div className="row">
                         <div className="col-xs-12">
-                            <div className="slide-base center-block space-bottom20" onClick={this.changeLayoutClickHandler.bind(this,'TitleWithText')}>
+                            <div className="slide-base center-block space-bottom20" onClick={this.changeLayoutClickHandler.bind(this,2)}>
                                 <div className="title-placeholder center-block space-top10"></div>
                                 <div className="text-body-placeholder center-block space-top10"></div>
                             </div>
@@ -38,7 +38,7 @@ module RightSidePanel {
                     </div>
                     <div className="row">
                         <div className="col-xs-12">
-                            <div className="slide-base center-block space-bottom20" onClick={this.changeLayoutClickHandler.bind(this,'TitleWithImage')}>
+                            <div className="slide-base center-block space-bottom20" onClick={this.changeLayoutClickHandler.bind(this,1)}>
                                 <div className="title-placeholder center-block space-top10"></div>
                                 <div className="text-body-placeholder center-block space-top10">
                                     <img src="http://placekitten.com/g/150/80" title="Image" className="right-side-image" />

@@ -18,7 +18,7 @@ define(["require", "exports", 'react/addons', '../DAL/Model/SlideTitleWithImage'
                 _super.apply(this, arguments);
                 this.repository = RepositoryManager.GetInstance();
                 this.state = {
-                    changedSlideType: '',
+                    changedSlideType: 0,
                     content: ''
                 };
             }

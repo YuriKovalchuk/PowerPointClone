@@ -10,7 +10,12 @@ define(["require", "exports", '../Model/SlideBase', '../../Enums/SlideType'], fu
         var SlideTitleWithText = (function (_super) {
             __extends(SlideTitleWithText, _super);
             function SlideTitleWithText(title, content) {
+<<<<<<< HEAD
                 this.slideType = SlideType.TitleWithText;
+=======
+                this.slideType = EnumsModule.SlideType.TitleWithText;
+                this.content = content;
+>>>>>>> -- changes for save and cancel.
                 _super.call(this, this.slideType, title);
             }
             return SlideTitleWithText;

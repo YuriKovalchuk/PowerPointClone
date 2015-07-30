@@ -28,7 +28,7 @@ module Main {
         repository: RepositoryManager = RepositoryManager.GetInstance();
 
         state = {
-            changedSlideType: '',
+            changedSlideType: 0,
             content: ''
         }
 

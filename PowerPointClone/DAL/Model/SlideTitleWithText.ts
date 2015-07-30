@@ -1,16 +1,17 @@
 ﻿import SlideBase = require('../Model/SlideBase');
-import SlideType = require('../../Enums/SlideType');
+import EnumsModule = require('../../Enums/SlideType');
 import Utils = require('../../utils/Helpers');
 
 module Slides {
-    export class SlideTitleWithText extends SlideBase.SlideBase {
+    export class SlideTitleWithText extends SlideBase.SlideBase
+    {
         content: string;
-        slideType: SlideType;
+        slideType: EnumsModule.SlideType;
 
-        constructor(
-            title: string,
-            content: string) {
-            this.slideType = SlideType.TitleWithText;
+        constructor(title: string, content: string)
+        {
+            this.slideType = EnumsModule.SlideType.TitleWithText;
+            this.content = content;
             super(this.slideType, title);
         }
     }

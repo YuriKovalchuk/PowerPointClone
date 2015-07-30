@@ -1,3 +1,11 @@
-﻿enum SlideType { TitleOnly, TitleWithImage, TitleWithText }
+﻿
 
-export = SlideType;
+module Enums {
+    export enum SlideType
+    {
+        TitleOnly = 0,
+        TitleWithImage,
+        TitleWithText
+    }
+}
+export = Enums;
