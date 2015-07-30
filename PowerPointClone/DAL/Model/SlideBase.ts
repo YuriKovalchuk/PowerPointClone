@@ -12,7 +12,6 @@ module Slide {
 
         constructor(slideType: EnumsModule.SlideType, title: string) {
             this.slideType = slideType;
-            this.id = Utils.GetId();
             this.title = title;
         }
     }

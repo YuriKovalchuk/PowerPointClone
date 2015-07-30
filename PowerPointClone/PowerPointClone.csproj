@@ -53,7 +53,7 @@
     <Content Include="fonts\fontawesome-webfont.woff" />
     <Content Include="fonts\fontawesome-webfont.woff2" />
     <Content Include="fonts\FontAwesome.otf" />
-    <None Include="src\adeadf.adaed" />
+    <None Include="src\tsconfig.json" />
     <None Include="web.Debug.config">
       <DependentUpon>web.config</DependentUpon>
     </None>
@@ -73,6 +73,8 @@
     <TypeScriptCompile Include="components\StagePanel\stageSlideTitleWithText.ts" />
     <TypeScriptCompile Include="components\StagePanel\stageSlideTitleWithImage.ts" />
     <TypeScriptCompile Include="components\upperMenu.ts" />
+    <TypeScriptCompile Include="DAL\Model\Backbone.Models\SlideCollection.ts" />
+    <TypeScriptCompile Include="DAL\Model\Backbone.Models\SlideTitleWithImageModel.ts" />
     <TypeScriptCompile Include="DAL\Model\IModel.ts" />
     <TypeScriptCompile Include="DAL\Model\Presentation.ts" />
     <TypeScriptCompile Include="DAL\Model\SlideBase.ts" />
