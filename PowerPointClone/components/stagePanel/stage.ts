@@ -45,15 +45,14 @@ module Stage {
     {
         componentWillMount(): void
         {
-            //var slideModel = new SlideWithTitleOnly("test 123 alex");
-            var slideModel = new SlideWithTitleAndText("test 123 alex","teasdaklsdl;ka lkdaslk djal skjdkla jslk djalks dlqkwjmd;laksdl; ak;sldk q;lwd,;alsdm, ;al,wl;q;l");
+            var slideModel = new SlideWithTitleOnly("test 123 alex");
+            //var slideModel = new SlideWithTitleAndText("test 123 alex","teasdaklsdl;ka lkdaslk djal skjdkla jslk djalks dlqkwjmd;laksdl; ak;sldk q;lwd,;alsdm, ;al,wl;q;l");
 
             this.setState({
                 innerSlide: slideModel
             });
         }
-
-
+        
         onSaveSlideLocalEventHandler() {
             console.log('save click');
         }
@@ -61,20 +60,29 @@ module Stage {
             console.log('cancel click');
         }
 
+        onInnerStageModelChanged(model: SlideBaseModule.SlideBase) {
+            this.setState({
+                innerSlide: model
+            });
+        }
+
+
         render() {
 
             var stageSlideValue;
             var slideType : number = this.props.changedSlideType;
             
+            var f: () => void = this.onInnerStageModelChanged.bind(this, this.state.innerSlide);
+
             switch (slideType) {
                 case 0:
-                    stageSlideValue = React.jsx(`<StageSlideTitleOnly slideModel={this.state.innerSlide} />`);
+                    stageSlideValue = React.jsx(`<StageSlideTitleOnly modelChangedBubbleUpHandler={f} slideModel={this.state.innerSlide} />`);
                     break;
                 case 1:
-                    stageSlideValue = React.jsx(`<StageSlideTitleWithImage slideModel={this.state.innerSlide} />`);
+                    stageSlideValue = React.jsx(`<StageSlideTitleWithImage modelChangedBubbleUpHandler={f} slideModel={this.state.innerSlide} />`);
                     break;
                 case 2:
-                    stageSlideValue = React.jsx(`<StageSlideTitleWithText slideModel={this.state.innerSlide} />`);
+                    stageSlideValue = React.jsx(`<StageSlideTitleWithText modelChangedBubbleUpHandler={f} slideModel={this.state.innerSlide} />`);
                     break;
                 default:
                     //stageSlideValue = React.jsx(`<StageSlideTitleOnly slideModel={this.state.innerSlide} />`);

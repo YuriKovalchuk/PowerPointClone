@@ -22,7 +22,8 @@ module StageSlideTitleOnly {
 
     export interface StageSlideProps 
     {
-        slideModel: SlideBaseModule.SlideBase
+        slideModel?: SlideBaseModule.SlideBase,
+        modelChangedBubbleUpHandler: (model : SlideBaseModule.SlideBase) => void;
     }
 
     export interface StageSlideState
@@ -31,17 +32,31 @@ module StageSlideTitleOnly {
     }
     
     export class StageSlideTitleOnly extends React.Component<StageSlideProps, StageSlideState, any>
-    {  
+    {   
+        handleChange(event) {
 
-        handleChange()
-        {
+            var title: string = event.target.value;
+
+            //create the model and pass it back to the stage with changes
+            var model: SlideBaseModule.SlideBase = this.props.slideModel;
+            model.title = title;
+        
+            this.props.modelChangedBubbleUpHandler(model);
+            
+            //refresh current component
+            this.setState({
+                value: title
+            });            
 
         }
 
         render() {
+            var value: string;
 
-            var castedSlide: SlideWithTitleOnly = <SlideWithTitleOnly>this.props.slideModel;
-            
+            if (this.state != null) {
+                value = this.state.value;
+            }
+
             return React.jsx(`
                 <div className="col-xs-12">
                     <form>
@@ -50,8 +65,8 @@ module StageSlideTitleOnly {
                                className="form-control title-input" 
                                id="title-content" 
                                placeholder="Click to add Title" 
-                               value={castedSlide.title}
-                               onChange={this.handleChange} />
+                               value={value}
+                               onChange={this.handleChange.bind(this)} />
                       </div>
                     </form>
                 </div>

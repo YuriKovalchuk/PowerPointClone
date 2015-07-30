@@ -15,8 +15,9 @@ define(["require", "exports", 'react/addons', '../../DAL/RepositoryManager'], fu
                 _super.apply(this, arguments);
                 this.repository = RepositoryManager.GetInstance();
             }
-            PanelRow.prototype.handleSelectSlide = function (id) {
-                this.props.handleSelectSlide(id);
+            PanelRow.prototype.handleSlideClick = function () {
+                console.log('test in Panel Row');
+                this.props.changeStageClickHandler();
             };
             ;
             PanelRow.prototype.clickDeleteSlide = function (id) {
@@ -26,14 +27,7 @@ define(["require", "exports", 'react/addons', '../../DAL/RepositoryManager'], fu
             };
             ;
             PanelRow.prototype.render = function () {
-                var style;
-                if (this.props.slide.selected) {
-                    style = 'panelRow selected';
-                }
-                else {
-                    style = 'panelRow';
-                }
-                return React.jsx("\n                <div className={style} >\n                    <div className='slideId'> {this.props.slide.index} </div>\n                    <div className='delButton' onClick={this.clickDeleteSlide.bind(this, this.props.slide.id) } > \n                        <i className=\"fa fa-trash-o fa-3\"></i>\n                    </div>\n                    <PanelSlide slide={this.props.slide} handleSelectSlide={this.handleSelectSlide.bind(this)}/>\n                </div>\n            ");
+                return React.jsx("\n                <div className='panelRow' clickOnSlide={this.handleSlideClick.bind(this)}>\n                    <div className='slideId'> 0 </div>\n                    <div className='delButton' onClick={this.clickDeleteSlide.bind(this, this.props.slide.id) } > \n                        <i className=\"fa fa-trash-o fa-3\"></i>\n                    </div>\n                    <PanelSlide title={this.props.slide.title}/>\n                </div>\n            ");
             };
             return PanelRow;
         })(React.Component);
