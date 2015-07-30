@@ -221,6 +221,9 @@ input {
 #stageMenu
 {
     display:none;
+    position:absolute;
+    right:1px;
+    z-index:9999;
 }
 
 #stageWrapper:hover #stageMenu{
