@@ -12,8 +12,9 @@ import SlideBase = SlideBaseModule.SlideBase;
 
 module PanelRow {
     interface IPropsPanelRow {
-        clickDeleteUpdatePanel: () => void;
-        changeStageClickHandler: () => void;
+        handleSelectSlide(id: string): void;
+        clickDeleteUpdatePanel() : void;
+        changeStageClickHandler() : void;
         slide: SlideBase;
     }
 
@@ -21,9 +22,9 @@ module PanelRow {
     {
         repository: RepositoryManager = RepositoryManager.GetInstance();
 
-        handleSlideClick(): void {
-            console.log('test in Panel Row');
-            this.props.changeStageClickHandler();
+        handleSelectSlide(id: string): void {
+            this.props.handleSelectSlide(id);
+
         };
 
         clickDeleteSlide(id: string): void {
@@ -33,14 +34,24 @@ module PanelRow {
         };
 
         render() {
-            
+            var style: string;
+
+            if (this.props.slide.selected)
+            {
+                style = 'panelRow selected';
+            }
+            else
+            {
+                style = 'panelRow';
+            }
+
             return React.jsx(`
-                <div className='panelRow' clickOnSlide={this.handleSlideClick.bind(this)}>
-                    <div className='slideId'> 0 </div>
+                <div className={style} >
+                    <div className='slideId'> {this.props.slide.index} </div>
                     <div className='delButton' onClick={this.clickDeleteSlide.bind(this, this.props.slide.id) } > 
                         <i className="fa fa-trash-o fa-3"></i>
                     </div>
-                    <PanelSlide title={this.props.slide.title}/>
+                    <PanelSlide slide={this.props.slide} handleSelectSlide={this.handleSelectSlide.bind(this)}/>
                 </div>
             `);
         }

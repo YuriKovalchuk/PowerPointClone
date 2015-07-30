@@ -7,6 +7,8 @@ module Slide {
         slideType: EnumsModule.SlideType;
         id: string;
         title: string;
+        index: number;
+        selected: boolean = false;
 
         constructor(slideType: EnumsModule.SlideType, title: string) {
             this.slideType = slideType;

@@ -63,15 +63,15 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <TypeScriptCompile Include="components\leftSidePanel\LeftPanel.ts" />
-    <TypeScriptCompile Include="components\leftSidePanel\PanelRow.ts" />
-    <TypeScriptCompile Include="components\leftSidePanel\PanelSlide.ts" />
+    <TypeScriptCompile Include="components\LeftSidePanel\LeftPanel.ts" />
+    <TypeScriptCompile Include="components\LeftSidePanel\PanelRow.ts" />
+    <TypeScriptCompile Include="components\LeftSidePanel\PanelSlide.ts" />
     <TypeScriptCompile Include="components\main.ts" />
     <TypeScriptCompile Include="components\rightSidePanel.ts" />
-    <TypeScriptCompile Include="components\stagePanel\stage.ts" />
-    <TypeScriptCompile Include="components\stagePanel\stageSlideTitleOnly.ts" />
-    <TypeScriptCompile Include="components\stagePanel\stageSlideTitleWithText.ts" />
-    <TypeScriptCompile Include="components\stagePanel\stageSlideTitleWithImage.ts" />
+    <TypeScriptCompile Include="components\StagePanel\stage.ts" />
+    <TypeScriptCompile Include="components\StagePanel\stageSlideTitleOnly.ts" />
+    <TypeScriptCompile Include="components\StagePanel\stageSlideTitleWithText.ts" />
+    <TypeScriptCompile Include="components\StagePanel\stageSlideTitleWithImage.ts" />
     <TypeScriptCompile Include="components\upperMenu.ts" />
     <TypeScriptCompile Include="DAL\Model\IModel.ts" />
     <TypeScriptCompile Include="DAL\Model\Presentation.ts" />
