@@ -6,7 +6,7 @@ module.exports = {
         publicPath: '/bundle/'
     },
     resolve: {
-        extensions: ['', '.ts', '.js' ]
+        extensions: ['', '.ts', '.js'],
     },
     devtool: 'source-map',
     module: {
@@ -15,6 +15,6 @@ module.exports = {
                 test: /\.ts$/,
                 loader: 'ts?sourceMap!ts-jsx',
             }
-        ]
+        ],
     },
 };

@@ -1,6 +1,10 @@
-﻿///<reference path="../lib/_references.d.ts"/>
+﻿/// <reference path="../lib/_references.d.ts"/>
 
 import React = require('react/addons');
+import $ = require('jquery');
+import _ = require('underscore');
+import Backbone = require('backbone');
+//import repository = require('repositorymanager');
 
 import UpperMenuModule = require('../components/upperMenu');
 import StageModule = require('../components/stagePanel/stage');
@@ -10,6 +14,7 @@ import SlideTitleWithImageModule = require('../DAL/Model/SlideTitleWithImage');
 import SlideTitleWithTextModule = require('../DAL/Model/SlideTitleWithText');
 import SlideWithTitleOnlyModule = require('../DAL/Model/SlideWithTitleOnly');
 import SingletonModule = require('../DAL/RepositoryManager');
+
 
 import UpperMenu = UpperMenuModule.UpperMenu;
 import Stage = StageModule.Stage;
@@ -54,7 +59,6 @@ module Main {
         }
 
         render() {
-            this.Seed();
             return React.jsx(`
                 <div>
                     <UpperMenu />
@@ -79,4 +83,8 @@ module Main {
     }
 }
 
+var Data = [
+    { id: '1', title: 'Test1' },
+    { id: '1', title: 'Test1' }
+]; 
 export = Main;

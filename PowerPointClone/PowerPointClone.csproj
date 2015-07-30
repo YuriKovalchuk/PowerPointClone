@@ -53,7 +53,7 @@
     <Content Include="fonts\fontawesome-webfont.woff" />
     <Content Include="fonts\fontawesome-webfont.woff2" />
     <Content Include="fonts\FontAwesome.otf" />
-    <None Include="src\tsconfig.json" />
+    <None Include="src\adeadf.adaed" />
     <None Include="web.Debug.config">
       <DependentUpon>web.config</DependentUpon>
     </None>
@@ -84,12 +84,15 @@
     <TypeScriptCompile Include="DAL\Repositories\PresentationRepository.ts" />
     <TypeScriptCompile Include="DAL\Repositories\SlideRepository.ts" />
     <TypeScriptCompile Include="Enums\SlideType.ts" />
-    <TypeScriptCompile Include="lib\node.webpack.ts" />
+    <TypeScriptCompile Include="lib\backbone.d.ts" />
+    <TypeScriptCompile Include="lib\jquery.d.ts" />
+    <TypeScriptCompile Include="lib\underscore.d.ts" />
     <TypeScriptCompile Include="src\app.ts" />
     <TypeScriptCompile Include="src\imageViewer.ts" />
     <TypeScriptCompile Include="lib\react-0.13.0.d.ts" />
     <TypeScriptCompile Include="lib\react-jsx.d.ts" />
     <TypeScriptCompile Include="lib\_references.d.ts" />
+    <TypeScriptCompile Include="utils\EventEmiter.ts" />
     <TypeScriptCompile Include="utils\Helpers.ts" />
   </ItemGroup>
   <PropertyGroup>
