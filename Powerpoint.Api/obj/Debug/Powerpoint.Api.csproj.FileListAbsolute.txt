@@ -95,3 +95,4 @@ D:\Softvision_Backup\PowerPointClone\Powerpoint.Api\bin\System.Web.WebPages.Razo
 D:\Softvision_Backup\PowerPointClone\Powerpoint.Api\bin\Antlr3.Runtime.pdb
 D:\Softvision_Backup\PowerPointClone\Powerpoint.Api\obj\Debug\Powerpoint.Api.dll
 D:\Softvision_Backup\PowerPointClone\Powerpoint.Api\obj\Debug\Powerpoint.Api.pdb
+D:\Softvision_Backup\PowerPointClone\Powerpoint.Api\obj\Debug\Powerpoint.Api.csprojResolveAssemblyReference.cache

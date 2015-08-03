@@ -37,6 +37,7 @@
     <Content Include="photos\0.jpg" />
     <Content Include="photos\1.jpg" />
     <Content Include="photos\2.jpg" />
+    <Content Include="photos\294.GIF" />
     <Content Include="src\webpack.config.js" />
     <Content Include="web.config" />
   </ItemGroup>
@@ -73,6 +74,8 @@
     <TypeScriptCompile Include="components\StagePanel\stageSlideTitleWithText.ts" />
     <TypeScriptCompile Include="components\StagePanel\stageSlideTitleWithImage.ts" />
     <TypeScriptCompile Include="components\upperMenu.ts" />
+    <TypeScriptCompile Include="DAL\Model\Backbone.Models\Layout.ts" />
+    <TypeScriptCompile Include="DAL\Model\Backbone.Models\LayoutsCollection.ts" />
     <TypeScriptCompile Include="DAL\Model\Backbone.Models\SlideCollection.ts" />
     <TypeScriptCompile Include="DAL\Model\IModel.ts" />
     <TypeScriptCompile Include="DAL\Model\Presentation.ts" />

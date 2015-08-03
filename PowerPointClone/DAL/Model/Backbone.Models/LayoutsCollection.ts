@@ -1,10 +1,10 @@
 ﻿import Backbone = require('backbone');
 import EnumsModel = require('../../../Enums/SlideType');
 import Utils = require('../../../utils/Helpers');
-import Slide = require('../Backbone.Models/Slide');
+import Layout = require('../Backbone.Models/Layout');
 
 module BackboneModels {
-    export class SlideCollection extends Backbone.Collection<Slide.Slide> {
+    export class LayoutsCollection extends Backbone.Collection<Layout.Layout> {
     }
 }
 
