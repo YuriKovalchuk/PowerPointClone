@@ -1,0 +1,24 @@
+[
+
+  {
+    "Id": "1",
+    "SlideType": 0,
+    "Title": "title",
+    "Content": "content",
+    "ImageUrl": "urlImage"
+  },
+  {
+    "Id": "2",
+    "SlideType": 0,
+    "Title": "title2",
+    "Content": "content2",
+    "ImageUrl": "urlImage2"
+  },
+  {
+    "Id": "3",
+    "SlideType": 0,
+    "Title": "title3",
+    "Content": "content3",
+    "ImageUrl": "urlImage3"
+  }
+]
