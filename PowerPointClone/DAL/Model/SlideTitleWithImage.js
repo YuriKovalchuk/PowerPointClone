@@ -9,9 +9,10 @@ define(["require", "exports", '../Model/SlideBase', '../../Enums/SlideType'], fu
     (function (Slides) {
         var SlideTitleWithImage = (function (_super) {
             __extends(SlideTitleWithImage, _super);
-            function SlideTitleWithImage(title, imagePath) {
+            function SlideTitleWithImage(id, title, imagePath) {
                 this.slideType = EnumsModule.SlideType.TitleWithImage;
                 this.imagePath = imagePath;
+                this.id = id;
                 _super.call(this, this.slideType, title);
             }
             return SlideTitleWithImage;

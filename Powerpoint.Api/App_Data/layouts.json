@@ -1,0 +1,5 @@
+﻿[
+  { "SlideLayoutTypeId": 0 , "Name": "TitleOnly"},
+  { "SlideLayoutTypeId": 1 , "Name": "TitleWithImage"},
+  { "SlideLayoutTypeId": 2 , "Name": "TitleWithText"}
+]

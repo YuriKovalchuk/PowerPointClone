@@ -21,4 +21,10 @@ namespace Powerpoint.Api.Models
         public string Content { get; set; }
         public string ImageUrl { get; set; }
     }
+
+    public class Layout
+    {
+        public int SlideLayoutTypeId { get; set; }
+        public string Name { get; set; }
+    }
 }

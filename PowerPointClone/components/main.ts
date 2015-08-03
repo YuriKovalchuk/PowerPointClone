@@ -49,12 +49,12 @@ module Main {
         private Seed(): void {
 
             this.repository.DeleteAllSlides();
-            this.repository.AddSlide(new SlideWithTitleOnly('Test 1'));
-            this.repository.AddSlide(new SlideTitleWithText('Test 2', 'Content Test'));
-            this.repository.AddSlide(new SlideTitleWithImage('Test 3', 'Image Path Test'));
-            this.repository.AddSlide(new SlideWithTitleOnly('Test 4'));
-            this.repository.AddSlide(new SlideTitleWithText('Test 5', 'Content Test'));
-            this.repository.AddSlide(new SlideTitleWithImage('Test 6', 'Image Path Test'));
+            //this.repository.AddSlide(new SlideWithTitleOnly('Test 1'));
+            //this.repository.AddSlide(new SlideTitleWithText('Test 2', 'Content Test'));
+            //this.repository.AddSlide(new SlideTitleWithImage('Test 3', 'Image Path Test'));
+            //this.repository.AddSlide(new SlideWithTitleOnly('Test 4'));
+            //this.repository.AddSlide(new SlideTitleWithText('Test 5', 'Content Test'));
+            //this.repository.AddSlide(new SlideTitleWithImage('Test 6', 'Image Path Test'));
 
         }
 

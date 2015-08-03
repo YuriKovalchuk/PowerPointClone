@@ -37,9 +37,9 @@ module LeftPanel {
         };
 
         componentWillMount(): void {
-            this.model = this.repository.GetAllSlides();
-            this.model[0].selected = true;
-            this.selectedSlide = this.model[0];
+            //this.model = this.repository.GetAllSlides();
+            //this.model[0].selected = true;
+            //this.selectedSlide = this.model[0];
         };
 
         componentDidUpdate() {

@@ -1,11 +1,10 @@
-define(["require", "exports", '../../utils/Helpers'], function (require, exports, Utils) {
+define(["require", "exports"], function (require, exports) {
     var Slide;
     (function (Slide) {
         var SlideBase = (function () {
             function SlideBase(slideType, title) {
                 this.selected = false;
                 this.slideType = slideType;
-                this.id = Utils.GetId();
                 this.title = title;
             }
             return SlideBase;

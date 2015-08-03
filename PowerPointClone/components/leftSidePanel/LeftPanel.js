@@ -23,9 +23,9 @@ define(["require", "exports", 'react/addons', '../../DAL/Model/SlideWithTitleOnl
             };
             ;
             LeftPanel.prototype.componentWillMount = function () {
-                this.model = this.repository.GetAllSlides();
-                this.model[0].selected = true;
-                this.selectedSlide = this.model[0];
+                //this.model = this.repository.GetAllSlides();
+                //this.model[0].selected = true;
+                //this.selectedSlide = this.model[0];
             };
             ;
             LeftPanel.prototype.componentDidUpdate = function () {
