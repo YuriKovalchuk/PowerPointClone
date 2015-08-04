@@ -10,6 +10,9 @@ module Models {
     export class Layout extends Backbone.Model {
         SlideLayoutTypeId: number;
         Name: string;
+        HasTitle: boolean;
+        HasText: boolean;
+        HasImage: boolean;
     }
 }
 

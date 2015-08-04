@@ -1,5 +1,23 @@
 ﻿[
-  { "SlideLayoutTypeId": 0 , "Name": "TitleOnly"},
-  { "SlideLayoutTypeId": 1 , "Name": "TitleWithImage"},
-  { "SlideLayoutTypeId": 2 , "Name": "TitleWithText"}
+  {
+    "SlideLayoutTypeId": 0,
+    "Name": "TitleOnly",
+    "HasTitle": true,
+    "HasText": false,
+    "HasImage" : false
+  },
+  {
+    "SlideLayoutTypeId": 1,
+    "Name": "TitleWithImage",
+    "HasTitle": true,
+    "HasText": false,
+    "HasImage" : true
+  },
+  {
+    "SlideLayoutTypeId": 2,
+    "Name": "TitleWithText",
+    "HasTitle": true,
+    "HasText": true,
+    "HasImage" : false
+  }
 ]

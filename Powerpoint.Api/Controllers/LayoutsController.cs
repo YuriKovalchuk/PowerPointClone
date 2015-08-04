@@ -25,5 +25,17 @@ namespace Powerpoint.Api.Controllers
             return layouts;
         }
 
+
+        public void Post([FromBody]Slide value)
+        {
+            var x = "";
+        }
+
+        // PUT api/slides/5
+        public void Put(string id, [FromBody]Slide value)
+        {
+            var x = "";
+        }
+
     }
 }

@@ -26,5 +26,8 @@ namespace Powerpoint.Api.Models
     {
         public int SlideLayoutTypeId { get; set; }
         public string Name { get; set; }
+        public bool HasTitle { get; set; }
+        public bool HasText { get; set; }
+        public bool HasImage { get; set; }
     }
 }

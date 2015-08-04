@@ -88,6 +88,7 @@
     <TypeScriptCompile Include="DAL\Repositories\IRepository.ts" />
     <TypeScriptCompile Include="DAL\Repositories\PresentationRepository.ts" />
     <TypeScriptCompile Include="DAL\Repositories\SlideRepository.ts" />
+    <TypeScriptCompile Include="Enums\EventNames.ts" />
     <TypeScriptCompile Include="Enums\SlideType.ts" />
     <TypeScriptCompile Include="lib\backbone.d.ts" />
     <TypeScriptCompile Include="lib\jquery.d.ts" />

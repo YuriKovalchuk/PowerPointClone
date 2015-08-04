@@ -12,6 +12,8 @@ module Models {
         public Title: string;
         public Content: string;
         public ImageUrl: string;
+
+        idAttribute = "Id";
     }
 }
 
