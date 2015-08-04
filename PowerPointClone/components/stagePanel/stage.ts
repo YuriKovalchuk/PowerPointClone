@@ -2,55 +2,33 @@
 
 import React = require('react/addons');
 
-import StageSlideTitleWithTextModule = require('../stagePanel/stageSlideTitleWithText');
-import StageSlideTitleOnlyModule = require('../stagePanel/stageSlideTitleOnly');
-import StageSlideTitleWithImageModule = require('../stagePanel/stageSlideTitleWithImage');
-
-import SlideBaseModule = require('../../DAL/Model/SlideBase');
-import SlideWithTitleOnlyModule = require('../../DAL/Model/SlideWithTitleOnly');
-import SlideWithTitleAndImageModule = require('../../DAL/Model/SlideTitleWithImage');
-import SlideWithTitleAndTextModule = require('../../DAL/Model/SlideTitleWithText');
-
-//#endregion NameSpaces
-
-import EnumsModule = require('../../Enums/SlideType');
+import EnumsModule = require('../../Enums/EventNames');
 import SingletonModule = require('../../DAL/RepositoryManager');
 
-//#region ViewModels
-import StageSlideTitleWithText = StageSlideTitleWithTextModule.StageSlideTitleWithText;
-import StageSlideTitleOnly = StageSlideTitleOnlyModule.StageSlideTitleOnly;
-import StageSlideTitleWithImage = StageSlideTitleWithImageModule.StageSlideTitleWithImage;
-//#endregion ViewModels
 
-//#region Models
-import SlideWithTitleOnly = SlideWithTitleOnlyModule.SlideWithTitleOnly;
-import SlideWithTitleAndImage = SlideWithTitleAndImageModule.SlideTitleWithImage;
-import SlideWithTitleAndText = SlideWithTitleAndTextModule.SlideTitleWithText;
-//#endregion Models
+import SlideModule = require('../../DAL/Model/Backbone.Models/Slide');
+import EmiterModule = require('../../utils/EventEmiter');
 
-import RepositoryManager = SingletonModule.RepositoryManager;
+
+import Slide = SlideModule.Slide;
+import Emitter = EmiterModule.EventEmiter;
+import EventNames = EnumsModule.EventNames;
+
 
 module Stage {
 
     export interface StageProps {
-        changedSlideType: number;
-        changedSlideTypeId: EnumsModule.SlideType;
     } 
 
     export interface StageState {
-        innerSlide: SlideBaseModule.SlideBase
+        slide: Slide
     }
     
     export class Stage extends React.Component<StageProps, StageState, any>
     {
         componentWillMount(): void
         {
-            var slideModel = new SlideWithTitleOnly("test 123 alex");
-            //var slideModel = new SlideWithTitleAndText("test 123 alex","teasdaklsdl;ka lkdaslk djal skjdkla jslk djalks dlqkwjmd;laksdl; ak;sldk q;lwd,;alsdm, ;al,wl;q;l");
-
-            this.setState({
-                innerSlide: slideModel
-            });
+           
         }
         
         onSaveSlideLocalEventHandler() {
@@ -60,35 +38,19 @@ module Stage {
             console.log('cancel click');
         }
 
-        onInnerStageModelChanged(model: SlideBaseModule.SlideBase) {
-            this.setState({
-                innerSlide: model
-            });
-        }
-
-
         render() {
 
             var stageSlideValue;
-            var slideType : number = this.props.changedSlideType;
             
-            var f: () => void = this.onInnerStageModelChanged.bind(this, this.state.innerSlide);
-
-            switch (slideType) {
-                case 0:
-                    stageSlideValue = React.jsx(`<StageSlideTitleOnly modelChangedBubbleUpHandler={f} slideModel={this.state.innerSlide} />`);
-                    break;
-                case 1:
-                    stageSlideValue = React.jsx(`<StageSlideTitleWithImage modelChangedBubbleUpHandler={f} slideModel={this.state.innerSlide} />`);
-                    break;
-                case 2:
-                    stageSlideValue = React.jsx(`<StageSlideTitleWithText modelChangedBubbleUpHandler={f} slideModel={this.state.innerSlide} />`);
-                    break;
-                default:
-                    //stageSlideValue = React.jsx(`<StageSlideTitleOnly slideModel={this.state.innerSlide} />`);
-                    //throw new Error("Invalid slide type!");
-                    break;
-            }
+            var preloader: React.ReactElement<any>;
+            preloader = React.jsx(`
+                    <div>
+                        <div>
+                            <img src="photos/294.GIF" className="preloader space-top100" />
+                        </div>
+                    </div>
+                `);
+            
 
             return React.jsx(`
                 <div className="row panel" id="stageWrapper">
@@ -107,7 +69,19 @@ module Stage {
                         </ul>
                     </div>
                     <div className="stage">
-                        {stageSlideValue}
+                        <div className="col-xs-12">
+                            <form>
+                                  <div className="form-group space-top55">
+                                    <input type="email" className="form-control title-input" id="title-content" placeholder="Click to add Title" value="" />
+                                  </div>
+                                  <div className="form-group space-top55">
+                                    <textarea className="form-control body-input" id="body-content" placeholder="Click to Content" value=""></textarea>
+                                  </div>
+                                  <div className="form-group space-top55">
+                                      <img src="http://placekitten.com/1200/1200" title="Image" className="stage-image" />
+                                  </div>
+                            </form>
+                        </div>
                     </div>
                 </div>
             `);
