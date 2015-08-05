@@ -1,6 +1,6 @@
 html, body { display: table; width: 100%; height: 100%; }
 
-body {
+.body-wrapper{
     display: table-cell;
     vertical-align: middle;
     text-align: center;
@@ -26,7 +26,7 @@ body {
     height: 50vh;
 }
 
-img {
+.img {
     position: absolute;
     top: 0;
     left: 25%;

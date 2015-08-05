@@ -4,10 +4,14 @@ import React = require('react/addons');
 
 module UpperMenu {
 
-    export class UpperMenu extends React.Component<any, any, any>
+    interface Props {
+        PlayPresentationClickHandler: (trigger: boolean) => void;
+    }
+
+    export class UpperMenu extends React.Component<Props, any, any>
     {
         startSlideShowLocalHandler() {
-            console.log('start slideshow...');
+            this.props.PlayPresentationClickHandler(true);
         }
 
         render() {

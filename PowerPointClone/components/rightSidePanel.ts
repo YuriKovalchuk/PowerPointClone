@@ -5,7 +5,7 @@ import LayoutsModule = require('../DAL/Model/Backbone.Models/LayoutsCollection')
 import LayoutModule = require('../DAL/Model/Backbone.Models/Layout');
 import EmiterModule = require('../Utils/EmitterWrapper');
 import EnumsModule = require('../Enums/EventNames');
-import SlideModule = require('../dal/model/backbone.models/slide');
+import SlideModule = require('../DAL/Model/Backbone.Models/Slide');
 import SlideTypeEnumModule = require('../Enums/SlideType');
 
 

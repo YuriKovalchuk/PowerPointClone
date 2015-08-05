@@ -14,7 +14,7 @@ import SlideTitleWithImageModule = require('../DAL/Model/SlideTitleWithImage');
 import SlideTitleWithTextModule = require('../DAL/Model/SlideTitleWithText');
 import SlideWithTitleOnlyModule = require('../DAL/Model/SlideWithTitleOnly');
 import SingletonModule = require('../DAL/RepositoryManager');
-
+import Play = require('../components/play/playpresentation');
 
 import UpperMenu = UpperMenuModule.UpperMenu;
 import Stage = StageModule.Stage;
@@ -28,13 +28,18 @@ import RepositoryManager = SingletonModule.RepositoryManager;
 
 module Main {
 
-    export class Main extends React.Component<any, any, any>
+    interface State {
+        PlayPresentation?: boolean;
+    }
+
+    export class Main extends React.Component<any, State, any>
     {
         repository: RepositoryManager = RepositoryManager.GetInstance();
 
         state = {
             changedSlideType: 0,
-            content: ''
+            content: '',
+            PlayPresentation: false
         }
 
         changeLayoutClickHandler(slideType) {
@@ -48,37 +53,48 @@ module Main {
 
         private Seed(): void {
 
-            //this.repository.DeleteAllSlides();
-            //this.repository.AddSlide(new SlideWithTitleOnly('Test 1'));
-            //this.repository.AddSlide(new SlideTitleWithText('Test 2', 'Content Test'));
-            //this.repository.AddSlide(new SlideTitleWithImage('Test 3', 'Image Path Test'));
-            //this.repository.AddSlide(new SlideWithTitleOnly('Test 4'));
-            //this.repository.AddSlide(new SlideTitleWithText('Test 5', 'Content Test'));
-            //this.repository.AddSlide(new SlideTitleWithImage('Test 6', 'Image Path Test'));
+            this.repository.DeleteAllSlides();
+            this.repository.AddSlide(new SlideWithTitleOnly('Test 1'));
+            this.repository.AddSlide(new SlideTitleWithText('Test 2', 'Content Test'));
+            this.repository.AddSlide(new SlideWithTitleOnly('Test 4'));
+            this.repository.AddSlide(new SlideTitleWithText('Test 5', 'Content Test'));
 
         }
 
+        PlayPresentationClickHandler(trigger: boolean): void {
+            this.setState({
+                PlayPresentation: trigger
+            });
+        }
+
         render() {
-            return React.jsx(`
-                <div>
-                    <UpperMenu />
-                    <div className="container">
-                        <div className="row">
-                            <div className="col-md-2">
-                                <div id="leftSideMenuWrapper">
-                                    <LeftPanel />
+            if (this.state.PlayPresentation) {
+                document.body.classList.remove('body-wrapper');
+
+                return React.jsx(`<Play.PlayPresentation PlayPresentationClickHandler={this.PlayPresentationClickHandler.bind(this)} />`);
+            }
+            else {
+                document.body.classList.add('body-wrapper');
+
+                return React.jsx(`
+                    <div>
+                        <UpperMenu PlayPresentationClickHandler={this.PlayPresentationClickHandler.bind(this)} />
+                        <div className="container">
+                            <div className="row">
+                                <div className="col-md-2">
+									<LeftPanel />
                                 </div>
-                            </div>
-                            <div className="col-md-8 main-body">
-                                <Stage changedSlideType={this.state.changedSlideType} />
-                            </div>
-                            <div className="col-md-2">
-                                <RightSidePanel changeLayoutClick={this.changeLayoutClickHandler.bind(this)} />
+                                <div className="col-md-8 main-body">
+                                    <Stage changedSlideType={this.state.changedSlideType} />
+                                </div>
+                                <div className="col-md-2">
+                                    <RightSidePanel changeLayoutClick={this.changeLayoutClickHandler.bind(this)} />
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            `);
+                `);
+            }
         }
     }
 }

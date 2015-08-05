@@ -34,6 +34,9 @@
     <Content Include="css\stage.css">
       <DependentUpon>stage.scss</DependentUpon>
     </Content>
+    <Content Include="css\presentation.css">
+      <DependentUpon>presentation.scss</DependentUpon>
+    </Content>
     <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="index.html" />
@@ -58,6 +61,11 @@
     <Content Include="fonts\FontAwesome.otf" />
     <Content Include="bundle-webpack.bat" />
     <Content Include="css\stage.scss" />
+    <Content Include="css\presentation.scss" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
     <None Include="src\tsconfig.json" />
     <None Include="web.Debug.config">
       <DependentUpon>web.config</DependentUpon>
@@ -66,12 +74,12 @@
       <DependentUpon>web.config</DependentUpon>
     </None>
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <TypeScriptCompile Include="components\LeftSidePanel\LeftPanel.ts" />
     <TypeScriptCompile Include="components\LeftSidePanel\PanelRow.ts" />
     <TypeScriptCompile Include="components\LeftSidePanel\PanelSlide.ts" />
     <TypeScriptCompile Include="components\main.ts" />
+    <TypeScriptCompile Include="components\Play\PlayPresentation.ts" />
     <TypeScriptCompile Include="components\rightSidePanel.ts" />
     <TypeScriptCompile Include="components\StagePanel\stage.ts" />
     <TypeScriptCompile Include="components\StagePanel\stageSlideTitleOnly.ts" />
@@ -105,6 +113,16 @@
     <TypeScriptCompile Include="Utils\EmitterWrapper.ts" />
     <TypeScriptCompile Include="Utils\EventEmiter.ts" />
     <TypeScriptCompile Include="Utils\Helpers.ts" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">12.0</VisualStudioVersion>

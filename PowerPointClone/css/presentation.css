@@ -1,6 +1,13 @@
-#presentation {
-  position: relative; }
-  #presentation p {
+.presentation {
+  height: 100%;
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none; }
+  .presentation .navbar {
+    height: 51px; }
+  .presentation p {
     margin-top: 25px;
     font-size: 21px;
     text-align: center;
@@ -11,10 +18,64 @@
     -o-animation: fadein 2s;
     animation: fadein 2s;
     /* Opera */ }
-  #presentation #close {
-    position: absolute;
-    right: 0;
-    top: 0; }
+  .presentation #close {
+    padding: 10px !important; }
+  .presentation .action {
+    cursor: pointer; }
+    .presentation .action.disabled {
+      pointer-events: none;
+      cursor: none;
+      color: gainsboro; }
+    .presentation .action .fa-5x {
+      font-size: 10em; }
+  .presentation-container {
+    /*background-color: white;*/
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    display: table; }
+    .presentation-container.col-2 {
+      width: 5%;
+      display: inline-block;
+      display: table-cell;
+      vertical-align: middle; }
+    .presentation-container.col-8 {
+      width: 90%;
+      display: inline-block;
+      display: table-cell;
+      vertical-align: middle; }
+      .presentation-container.col-8 .slide {
+        height: 80%;
+        background-color: white;
+        display: table;
+        width: 100%;
+        padding: 60px; }
+        .presentation-container.col-8 .slide .play {
+          display: none;
+          vertical-align: middle;
+          -moz-animation: fadein 2s;
+          /* Firefox */
+          -webkit-animation: fadein 2s;
+          /* Safari and Chrome */
+          -o-animation: fadein 2s;
+          animation: fadein 2s;
+          /* Opera */ }
+          .presentation-container.col-8 .slide .play-slide-title {
+            font-size: 11vh;
+            display: block; }
+            .presentation-container.col-8 .slide .play-slide-title.TitleOnly {
+              display: table-cell;
+              vertical-align: middle; }
+          .presentation-container.col-8 .slide .play-slide-content {
+            font-size: 3vh;
+            text-align: left; }
+            .presentation-container.col-8 .slide .play-slide-content.TitleWithText {
+              display: block; }
+          .presentation-container.col-8 .slide .play-slide-image.TitleWithImage {
+            display: block; }
+          .presentation-container.col-8 .slide .play-slide-image img {
+            margin: 0 auto;
+            height: 52vh; }
 
 @keyframes fadein {
   from {
@@ -22,7 +83,7 @@
   to {
     opacity: 1; } }
 @-moz-keyframes fadein {
-  /* Firefox */;
+  /* Firefox */
   from {
     opacity: 0; }
   to {

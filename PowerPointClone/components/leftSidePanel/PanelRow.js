@@ -20,7 +20,10 @@ define(["require", "exports", 'react/addons', '../../DAL/Model/Backbone.Models/S
                 this.model = new Slide();
             }
             PanelRow.prototype.handleSelectSlide = function (id) {
+<<<<<<< HEAD
                 console.log('Handling selected slide in Panel Row');
+=======
+>>>>>>> finished presentation
                 this.props.handleSelectSlide(id);
             };
             PanelRow.prototype.clickDeleteSlide = function (id) {
@@ -46,14 +49,20 @@ define(["require", "exports", 'react/addons', '../../DAL/Model/Backbone.Models/S
                 //}, this)
             };
             PanelRow.prototype.render = function () {
+<<<<<<< HEAD
                 console.log('Rendering panel row...');
                 var style;
                 if (this.props.slide.get('Selected')) {
+=======
+                var style;
+                if (this.props.slide.selected) {
+>>>>>>> finished presentation
                     style = 'panelRow selected';
                 }
                 else {
                     style = 'panelRow';
                 }
+<<<<<<< HEAD
                 var id = this.props.slide.get('Id');
                 //if (!this.state.deleted) {
                 return React.jsx("\n                    <div className={style} >\n                        <div className='slideId'> {this.props.index} </div>\n                        <div className='delButton' onClick={this.clickDeleteSlide.bind(this, id) } >\n                            <i className=\"fa fa-trash-o fa-3\"></i>\n                        </div>\n                        <PanelSlide slide={this.props.slide} handleSelectSlide={this.handleSelectSlide.bind(this)}/>\n                    </div>\n                ");
@@ -69,6 +78,9 @@ define(["require", "exports", 'react/addons', '../../DAL/Model/Backbone.Models/S
                 //        </div>
                 //    `);
                 //}
+=======
+                return React.jsx("\n                <div className={style} >\n                    <div className='slideId'> {this.props.slide.index} </div>\n                    <div className='delButton' onClick={this.clickDeleteSlide.bind(this, this.props.slide.id) } > \n                        <i className=\"fa fa-trash-o fa-3\"></i>\n                    </div>\n                    <PanelSlide slide={this.props.slide} handleSelectSlide={this.handleSelectSlide.bind(this)}/>\n                </div>\n            ");
+>>>>>>> finished presentation
             };
             return PanelRow;
         })(React.Component);

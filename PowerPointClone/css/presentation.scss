@@ -1,6 +1,22 @@
-﻿
-#presentation {
-    position: relative;
+﻿@mixin col($width) {
+    width: $width;
+    display: inline-block;
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.presentation {
+    height: 100%;
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+
+    .navbar {
+        height: 51px;
+    }
+
     p {
         margin-top: 25px;
         font-size: 21px;
@@ -10,40 +26,136 @@
         -o-animation: fadein 2s;
         animation: fadein 2s; /* Opera */
     }
+
     #close {
-        position:absolute;
-        right: 0;
-        top:0;
+        padding: 10px !important;
+    }
+
+    .action {
+        cursor: pointer;
+
+        &-left {
+        }
+
+        &-right {
+        }
+
+        &.disabled {
+            pointer-events: none;
+            cursor: none;
+            color: gainsboro;
+        }
+        .fa-5x{
+            font-size: 10em;
+        }
+    }
+
+
+    &-container {
+        /*background-color: white;*/
+        width: 100%;
+        height: 100%;
+        text-align: center;
+        display: table;
+
+        &.col-2 {
+            @include col(5%);
+        }
+
+        &.col-8 {
+            @include col(90%);
+
+            .slide {
+                height: 80%;
+                background-color: white;
+                display: table;
+                width: 100%;
+                padding: 60px;
+
+                .play {
+                    display: none;
+                    vertical-align: middle;
+                    -moz-animation: fadein 2s; /* Firefox */
+                    -webkit-animation: fadein 2s; /* Safari and Chrome */
+                    -o-animation: fadein 2s;
+                    animation: fadein 2s; /* Opera */
+                    &-slide {
+                        &-title {
+                            font-size: 11vh;
+                            display: block;
+
+                            &.TitleOnly {
+                                display: table-cell;
+                                vertical-align: middle;
+                            }
+
+
+                            &.TitleWithText {
+                            }
+                        }
+
+                        &-content {
+                            font-size: 3vh;
+                            text-align: left;
+
+                            &.TitleWithText {
+                                display: block;
+                            }
+                        }
+
+                        &-image {
+
+                            &.TitleWithImage {
+                                display: block;
+                            }
+
+                            img {
+                                margin: 0 auto;
+                                height: 52vh;
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
 }
+
 @keyframes fadein {
     from {
-        opacity:0;
+        opacity: 0;
     }
+
     to {
-        opacity:1;
+        opacity: 1;
     }
 }
+
 @-moz-keyframes fadein { /* Firefox */
     from {
-        opacity:0;
+        opacity: 0;
     }
+
     to {
-        opacity:1;
+        opacity: 1;
     }
 }
+
 @-webkit-keyframes fadein { /* Safari and Chrome */
     from {
-        opacity:0;
+        opacity: 0;
     }
+
     to {
-        opacity:1;
+        opacity: 1;
     }
 }
+
 @-o-keyframes fadein { /* Opera */
     from {
-        opacity:0;
+        opacity: 0;
     }
+
     to {
         opacity: 1;
     }
