@@ -5,35 +5,70 @@ var __extends = (this && this.__extends) || function (d, b) {
     __.prototype = b.prototype;
     d.prototype = new __();
 };
-define(["require", "exports", 'react/addons', '../../DAL/RepositoryManager'], function (require, exports, React, SingletonModule) {
-    var RepositoryManager = SingletonModule.RepositoryManager;
+define(["require", "exports", 'react/addons', '../../DAL/Model/Backbone.Models/Slide'], function (require, exports, React, SlideModule) {
+    var Slide = SlideModule.Slide;
     var PanelRow;
     (function (PanelRow_1) {
         var PanelRow = (function (_super) {
             __extends(PanelRow, _super);
             function PanelRow() {
                 _super.apply(this, arguments);
-                this.repository = RepositoryManager.GetInstance();
+                this.state = {
+                    deleted: false,
+                    hasData: false
+                };
+                this.model = new Slide();
             }
             PanelRow.prototype.handleSelectSlide = function (id) {
+                console.log('Handling selected slide in Panel Row');
                 this.props.handleSelectSlide(id);
             };
-            ;
             PanelRow.prototype.clickDeleteSlide = function (id) {
-                var currentSlide = this.repository.GetSlide(id);
-                this.repository.Delete(currentSlide);
-                this.props.clickDeleteUpdatePanel();
+                console.log('Delete button clicked ( panel row )');
+                this.props.clickDeleteUpdatePanel(id);
+                this.setState({
+                    deleted: true
+                });
             };
-            ;
+            PanelRow.prototype.componentWillMount = function () {
+                //this.model.fetch({
+                //    url: "http://localhost:53840/api/slides/" + this.props.slideId
+                //});
+                //this.setState({
+                //    deleted: this.props.deleted
+                //})
+            };
+            PanelRow.prototype.componentDidMount = function () {
+                //this.model.on("sync", function () {
+                //    this.setState({
+                //        hasData: true
+                //    });
+                //}, this)
+            };
             PanelRow.prototype.render = function () {
+                console.log('Rendering panel row...');
                 var style;
-                if (this.props.slide.selected) {
+                if (this.props.slide.get('Selected')) {
                     style = 'panelRow selected';
                 }
                 else {
                     style = 'panelRow';
                 }
-                return React.jsx("\n                <div className={style} >\n                    <div className='slideId'> {this.props.slide.index} </div>\n                    <div className='delButton' onClick={this.clickDeleteSlide.bind(this, this.props.slide.id) } > \n                        <i className=\"fa fa-trash-o fa-3\"></i>\n                    </div>\n                    <PanelSlide slide={this.props.slide} handleSelectSlide={this.handleSelectSlide.bind(this)}/>\n                </div>\n            ");
+                var id = this.props.slide.get('Id');
+                //if (!this.state.deleted) {
+                return React.jsx("\n                    <div className={style} >\n                        <div className='slideId'> {this.props.index} </div>\n                        <div className='delButton' onClick={this.clickDeleteSlide.bind(this, id) } >\n                            <i className=\"fa fa-trash-o fa-3\"></i>\n                        </div>\n                        <PanelSlide slide={this.props.slide} handleSelectSlide={this.handleSelectSlide.bind(this)}/>\n                    </div>\n                ");
+                //}
+                //else {
+                //    return React.jsx(`
+                //        <div className={style} >
+                //            <div className='slideId'> {this.props.index} </div>
+                //            <div className='delButton' >
+                //                <i className="fa fa-trash-o fa-3"></i>
+                //            </div>
+                //            <div> Deleting slide ... </div>
+                //        </div>
+                //    `);
+                //}
             };
             return PanelRow;
         })(React.Component);

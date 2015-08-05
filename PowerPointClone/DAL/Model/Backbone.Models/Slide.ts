@@ -2,8 +2,10 @@
 
 import Backbone = require('backbone');
 import Type = require('../../../Enums/SlideType');
-import Utils = require('../../../Utils/Helpers');
+import HelpersModule = require('../../../Utils/Helpers');
 import repoistory = require('../../RepositoryManager');
+
+import Helper = HelpersModule.Helpers;
 
 module Models {
     export class Slide extends Backbone.Model {
@@ -13,7 +15,20 @@ module Models {
         public Content: string;
         public ImageUrl: string;
 
-        idAttribute = "Id";
+        public Selected: boolean;
+
+        public idAttribute: string = 'Id';
+        public urlRoot: string = 'http://localhost:53840/api/slides';
+
+        public defaults(): any {
+            return {
+                SlideType: Type.SlideType.TitleOnly,
+                Title: '' ,
+                Content: '',
+                ImageUrl: '',
+                Selected: false,
+            }
+        }
     }
 }
 

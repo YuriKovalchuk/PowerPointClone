@@ -24,6 +24,7 @@ namespace Powerpoint.Api.Controllers
         // GET api/slides
         public IEnumerable<Slide> Get()
         {
+
             //var seed = Seed();
             return _dbContext.GetSlides();
         }
@@ -60,21 +61,26 @@ namespace Powerpoint.Api.Controllers
         }
 
         // POST api/slides
-        public void Post([FromBody]Slide value)
+        public Slide Post([FromBody]Slide value)
         {
             var slideList = _dbContext.GetSlides();
+            value.Id = GetId();
             slideList.Add(value);
             _dbContext.SaveSlides(slideList);
+            return value;
         }
 
         // PUT api/slides/5
-        public void Put(string id, [FromBody]Slide value)
+        public Slide Put(string id, [FromBody]Slide value)
         {
             var slideList = _dbContext.GetSlides();
             var slide = slideList.Single(s => s.Id == id);
-            slide = value;
+            var indexSlide = slideList.IndexOf(slide);
+            slideList[indexSlide] = value;
 
             _dbContext.SaveSlides(slideList);
+
+            return value;
         }
 
         // DELETE api/slides/5
@@ -84,6 +90,12 @@ namespace Powerpoint.Api.Controllers
 
             slideList.Remove(slideList.Single(s => s.Id == id));
             _dbContext.SaveSlides(slideList);
+        }
+
+        //Generate uique Id for slide
+        private string GetId()
+        {
+            return Guid.NewGuid().ToString();
         }
     }
 }

@@ -1,4 +1,5 @@
-define(["require", "exports", '../../utils/Helpers'], function (require, exports, Utils) {
+define(["require", "exports", '../../utils/Helpers'], function (require, exports, HelpersModule) {
+    var Helper = HelpersModule.Helpers;
     var PresentationModel;
     (function (PresentationModel) {
         var Presentation = (function () {
@@ -7,7 +8,7 @@ define(["require", "exports", '../../utils/Helpers'], function (require, exports
                 //    return this._id;
                 //}
                 this.slides = [];
-                this.id = 'presentation-' + Utils.GetId();
+                this.id = 'presentation-' + Helper.GetId();
             }
             return Presentation;
         })();

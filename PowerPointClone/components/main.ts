@@ -42,13 +42,13 @@ module Main {
         }
 
         changeStageContentHandler(slideId: string) {
-            console.log('Changing the state ' + slideId);
-            this.setState({ content: 'Changing the state ' + slideId });
+            //console.log('Changing the state ' + slideId);
+            //this.setState({ content: 'Changing the state ' + slideId });
         }
 
         private Seed(): void {
 
-            this.repository.DeleteAllSlides();
+            //this.repository.DeleteAllSlides();
             //this.repository.AddSlide(new SlideWithTitleOnly('Test 1'));
             //this.repository.AddSlide(new SlideTitleWithText('Test 2', 'Content Test'));
             //this.repository.AddSlide(new SlideTitleWithImage('Test 3', 'Image Path Test'));
@@ -66,7 +66,7 @@ module Main {
                         <div className="row">
                             <div className="col-md-2">
                                 <div id="leftSideMenuWrapper">
-                                    <LeftPanel changeStageClickHandler={this.changeStageContentHandler.bind(this)} />
+                                    <LeftPanel />
                                 </div>
                             </div>
                             <div className="col-md-8 main-body">
@@ -83,8 +83,4 @@ module Main {
     }
 }
 
-var Data = [
-    { id: '1', title: 'Test1' },
-    { id: '1', title: 'Test1' }
-]; 
 export = Main;

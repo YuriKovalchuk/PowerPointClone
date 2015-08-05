@@ -5,79 +5,143 @@ var __extends = (this && this.__extends) || function (d, b) {
     __.prototype = b.prototype;
     d.prototype = new __();
 };
-define(["require", "exports", 'react/addons', '../../DAL/Model/SlideWithTitleOnly', '../../DAL/RepositoryManager'], function (require, exports, React, SlideWithTitleOnlyModule, SingletonModule) {
-    var SlideWithTitleOnly = SlideWithTitleOnlyModule.SlideWithTitleOnly;
-    var RepositoryManager = SingletonModule.RepositoryManager;
+define(["require", "exports", 'react/addons', '../../DAL/Model/Backbone.Models/Slide', '../../DAL/Model/Backbone.Models/SlideCollection', '../../Utils/EventEmiter'], function (require, exports, React, SlideModule, SlideCollectionModule, EmitterModule) {
+    var Slide = SlideModule.Slide;
+    var SlideCollection = SlideCollectionModule.SlideCollection;
+    var EventEmitter = EmitterModule.EventEmiter;
     var LeftPanel;
     (function (LeftPanel_1) {
         var LeftPanel = (function (_super) {
             __extends(LeftPanel, _super);
             function LeftPanel() {
                 _super.apply(this, arguments);
-                this.repository = RepositoryManager.GetInstance();
-                this.model = [];
+                this.state = {
+                    deleted: false,
+                    hasData: false,
+                    model: new SlideCollection()
+                };
                 this.clicked = false;
+                this.selectedSlide = new Slide();
+                this.slideCollection = new SlideCollection();
             }
-            LeftPanel.prototype.changeStageClickHandler = function (id) {
-                this.props.changeStageClickHandler(id);
-            };
-            ;
             LeftPanel.prototype.componentWillMount = function () {
-                //this.model = this.repository.GetAllSlides();
-                //this.model[0].selected = true;
-                //this.selectedSlide = this.model[0];
+                var self = this;
+                this.slideCollection.fetch({
+                    url: "http://localhost:53840/api/slides",
+                    success: function () {
+                        self.selectedSlide = self.slideCollection.at(0);
+                        self.selectedSlide.set({
+                            Selected: true
+                        });
+                    }
+                });
             };
-            ;
+            LeftPanel.prototype.componentDidMount = function () {
+                this.slideCollection.on("sync", function () {
+                    this.setState({
+                        hasData: true,
+                        model: this.slideCollection
+                    });
+                }, this);
+            };
             LeftPanel.prototype.componentDidUpdate = function () {
                 if (this.clicked) {
                     this.scrollDown();
+                    this.clicked = false;
                 }
-                this.clicked = false;
             };
-            ;
             LeftPanel.prototype.scrollDown = function () {
                 var panel = document.getElementById('leftSidePanel');
                 panel.scrollTop = panel.scrollHeight;
             };
             LeftPanel.prototype.clickAddSlide = function () {
-                var newSlide = new SlideWithTitleOnly('');
-                newSlide.selected = true;
-                this.repository.AddSlide(newSlide);
-                this.selectedSlide = newSlide;
-                this.model = this.repository.GetAllSlides();
-                this.forceUpdate();
-                this.scrollDown();
+                var newSlide = new Slide();
+                this.slideCollection.create(newSlide, { url: "http://localhost:53840/api/slides" });
+                this.selectedSlide = this.slideCollection.at(this.slideCollection.length - 1);
+                this.selectedSlide.set({
+                    Selected: true
+                });
+                this.setState({
+                    model: this.slideCollection
+                });
+                //TODO raise event
+                //LeftPanel.Emitter.trigger('xxx', newSlide);
                 this.clicked = true;
             };
-            ;
-            LeftPanel.prototype.clickDeleteSlide = function () {
-                this.forceUpdate();
+            LeftPanel.prototype.clickDeleteSlide = function (id) {
+                console.log('Delete button clicked ( left panel )');
+                var slideCollection = new SlideCollection();
+                var currentSlide = new Slide();
+                var self = this;
+                slideCollection = this.state.model;
+                currentSlide.fetch({
+                    url: 'http://localhost:53840/api/slides/' + id,
+                    error: function (err) {
+                        console.log('error ' + err);
+                    },
+                    success: function (data) {
+                        console.log('succes');
+                        currentSlide.destroy({
+                            url: 'http://localhost:53840/api/slides/' + id,
+                            success: function (data) {
+                                console.log('succes destroy');
+                                currentSlide = slideCollection.findWhere({ Id: id });
+                                if (currentSlide.get('Selected')) {
+                                    if (slideCollection.indexOf(currentSlide) !== slideCollection.length - 1) {
+                                        self.selectedSlide = slideCollection.at(slideCollection.indexOf(currentSlide) + 1);
+                                    }
+                                    else {
+                                        self.selectedSlide = slideCollection.at(slideCollection.indexOf(currentSlide) - 1);
+                                    }
+                                    self.selectedSlide.set({
+                                        Selected: true
+                                    });
+                                }
+                                slideCollection.remove(currentSlide);
+                                self.setState({
+                                    model: slideCollection,
+                                });
+                            },
+                            error: function (err) {
+                                console.log('error destroy ' + err);
+                            }
+                        });
+                    }
+                });
             };
             LeftPanel.prototype.handleSelectSlide = function (id) {
-                this.selectedSlide = this.repository.GetSlide(id);
-                this.selectedSlide.selected = true;
-                this.repository.UpdateSlide(this.selectedSlide);
-                this.forceUpdate();
+                console.log('Handling select slide in Left Panel');
+                this.selectedSlide = this.slideCollection.findWhere({ Id: id });
+                this.selectedSlide.set({
+                    Selected: true
+                });
+                this.setState({
+                    model: this.slideCollection
+                });
+            };
+            LeftPanel.prototype.resetSelectedAttribute = function (slide) {
+                if (slide.get('Id') != this.selectedSlide.get('Id') && slide.get('Selected') === true) {
+                    slide.set({ Selected: false });
+                }
+                return slide;
             };
             LeftPanel.prototype.render = function () {
+                console.log('Rendering left panel...');
+                var self = this;
                 var data = [];
-                var index = 0;
-                var f = this.changeStageClickHandler.bind(this);
-                var g = this.clickDeleteSlide.bind(this);
                 var h = this.handleSelectSlide.bind(this);
-                var selectedSlide = this.selectedSlide;
-                var repository = this.repository;
-                this.model.forEach(function (s) {
-                    if (s != selectedSlide) {
-                        s.selected = false;
-                        repository.UpdateSlide(s);
-                    }
-                    index++;
-                    s.index = index;
-                    data.push(React.jsx("\n                    <PanelRow slide={s} changeStageClickHandler={f} clickDeleteUpdatePanel={g} handleSelectSlide={h} />\n                "));
-                });
-                return React.jsx("\n                <div>\n                    <div className='header' >\n                        <div className='header left'> Slides </div>\n                        <div className='header right' onClick={this.clickAddSlide.bind(this)}>\n                            <i className=\"fa fa-plus-square fa-lg\"></i>&nbsp;Add slide\n                        </div>\n                    </div>\n                    <div id='leftSidePanel' className='leftSidePanel'>\n                        {data}\n                    </div>            \n                </div>\n            ");
+                this.state.model.forEach(function (s) {
+                    s = self.resetSelectedAttribute(s);
+                    data.push(React.jsx("\n                    <PanelRow deleted={this.state.deleted} \n                        slide={s} \n                        index={this.state.model.indexOf(s)+1}  \n                        clickDeleteUpdatePanel={this.clickDeleteSlide.bind(this, s.get('Id'))} \n                        handleSelectSlide={this.handleSelectSlide.bind(this)} />\n                "));
+                }, this);
+                if (this.state.hasData) {
+                    return React.jsx("\n                    <div>\n                        <div className='header' >\n                            <div className='header left'> Slides </div>\n                            <div className='header right' onClick={this.clickAddSlide.bind(this)}>\n                                <i className=\"fa fa-plus-square fa-lg\"></i>&nbsp;Add slide\n                            </div>\n                        </div>\n                        <div id='leftSidePanel' className='leftSidePanel'>\n                            {data}\n                        </div>\n                    </div>\n                ");
+                }
+                else {
+                    return React.jsx("\n                    <div>\n                        <div className='header' >\n                            <div className='header left'> Slides </div>\n                            <div className='header right' onClick={this.clickAddSlide.bind(this)}>\n                                <i className=\"fa fa-plus-square fa-lg\"></i>&nbsp;Add slide\n                            </div>\n                        </div>\n                        <div id='leftSidePanel' className='leftSidePanel'>\n                            Loading panel ...\n                        </div>\n                    </div>\n                ");
+                }
             };
+            LeftPanel.Emitter = new EventEmitter();
             return LeftPanel;
         })(React.Component);
         LeftPanel_1.LeftPanel = LeftPanel;

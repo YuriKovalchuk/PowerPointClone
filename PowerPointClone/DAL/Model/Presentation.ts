@@ -1,6 +1,8 @@
 ﻿import IModel = require('IModel');
 import SlideBase = require('SlideBase');
-import Utils = require('../../utils/Helpers');
+import HelpersModule = require('../../utils/Helpers');
+
+import Helper = HelpersModule.Helpers;
 
 module PresentationModel {
     export class Presentation implements IModel {
@@ -12,7 +14,7 @@ module PresentationModel {
 
         slides: SlideBase.SlideBase[] = [];
         constructor() {
-            this.id = 'presentation-' + Utils.GetId();
+            this.id = 'presentation-' + Helper.GetId();
         }
     }
 }

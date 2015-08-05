@@ -2,54 +2,74 @@
 
 import React = require('react/addons');
 import PanelRowModule = require('../leftSidePanel/PanelRow');
-import SlideBaseModule = require('../../DAL/Model/SlideBase');
-import SlideTitleWithImageModule = require('../../DAL/Model/SlideTitleWithImage');
-import SlideTitleWithTextModule = require('../../DAL/Model/SlideTitleWithText');
-import SlideWithTitleOnlyModule = require('../../DAL/Model/SlideWithTitleOnly');
-import SingletonModule = require('../../DAL/RepositoryManager');
+import SlideModule = require('../../DAL/Model/Backbone.Models/Slide');
+import SlideCollectionModule = require('../../DAL/Model/Backbone.Models/SlideCollection');
+import EmitterModule = require('../../Utils/EventEmiter');
 
 import PanelRow = PanelRowModule.PanelRow;
-import SlideBase = SlideBaseModule.SlideBase;
-import SlideTitleWithImage = SlideTitleWithImageModule.SlideTitleWithImage;
-import SlideTitleWithText = SlideTitleWithTextModule.SlideTitleWithText;
-import SlideWithTitleOnly = SlideWithTitleOnlyModule.SlideWithTitleOnly;
-import RepositoryManager = SingletonModule.RepositoryManager;
+import Slide = SlideModule.Slide;
+import SlideCollection = SlideCollectionModule.SlideCollection;
+import EventEmitter = EmitterModule.EventEmiter;
 
 
 module LeftPanel {
 
-    interface IPropLeftPanel {
-        changeStageClickHandler(id: string): void;
+    interface IProps {
+        
     }
 
-    export class LeftPanel extends React.Component<IPropLeftPanel, any, any>
-    {
-        repository: RepositoryManager = RepositoryManager.GetInstance();
+    interface IState {
+        deleted?: boolean
+        hasData?: boolean
+        model?: SlideCollection
+    }
 
-        model: SlideBase[] = [];
+    export class LeftPanel extends React.Component<IProps, IState, any>
+    {
+        public static Emitter: EventEmitter = new EventEmitter();
+
+        state = {
+            deleted: false,
+            hasData: false,
+            model: new SlideCollection()
+        }
 
         clicked: boolean = false;
 
-        selectedSlide: SlideBase;
+        selectedSlide: Slide = new Slide();
 
-        changeStageClickHandler(id: string): void {
-            this.props.changeStageClickHandler(id);
-        };
+        slideCollection: SlideCollection = new SlideCollection();
 
         componentWillMount(): void {
-            //this.model = this.repository.GetAllSlides();
-            //this.model[0].selected = true;
-            //this.selectedSlide = this.model[0];
-        };
+            var self = this;
 
-        componentDidUpdate() {
+            this.slideCollection.fetch({
+                url: "http://localhost:53840/api/slides",
+                success: function () {
+                    self.selectedSlide = self.slideCollection.at(0);
+                    self.selectedSlide.set({
+                        Selected: true
+                    })
+                }
+            });
+        }
+
+        componentDidMount(): void {
+            this.slideCollection.on("sync", function () {
+
+                this.setState({
+                    hasData: true,
+                    model : this.slideCollection
+                });
+            }, this)
+        }
+
+        componentDidUpdate(): void {
             if (this.clicked) {
                 this.scrollDown();
+                this.clicked = false;
             }
-
-            this.clicked = false;
-        };
-
+        }
 
         scrollDown(): void {
             var panel = document.getElementById('leftSidePanel');
@@ -57,67 +77,151 @@ module LeftPanel {
         }
 
         clickAddSlide(): void {
-            var newSlide = new SlideWithTitleOnly('');
-            newSlide.selected = true;
-            this.repository.AddSlide(newSlide);
-            this.selectedSlide = newSlide;
-            this.model = this.repository.GetAllSlides();
-            this.forceUpdate();
-            this.scrollDown();
-            this.clicked = true;
-        };
+            var newSlide = new Slide();
 
-        clickDeleteSlide(): void {
-            this.forceUpdate();
+            this.slideCollection.create(newSlide, { url: "http://localhost:53840/api/slides" });
+
+            this.selectedSlide = this.slideCollection.at(this.slideCollection.length - 1);
+            this.selectedSlide.set({
+                Selected: true
+            })
+
+            this.setState({
+                model: this.slideCollection
+            })
+            //TODO raise event
+            //LeftPanel.Emitter.trigger('xxx', newSlide);
+            this.clicked = true;
+        }
+
+        clickDeleteSlide(id: string): void {
+            console.log('Delete button clicked ( left panel )');
+
+            var slideCollection = new SlideCollection();
+            var currentSlide = new Slide();
+            var self: LeftPanel = this;
+
+            slideCollection = this.state.model;
+
+            currentSlide.fetch({
+                url: 'http://localhost:53840/api/slides/' + id,
+                error: function (err) {
+                    console.log('error ' + err)
+                },
+                success: function (data) {
+                    console.log('succes');
+                    
+                    currentSlide.destroy({
+                        url: 'http://localhost:53840/api/slides/' + id,
+                        success: function (data) {
+                            console.log('succes destroy');
+                            
+                            currentSlide = slideCollection.findWhere({ Id: id });
+
+                            if (currentSlide.get('Selected')) {
+
+                                if (slideCollection.indexOf(currentSlide) !== slideCollection.length - 1) {
+                                    self.selectedSlide = slideCollection.at(slideCollection.indexOf(currentSlide) + 1);
+                                }
+                                else {
+                                    self.selectedSlide = slideCollection.at(slideCollection.indexOf(currentSlide) - 1);
+                                }
+
+                                self.selectedSlide.set({
+                                    Selected: true
+                                })
+                            }
+
+                            slideCollection.remove(currentSlide);
+
+                            self.setState({
+                                model: slideCollection,
+                            });
+
+                        },
+                        error: function (err) {
+                            console.log('error destroy ' + err); 
+                        }
+                    })
+                }
+            });
         }
 
         handleSelectSlide(id: string): void {
-            this.selectedSlide = this.repository.GetSlide(id);
-            this.selectedSlide.selected = true;
-            this.repository.UpdateSlide(this.selectedSlide);
-            this.forceUpdate();
-        }
+            console.log('Handling select slide in Left Panel');
 
-        render() {
-
-            var data = [];
-            var index: number = 0;
-
-            var f = this.changeStageClickHandler.bind(this);
-            var g = this.clickDeleteSlide.bind(this);
-            var h = this.handleSelectSlide.bind(this);
-            var selectedSlide = this.selectedSlide;
-            var repository = this.repository;
-
-            this.model.forEach(function (s) {
-
-                if (s != selectedSlide) {
-                    s.selected = false;
-                    repository.UpdateSlide(s);
-                }
-
-                index++;
-                s.index = index;
-
-                data.push(React.jsx(`
-                    <PanelRow slide={s} changeStageClickHandler={f} clickDeleteUpdatePanel={g} handleSelectSlide={h} />
-                `));
-
+            this.selectedSlide = this.slideCollection.findWhere({ Id: id });
+            this.selectedSlide.set({
+                Selected: true
             });
 
-            return React.jsx(`
-                <div>
-                    <div className='header' >
-                        <div className='header left'> Slides </div>
-                        <div className='header right' onClick={this.clickAddSlide.bind(this)}>
-                            <i className="fa fa-plus-square fa-lg"></i>&nbsp;Add slide
+            this.setState({
+                model: this.slideCollection
+            })
+
+        }
+
+        resetSelectedAttribute(slide: Slide): Slide {
+            if (slide.get('Id') != this.selectedSlide.get('Id') && slide.get('Selected') === true) {
+                slide.set({ Selected: false });
+            }
+            return slide;
+        }
+
+
+        render() {
+            console.log('Rendering left panel...');
+
+            var self = this;
+            var data = [];
+
+            var h = this.handleSelectSlide.bind(this);
+
+            this.state.model.forEach(function (s) {
+
+                s = self.resetSelectedAttribute(s);
+                    
+                data.push(React.jsx(`
+                    <PanelRow deleted={this.state.deleted} 
+                        slide={s} 
+                        index={this.state.model.indexOf(s)+1}  
+                        clickDeleteUpdatePanel={this.clickDeleteSlide.bind(this, s.get('Id'))} 
+                        handleSelectSlide={this.handleSelectSlide.bind(this)} />
+                `));
+
+            }, this);
+
+            if (this.state.hasData) {
+                return React.jsx(`
+                    <div>
+                        <div className='header' >
+                            <div className='header left'> Slides </div>
+                            <div className='header right' onClick={this.clickAddSlide.bind(this)}>
+                                <i className="fa fa-plus-square fa-lg"></i>&nbsp;Add slide
+                            </div>
+                        </div>
+                        <div id='leftSidePanel' className='leftSidePanel'>
+                            {data}
                         </div>
                     </div>
-                    <div id='leftSidePanel' className='leftSidePanel'>
-                        {data}
-                    </div>            
-                </div>
-            `);
+                `);
+            }
+
+            else {
+                return React.jsx(`
+                    <div>
+                        <div className='header' >
+                            <div className='header left'> Slides </div>
+                            <div className='header right' onClick={this.clickAddSlide.bind(this)}>
+                                <i className="fa fa-plus-square fa-lg"></i>&nbsp;Add slide
+                            </div>
+                        </div>
+                        <div id='leftSidePanel' className='leftSidePanel'>
+                            Loading panel ...
+                        </div>
+                    </div>
+                `);
+            }
         }
     }
 }

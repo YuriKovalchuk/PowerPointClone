@@ -2,58 +2,104 @@
 
 import React = require('react/addons');
 import PanelSlideModule = require('../leftSidePanel/PanelSlide');
-import SingletonModule = require('../../DAL/RepositoryManager');
-import SlideBaseModule = require('../../DAL/Model/SlideBase');
+import SlideModule = require('../../DAL/Model/Backbone.Models/Slide');
 
 import PanelSlide = PanelSlideModule.PanelSlide;
-import RepositoryManager = SingletonModule.RepositoryManager;
-import SlideBase = SlideBaseModule.SlideBase;
+import Slide = SlideModule.Slide;
 
 
 module PanelRow {
-    interface IPropsPanelRow {
+    interface IProps {
         handleSelectSlide(id: string): void;
-        clickDeleteUpdatePanel() : void;
-        changeStageClickHandler() : void;
-        slide: SlideBase;
+        clickDeleteUpdatePanel(id: string): void;
+        slide: Slide;
+        index: number;
+        deleted: boolean;
     }
 
-    export class PanelRow extends React.Component<IPropsPanelRow, any, any>
+    interface IState {
+        deleted?: boolean,
+        hasData?: boolean
+    }
+
+    export class PanelRow extends React.Component<IProps, IState, any>
     {
-        repository: RepositoryManager = RepositoryManager.GetInstance();
+
+        state = {
+            deleted: false,
+            hasData : false
+        }
+
+        public model: Slide = new Slide();
 
         handleSelectSlide(id: string): void {
+            console.log('Handling selected slide in Panel Row');
             this.props.handleSelectSlide(id);
-
-        };
+        }
 
         clickDeleteSlide(id: string): void {
-            var currentSlide: SlideBase = this.repository.GetSlide(id);
-            this.repository.Delete(currentSlide);
-            this.props.clickDeleteUpdatePanel();
-        };
+            console.log('Delete button clicked ( panel row )');
+
+            this.props.clickDeleteUpdatePanel(id);
+            this.setState({
+                deleted: true
+            })
+        }
+
+        componentWillMount(): void {
+            //this.model.fetch({
+            //    url: "http://localhost:53840/api/slides/" + this.props.slideId
+            //});
+
+            //this.setState({
+            //    deleted: this.props.deleted
+            //})
+        }
+
+        componentDidMount(): void {
+            //this.model.on("sync", function () {
+            //    this.setState({
+            //        hasData: true
+            //    });
+            //}, this)
+        }
 
         render() {
+            console.log('Rendering panel row...');
+
             var style: string;
 
-            if (this.props.slide.selected)
-            {
+            if (this.props.slide.get('Selected')) {
                 style = 'panelRow selected';
             }
-            else
-            {
+            else {
                 style = 'panelRow';
             }
 
-            return React.jsx(`
-                <div className={style} >
-                    <div className='slideId'> {this.props.slide.index} </div>
-                    <div className='delButton' onClick={this.clickDeleteSlide.bind(this, this.props.slide.id) } > 
-                        <i className="fa fa-trash-o fa-3"></i>
+            var id = this.props.slide.get('Id');
+
+            //if (!this.state.deleted) {
+                return React.jsx(`
+                    <div className={style} >
+                        <div className='slideId'> {this.props.index} </div>
+                        <div className='delButton' onClick={this.clickDeleteSlide.bind(this, id) } >
+                            <i className="fa fa-trash-o fa-3"></i>
+                        </div>
+                        <PanelSlide slide={this.props.slide} handleSelectSlide={this.handleSelectSlide.bind(this)}/>
                     </div>
-                    <PanelSlide slide={this.props.slide} handleSelectSlide={this.handleSelectSlide.bind(this)}/>
-                </div>
-            `);
+                `);
+            //}
+            //else {
+            //    return React.jsx(`
+            //        <div className={style} >
+            //            <div className='slideId'> {this.props.index} </div>
+            //            <div className='delButton' >
+            //                <i className="fa fa-trash-o fa-3"></i>
+            //            </div>
+            //            <div> Deleting slide ... </div>
+            //        </div>
+            //    `);
+            //}
         }
     }
 }
