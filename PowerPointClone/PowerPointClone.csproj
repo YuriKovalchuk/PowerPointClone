@@ -98,6 +98,7 @@
     <TypeScriptCompile Include="lib\react-0.13.0.d.ts" />
     <TypeScriptCompile Include="lib\react-jsx.d.ts" />
     <TypeScriptCompile Include="lib\_references.d.ts" />
+    <TypeScriptCompile Include="utils\EmitterWrapper.ts" />
     <TypeScriptCompile Include="utils\EventEmiter.ts" />
     <TypeScriptCompile Include="utils\Helpers.ts" />
   </ItemGroup>
