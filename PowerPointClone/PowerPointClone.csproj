@@ -31,6 +31,9 @@
     <Content Include="css\font-awesome.css" />
     <Content Include="css\font-awesome.min.css" />
     <Content Include="css\leftSidePanel.css" />
+    <Content Include="css\stage.css">
+      <DependentUpon>stage.scss</DependentUpon>
+    </Content>
     <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="index.html" />
@@ -54,6 +57,7 @@
     <Content Include="fonts\fontawesome-webfont.woff2" />
     <Content Include="fonts\FontAwesome.otf" />
     <Content Include="bundle-webpack.bat" />
+    <Content Include="css\stage.scss" />
     <None Include="src\tsconfig.json" />
     <None Include="web.Debug.config">
       <DependentUpon>web.config</DependentUpon>
@@ -74,6 +78,8 @@
     <TypeScriptCompile Include="components\StagePanel\stageSlideTitleWithText.ts" />
     <TypeScriptCompile Include="components\StagePanel\stageSlideTitleWithImage.ts" />
     <TypeScriptCompile Include="components\upperMenu.ts" />
+    <TypeScriptCompile Include="DAL\Model\Backbone.Models\Layout.ts" />
+    <TypeScriptCompile Include="DAL\Model\Backbone.Models\LayoutsCollection.ts" />
     <TypeScriptCompile Include="DAL\Model\Backbone.Models\SlideCollection.ts" />
     <TypeScriptCompile Include="DAL\Model\IModel.ts" />
     <TypeScriptCompile Include="DAL\Model\Presentation.ts" />
@@ -86,6 +92,7 @@
     <TypeScriptCompile Include="DAL\Repositories\IRepository.ts" />
     <TypeScriptCompile Include="DAL\Repositories\PresentationRepository.ts" />
     <TypeScriptCompile Include="DAL\Repositories\SlideRepository.ts" />
+    <TypeScriptCompile Include="Enums\EventNames.ts" />
     <TypeScriptCompile Include="Enums\SlideType.ts" />
     <TypeScriptCompile Include="lib\backbone.d.ts" />
     <TypeScriptCompile Include="lib\jquery.d.ts" />
@@ -95,6 +102,7 @@
     <TypeScriptCompile Include="lib\react-0.13.0.d.ts" />
     <TypeScriptCompile Include="lib\react-jsx.d.ts" />
     <TypeScriptCompile Include="lib\_references.d.ts" />
+    <TypeScriptCompile Include="Utils\EmitterWrapper.ts" />
     <TypeScriptCompile Include="Utils\EventEmiter.ts" />
     <TypeScriptCompile Include="Utils\Helpers.ts" />
   </ItemGroup>

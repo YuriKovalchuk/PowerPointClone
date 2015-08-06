@@ -5,10 +5,11 @@ var __extends = (this && this.__extends) || function (d, b) {
     __.prototype = b.prototype;
     d.prototype = new __();
 };
-define(["require", "exports", 'react/addons', '../../DAL/Model/Backbone.Models/Slide', '../../DAL/Model/Backbone.Models/SlideCollection', '../../Utils/EventEmiter'], function (require, exports, React, SlideModule, SlideCollectionModule, EmitterModule) {
+define(["require", "exports", 'react/addons', '../../DAL/Model/Backbone.Models/Slide', '../../DAL/Model/Backbone.Models/SlideCollection', '../../Utils/EmitterWrapper', '../../Enums/EventNames'], function (require, exports, React, SlideModule, SlideCollectionModule, EmitterModule, EventNamesModule) {
     var Slide = SlideModule.Slide;
     var SlideCollection = SlideCollectionModule.SlideCollection;
-    var EventEmitter = EmitterModule.EventEmiter;
+    var EventEmitter = EmitterModule.EmitterWrapper;
+    var EventNames = EventNamesModule.EventNames;
     var LeftPanel;
     (function (LeftPanel_1) {
         var LeftPanel = (function (_super) {
@@ -24,12 +25,29 @@ define(["require", "exports", 'react/addons', '../../DAL/Model/Backbone.Models/S
                 this.selectedSlide = new Slide();
                 this.slideCollection = new SlideCollection();
             }
+            LeftPanel.prototype.updateSlide = function (slide) {
+                var collection = this.state.model;
+                //update
+                var newSlide = collection.findWhere({ Id: slide.get('Id') });
+                newSlide.set('Title', slide.get('Title'));
+                newSlide.set('SlideType', slide.get('SlideType'));
+                newSlide.set('Content', slide.get('Content'));
+                newSlide.set('ImageUrl', slide.get('ImageUrl'));
+                this.setState({
+                    hasData: true,
+                    model: collection
+                });
+            };
             LeftPanel.prototype.componentWillMount = function () {
+                var _this = this;
                 var self = this;
+                EventEmitter.Emitter.on(EventNames.StageSave, function (slide) { return _this.updateSlide(slide); }, this);
                 this.slideCollection.fetch({
                     url: "http://localhost:53840/api/slides",
                     success: function () {
-                        self.selectedSlide = self.slideCollection.at(0);
+                        var slide = self.slideCollection.at(0);
+                        self.selectedSlide = slide;
+                        EventEmitter.Emitter.trigger(EventNames.LeftSidePanelItemSelected, self.selectedSlide);
                         self.selectedSlide.set({
                             Selected: true
                         });
@@ -66,10 +84,10 @@ define(["require", "exports", 'react/addons', '../../DAL/Model/Backbone.Models/S
                 });
                 //TODO raise event
                 //LeftPanel.Emitter.trigger('xxx', newSlide);
+                EventEmitter.Emitter.trigger(EventNames.LeftSidePanelItemSelected, this.selectedSlide);
                 this.clicked = true;
             };
             LeftPanel.prototype.clickDeleteSlide = function (id) {
-                console.log('Delete button clicked ( left panel )');
                 var slideCollection = new SlideCollection();
                 var currentSlide = new Slide();
                 var self = this;
@@ -110,11 +128,12 @@ define(["require", "exports", 'react/addons', '../../DAL/Model/Backbone.Models/S
                 });
             };
             LeftPanel.prototype.handleSelectSlide = function (id) {
-                console.log('Handling select slide in Left Panel');
                 this.selectedSlide = this.slideCollection.findWhere({ Id: id });
                 this.selectedSlide.set({
                     Selected: true
                 });
+                //notify selection
+                EventEmitter.Emitter.trigger(EventNames.LeftSidePanelItemSelected, this.selectedSlide);
                 this.setState({
                     model: this.slideCollection
                 });
@@ -141,7 +160,6 @@ define(["require", "exports", 'react/addons', '../../DAL/Model/Backbone.Models/S
                     return React.jsx("\n                    <div>\n                        <div className='header' >\n                            <div className='header left'> Slides </div>\n                            <div className='header right' onClick={this.clickAddSlide.bind(this)}>\n                                <i className=\"fa fa-plus-square fa-lg\"></i>&nbsp;Add slide\n                            </div>\n                        </div>\n                        <div id='leftSidePanel' className='leftSidePanel'>\n                            Loading panel ...\n                        </div>\n                    </div>\n                ");
                 }
             };
-            LeftPanel.Emitter = new EventEmitter();
             return LeftPanel;
         })(React.Component);
         LeftPanel_1.LeftPanel = LeftPanel;

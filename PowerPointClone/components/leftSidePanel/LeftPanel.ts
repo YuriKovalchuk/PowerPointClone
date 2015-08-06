@@ -4,12 +4,15 @@ import React = require('react/addons');
 import PanelRowModule = require('../leftSidePanel/PanelRow');
 import SlideModule = require('../../DAL/Model/Backbone.Models/Slide');
 import SlideCollectionModule = require('../../DAL/Model/Backbone.Models/SlideCollection');
-import EmitterModule = require('../../Utils/EventEmiter');
+import EmitterModule = require('../../Utils/EmitterWrapper');
+
+import EventNamesModule = require('../../Enums/EventNames');
 
 import PanelRow = PanelRowModule.PanelRow;
 import Slide = SlideModule.Slide;
 import SlideCollection = SlideCollectionModule.SlideCollection;
-import EventEmitter = EmitterModule.EventEmiter;
+import EventEmitter = EmitterModule.EmitterWrapper;
+import EventNames = EventNamesModule.EventNames;
 
 
 module LeftPanel {
@@ -26,8 +29,6 @@ module LeftPanel {
 
     export class LeftPanel extends React.Component<IProps, IState, any>
     {
-        public static Emitter: EventEmitter = new EventEmitter();
-
         state = {
             deleted: false,
             hasData: false,
@@ -35,25 +36,47 @@ module LeftPanel {
         }
 
         clicked: boolean = false;
-
         selectedSlide: Slide = new Slide();
-
         slideCollection: SlideCollection = new SlideCollection();
 
+
+        private updateSlide(slide: Slide): void {
+
+            var collection: SlideCollection = this.state.model;
+                
+            //update
+            var newSlide: Slide = collection.findWhere({ Id: slide.get('Id') });
+            newSlide.set('Title', slide.get('Title'));
+            newSlide.set('SlideType', slide.get('SlideType'));
+            newSlide.set('Content', slide.get('Content'));
+            newSlide.set('ImageUrl', slide.get('ImageUrl'));
+
+            this.setState({
+                hasData: true,
+                model: collection
+            });
+        }
+
+
         componentWillMount(): void {
-            var self = this;
+            var self:LeftPanel = this;
+
+            EventEmitter.Emitter.on(EventNames.StageSave, (slide: Slide) => this.updateSlide(slide),this);
 
             this.slideCollection.fetch({
                 url: "http://localhost:53840/api/slides",
                 success: function () {
-                    self.selectedSlide = self.slideCollection.at(0);
+                    var slide: Slide = self.slideCollection.at(0);
+                    self.selectedSlide = slide;
+                    EventEmitter.Emitter.trigger(EventNames.LeftSidePanelItemSelected, self.selectedSlide);
+
                     self.selectedSlide.set({
                         Selected: true
                     })
                 }
             });
         }
-
+        
         componentDidMount(): void {
             this.slideCollection.on("sync", function () {
 
@@ -91,11 +114,12 @@ module LeftPanel {
             })
             //TODO raise event
             //LeftPanel.Emitter.trigger('xxx', newSlide);
+
+            EventEmitter.Emitter.trigger(EventNames.LeftSidePanelItemSelected, this.selectedSlide);
             this.clicked = true;
         }
 
         clickDeleteSlide(id: string): void {
-            console.log('Delete button clicked ( left panel )');
 
             var slideCollection = new SlideCollection();
             var currentSlide = new Slide();
@@ -148,13 +172,15 @@ module LeftPanel {
         }
 
         handleSelectSlide(id: string): void {
-            console.log('Handling select slide in Left Panel');
 
             this.selectedSlide = this.slideCollection.findWhere({ Id: id });
             this.selectedSlide.set({
                 Selected: true
             });
-
+            
+            //notify selection
+            EventEmitter.Emitter.trigger(EventNames.LeftSidePanelItemSelected, this.selectedSlide);
+            
             this.setState({
                 model: this.slideCollection
             })
@@ -167,7 +193,6 @@ module LeftPanel {
             }
             return slide;
         }
-
 
         render() {
             console.log('Rendering left panel...');

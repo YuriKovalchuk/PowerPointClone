@@ -1,6 +1,6 @@
 ﻿import Backbone = require('backbone');
 import EnumsModel = require('../../../Enums/SlideType');
-import Utils = require('../../../utils/Helpers');
+import Utils = require('../../../Utils/Helpers');
 import Slide = require('../Backbone.Models/Slide');
 
 module BackboneModels {

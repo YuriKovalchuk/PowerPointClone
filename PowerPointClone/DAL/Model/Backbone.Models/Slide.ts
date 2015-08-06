@@ -19,13 +19,13 @@ module Models {
 
         public idAttribute: string = 'Id';
         public urlRoot: string = 'http://localhost:53840/api/slides';
-
+        
         public defaults(): any {
             return {
                 SlideType: Type.SlideType.TitleOnly,
                 Title: '' ,
                 Content: '',
-                ImageUrl: '',
+                ImageUrl: 'default',
                 Selected: false,
             }
         }

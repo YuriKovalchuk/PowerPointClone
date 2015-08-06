@@ -14,6 +14,7 @@ namespace Powerpoint.Api.Controllers
     [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class SlidesController : ApiController
     {
+        private const int TIMEOUT = 1000;
         private DBcontext _dbContext { get; set; }
 
         public SlidesController()
@@ -24,7 +25,7 @@ namespace Powerpoint.Api.Controllers
         // GET api/slides
         public IEnumerable<Slide> Get()
         {
-
+            System.Threading.Thread.Sleep(TIMEOUT);
             //var seed = Seed();
             return _dbContext.GetSlides();
         }
@@ -54,6 +55,8 @@ namespace Powerpoint.Api.Controllers
         // GET api/slides/5
         public Slide Get(string id)
         {
+            System.Threading.Thread.Sleep(TIMEOUT);
+
             var slideList = _dbContext.GetSlides();
             var slide = slideList.Single(s => s.Id == id);
 

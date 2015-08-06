@@ -14,11 +14,12 @@ namespace Powerpoint.Api.Controllers
     [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class LayoutsController : ApiController
     {
+        private const int TIMEOUT = 1000;
         private readonly string path = Path.Combine(HostingEnvironment.ApplicationPhysicalPath, @"App_Data\layouts.json");
 
         public IEnumerable<Powerpoint.Api.Models.Layout> Get()
         {
-            System.Threading.Thread.Sleep(5000);
+            System.Threading.Thread.Sleep(TIMEOUT);
 
             var file = File.ReadAllText(path);
             var layouts = Newtonsoft.Json.JsonConvert.DeserializeObject<List<Layout>>(file);

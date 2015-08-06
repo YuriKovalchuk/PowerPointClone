@@ -1,7 +1,7 @@
 ﻿import _ = require('underscore');
 import Backbone = require('backbone');
 
-import EmiterModule = require('../utils/EventEmiter');
+import EmiterModule = require('../Utils/EventEmiter');
 
 import Emitter = EmiterModule.EventEmiter;
 
