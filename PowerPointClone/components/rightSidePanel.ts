@@ -84,9 +84,11 @@ module RightSidePanel {
             if (!this.state.hasLoaded)
             {
                 innerComponent = React.jsx(`
-                    <div>
-                        <div>
-                            <img src="photos/294.GIF" className="preloader space-top100" />
+                    <div className='right-panel'>
+                        <div className='loader'>
+                            <div className='ball_1' ></div>
+                            <div className='ball_2' ></div>
+                            <div className='ball_3' ></div>
                         </div>
                     </div>
                 `);

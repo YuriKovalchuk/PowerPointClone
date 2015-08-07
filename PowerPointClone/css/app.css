@@ -655,3 +655,110 @@ body {
       transform: rotate(900deg);
    }
 }
+
+/* right panel preloader */
+
+.right-panel {
+    position: relative;
+}
+
+.loader {
+    position: absolute;
+    top: 300px;
+    left: 70px;
+
+    width: 150px;
+    height: 30px;
+}
+
+.ball_1 {
+    position: absolute;
+    top:0px;
+    left:0px;
+    opacity:0;
+    
+    border-radius: 100%;
+    width: 11px;
+    height: 11px;
+    background: #000;
+
+    animation-name: translate;
+    animation-duration: 1.8s;
+    animation-direction: normal;
+    animation-iteration-count: infinite;
+    animation-delay: 0.4s;
+}
+
+.ball_2 {
+    position: absolute;
+    top:0px;
+    left:0px;
+    opacity:0;
+
+    
+    border-radius: 100%;
+    width: 11px;
+    height: 11px;
+    background: #000;
+
+    animation-name: translate;
+    animation-duration: 1.8s;
+    animation-direction: normal;
+    animation-iteration-count: infinite;
+    animation-delay: 0.8s;
+}
+
+.ball_3 {
+    position: absolute;
+    top:0px;
+    left:0px;
+    opacity:0;
+    
+    border-radius: 100%;
+    width: 11px;
+    height: 11px;
+    background: #000;
+
+    animation-name: translate;
+    animation-duration: 1.8s;
+    animation-direction: normal;
+    animation-iteration-count: infinite;
+    animation-delay: 1.2s;
+}
+
+@keyframes translate {
+    0% {
+        transform: translateX(0);
+        opacity: 0;
+        animation-timing-function:  ease-in;
+    }
+    7% {
+        transform: translateX(2em);
+        opacity: 0;
+        animation-timing-function:  linear;
+    }
+    25% {
+        transform: translateX(3em);
+        opacity: 1;
+        animation-timing-function:  linear;
+    }
+    50% {
+        transform: translateX(4em);
+        opacity: 1;
+        animation-timing-function:  linear;
+    }
+    75% {
+        transform: translateX(5em);
+        opacity: 1;
+        animation-timing-function:  linear;
+    }
+    93% {
+        transform: translateX(6em);
+        opacity: 1;
+        animation-timing-function:  ease-out;
+    }
+    100% {
+        transform: translateX(8em);
+        opacity: 0;
+    }
+}

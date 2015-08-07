@@ -242,7 +242,11 @@ module LeftPanel {
                             </div>
                         </div>
                         <div id='leftSidePanel' className='leftSidePanel'>
-                            Loading panel ...
+                            <div className='loader'>
+                                <div className='ball_1' ></div>
+                                <div className='ball_2' ></div>
+                                <div className='ball_3' ></div>
+                            </div>
                         </div>
                     </div>
                 `);
