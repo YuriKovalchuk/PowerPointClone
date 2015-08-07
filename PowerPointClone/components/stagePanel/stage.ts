@@ -4,14 +4,14 @@ import React = require('react/addons');
 
 import EnumsModule = require('../../Enums/EventNames');
 import SlideTypeModule = require('../../Enums/SlideType');
-import SingletonModule = require('../../DAL/RepositoryManager');
-
 import SlideModule = require('../../DAL/Model/Backbone.Models/Slide');
 import EmiterWrapperModule = require('../../Utils/EmitterWrapper');
+import LoaderModule = require('../Loader');
 
 import Slide = SlideModule.Slide;
 import EmitterWrapper = EmiterWrapperModule.EmitterWrapper;
 import EventNames = EnumsModule.EventNames;
+import Loader = LoaderModule.Loader;
 
 module Stage {
 
@@ -90,7 +90,6 @@ module Stage {
                     
                     slide.save({}, {
                         success: function () {
-                            console.log('am succedat');
                             EmitterWrapper.Emitter.trigger(EventNames.StageSave, slide);
                         }
                     });
@@ -145,31 +144,13 @@ module Stage {
             {
                 return React.jsx(`
                         <div className="row panel stage" id="stageWrapper">
-	                        <div>
-		                        <div className="windows8 center-block">
-			                        <div className="wBall" id="wBall_1">
-				                        <div className="wInnerBall"></div>
-			                        </div>
-			                        <div className="wBall" id="wBall_2">
-				                        <div className="wInnerBall"></div>
-			                        </div>
-			                        <div className="wBall" id="wBall_3">
-				                        <div className="wInnerBall"></div>
-			                        </div>
-			                        <div className="wBall" id="wBall_4">
-				                        <div className="wInnerBall"></div>
-			                        </div>
-			                        <div className="wBall" id="wBall_5">
-				                        <div className="wInnerBall"></div>
-			                        </div>
-		                        </div>
-	                        </div>
+                            <Loader />
                         </div>
                 `);
             }
             else
             {
-                var imageUrl = this.state.imageUrl.length > 0 ? imageUrl : 'https://placeholdit.imgix.net/~text?txtsize=33&txt=image&w=1200&h=1200';
+                var imageUrl = this.state.imageUrl.length > 0 ? this.state.imageUrl : 'https://placeholdit.imgix.net/~text?txtsize=33&txt=image&w=1200&h=1200';
 
                 return React.jsx(`
                     <div className="row panel" id="stageWrapper">

@@ -62,7 +62,7 @@ define(["require", "exports", 'react/addons', '../DAL/Model/Backbone.Models/Layo
                 var isFirstSlideClass = "";
                 var isSelected = false;
                 if (!this.state.hasLoaded) {
-                    innerComponent = React.jsx("\n                    <div>\n                        <div>\n                            <img src=\"photos/294.GIF\" className=\"preloader space-top100\" />\n                        </div>\n                    </div>\n                ");
+                    innerComponent = React.jsx("\n                    <div className='right-panel'>\n                        <Loader />\n                    </div>\n                ");
                 }
                 else {
                     for (var i = 0; i < this.state.LayoutsList.models.length; i++) {

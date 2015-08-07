@@ -25,7 +25,7 @@ namespace Powerpoint.Api.Controllers
         // GET api/slides
         public IEnumerable<Slide> Get()
         {
-            System.Threading.Thread.Sleep(TIMEOUT);
+            System.Threading.Thread.Sleep(3000);
             //var seed = Seed();
             return _dbContext.GetSlides();
         }

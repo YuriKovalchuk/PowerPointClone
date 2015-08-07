@@ -1,3 +1,4 @@
+/// <reference path="../../enums/slidetype.ts" />
 ///<reference path="../../lib/_references.d.ts"/>
 var __extends = (this && this.__extends) || function (d, b) {
     for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
@@ -17,10 +18,7 @@ define(["require", "exports", 'react/addons'], function (require, exports, React
                 };
             }
             PanelSlide.prototype.clickOnSlide = function (id) {
-<<<<<<< HEAD
                 console.log('Selected a slide in Panel Slide');
-=======
->>>>>>> finished presentation
                 this.props.handleSelectSlide(id);
             };
             ;
@@ -37,11 +35,9 @@ define(["require", "exports", 'react/addons'], function (require, exports, React
                 //}, this);
             };
             PanelSlide.prototype.render = function () {
-<<<<<<< HEAD
-                return React.jsx("\n                <div className='panelSlide' onClick={this.clickOnSlide.bind(this, this.props.slide.get('Id'))} >\n                    {this.props.slide.get('Title')}\n                </div>\n            ");
-=======
-                return React.jsx("\n                <div className='panelSlide' onClick={this.clickOnSlide.bind(this, this.props.slide.id)} >\n                    {this.props.slide.title}\n                </div>\n            ");
->>>>>>> finished presentation
+                var style = 'hidden';
+                var slideType = this.props.slide.get('SlideType');
+                return React.jsx("\n                <div className='panelSlide' onClick={this.clickOnSlide.bind(this, this.props.slide.get('Id'))} >\n                    <div className='slide-wrapper'>\n                        <div className='title'>\n                            {this.props.slide.get('Title')}\n                        </div>\n                        <div className={'content-wrapper ' + SlideTypeEnum[slideType] }>\n                            \n                                {this.props.slide.get('Content')}\n                            \n                        </div>\n                        <div className={'img-wrapper ' + SlideTypeEnum[slideType] }>\n                            <img src={this.props.slide.get('ImageUrl')} title=\"Image\" className=\"left-side-image\" />\n                        </div>\n                    </div>\n                </div>\n            ");
             };
             return PanelSlide;
         })(React.Component);

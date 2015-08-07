@@ -197,6 +197,9 @@ input {
     color:#808080;
 }
 
+.row.panel.stage {
+    text-align: center;
+}
 
 .space-top300{
     margin-top:300px;
@@ -204,6 +207,9 @@ input {
 
 /* left side panel */
 .panelSlide {
+    position: absolute;
+    left: 30px;
+
     width: 150px;
     height: 110px;
     border: solid;
@@ -217,6 +223,71 @@ input {
 
 }
 
+.panelSlide .slide-wrapper {
+    position: absolute;
+    top:0px;
+    left:0px;
+
+    width: 150px;
+    height: 110px;
+}
+
+.panelSlide .slide-wrapper .title {
+    display: block;
+    position: absolute;
+    font-size: small;
+    height: 20px;
+    width: 140px;
+    text-align: center;
+}
+
+.panelSlide .slide-wrapper .content-wrapper {
+    display: none;
+
+    position: absolute;
+    top: 20px;
+    left: 5px;
+    width:135px;
+    height:80px;
+    font-size:x-small;
+    overflow: hidden;
+    border: none;
+    background-color: none;
+    font-size: xx-small;
+    text-align: left;
+}
+
+/*.panelRow.selected .panelSlide .slide-wrapper .content-wrapper pre {
+    background-color:#e2f7f5;
+}*/
+
+.panelSlide .slide-wrapper .content-wrapper.TitleWithText {
+    white-space: pre;
+    display: block;
+    background-color: none;
+}
+
+.panelSlide .slide-wrapper .img-wrapper {
+    display: none;    
+    position: absolute;
+    top: 25px;
+    left: 5px;
+    width:140px;
+    height:80px;
+}
+
+.panelSlide .slide-wrapper .img-wrapper.TitleWithImage {
+    display: block;
+}
+
+.left-side-image {
+    position: relative;
+    top: 10px;
+    text-align: center;
+    vertical-align: middle;
+    height: 60px;
+}
+
 .panelRow {
     position: relative;
     height:140px;
@@ -226,13 +297,11 @@ input {
     border-width: 5px;
     text-align: center;
     margin-bottom: 10px;
-    
 }
 
-.panelRow.selected{
-    background-color:#e2f7f5
+.panelRow.selected {
+    background-color:#e2f7f5;
 }
-
 
 .slideId {
     position:absolute;
@@ -663,11 +732,10 @@ body {
 }
 
 .loader {
-    position: absolute;
+    position: relative;
     top: 300px;
-    left: 70px;
-
-    width: 150px;
+    text-align: center;
+    width: 100%;
     height: 30px;
 }
 

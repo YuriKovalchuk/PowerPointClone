@@ -7,7 +7,7 @@ import EmiterModule = require('../Utils/EmitterWrapper');
 import EnumsModule = require('../Enums/EventNames');
 import SlideModule = require('../DAL/Model/Backbone.Models/Slide');
 import SlideTypeEnumModule = require('../Enums/SlideType');
-
+import LoaderModule = require('../components/Loader');
 
 import LayoutsCollection = LayoutsModule.LayoutsCollection;
 import Layout = LayoutModule.Layout;
@@ -15,6 +15,7 @@ import Emitter = EmiterModule.EmitterWrapper;
 import EventNamesEnum = EnumsModule.EventNames;
 import Slide = SlideModule.Slide;
 import SlideTypeEnum = SlideTypeEnumModule.SlideType;
+import Loader = LoaderModule.Loader;
 
 module RightSidePanel {
 
@@ -85,11 +86,7 @@ module RightSidePanel {
             {
                 innerComponent = React.jsx(`
                     <div className='right-panel'>
-                        <div className='loader'>
-                            <div className='ball_1' ></div>
-                            <div className='ball_2' ></div>
-                            <div className='ball_3' ></div>
-                        </div>
+                        <Loader />
                     </div>
                 `);
             }

@@ -5,15 +5,15 @@ import PanelRowModule = require('../leftSidePanel/PanelRow');
 import SlideModule = require('../../DAL/Model/Backbone.Models/Slide');
 import SlideCollectionModule = require('../../DAL/Model/Backbone.Models/SlideCollection');
 import EmitterModule = require('../../Utils/EmitterWrapper');
-
 import EventNamesModule = require('../../Enums/EventNames');
+import LoaderModule = require('../Loader');
 
 import PanelRow = PanelRowModule.PanelRow;
 import Slide = SlideModule.Slide;
 import SlideCollection = SlideCollectionModule.SlideCollection;
 import EventEmitter = EmitterModule.EmitterWrapper;
 import EventNames = EventNamesModule.EventNames;
-
+import Loader = LoaderModule.Loader;
 
 module LeftPanel {
 
@@ -242,11 +242,7 @@ module LeftPanel {
                             </div>
                         </div>
                         <div id='leftSidePanel' className='leftSidePanel'>
-                            <div className='loader'>
-                                <div className='ball_1' ></div>
-                                <div className='ball_2' ></div>
-                                <div className='ball_3' ></div>
-                            </div>
+                            <Loader />
                         </div>
                     </div>
                 `);

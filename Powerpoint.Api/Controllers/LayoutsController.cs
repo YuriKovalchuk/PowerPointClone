@@ -19,7 +19,7 @@ namespace Powerpoint.Api.Controllers
 
         public IEnumerable<Powerpoint.Api.Models.Layout> Get()
         {
-            System.Threading.Thread.Sleep(TIMEOUT);
+            System.Threading.Thread.Sleep(3000);
 
             var file = File.ReadAllText(path);
             var layouts = Newtonsoft.Json.JsonConvert.DeserializeObject<List<Layout>>(file);

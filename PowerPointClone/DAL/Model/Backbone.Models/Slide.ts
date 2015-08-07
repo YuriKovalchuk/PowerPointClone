@@ -25,7 +25,7 @@ module Models {
                 SlideType: Type.SlideType.TitleOnly,
                 Title: '' ,
                 Content: '',
-                ImageUrl: 'default',
+                ImageUrl: 'https://placeholdit.imgix.net/~text?txtsize=33&txt=image&w=1200&h=1200',
                 Selected: false,
             }
         }

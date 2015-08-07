@@ -1,9 +1,12 @@
-﻿///<reference path="../../lib/_references.d.ts"/>
+﻿/// <reference path="../../enums/slidetype.ts" />
+///<reference path="../../lib/_references.d.ts"/>
 
 import React = require('react/addons');
 import SlideModule = require('../../DAL/Model/Backbone.Models/Slide');
+import SlideTypeEnumModule = require('../../Enums/SlideType');
 
 import Slide = SlideModule.Slide;
+import SlideTypeEnum = SlideTypeEnumModule.SlideType;
 
 
 module PanelSlide {
@@ -43,9 +46,24 @@ module PanelSlide {
         }
 
         render() {
+            var style: string = 'hidden';
+            var slideType : SlideTypeEnum = this.props.slide.get('SlideType');
+
             return React.jsx(`
                 <div className='panelSlide' onClick={this.clickOnSlide.bind(this, this.props.slide.get('Id'))} >
-                    {this.props.slide.get('Title')}
+                    <div className='slide-wrapper'>
+                        <div className='title'>
+                            {this.props.slide.get('Title')}
+                        </div>
+                        <div className={'content-wrapper ' + SlideTypeEnum[slideType] }>
+                            
+                                {this.props.slide.get('Content')}
+                            
+                        </div>
+                        <div className={'img-wrapper ' + SlideTypeEnum[slideType] }>
+                            <img src={this.props.slide.get('ImageUrl')} title="Image" className="left-side-image" />
+                        </div>
+                    </div>
                 </div>
             `);
         }
